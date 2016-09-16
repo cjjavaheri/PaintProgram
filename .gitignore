@@ -1,0 +1,7 @@
+*.gch
+*.o
+*.d
+a.out
+main
+html/
+doxygen/
