@@ -23,8 +23,8 @@ void display()
     DrawFilledRectangle(0, 300, 50, 350, Yellow);
     DrawFilledRectangle(0, 350, 50, 400, White);
 
-    DrawLine( 10, 20, glutGet(GLUT_WINDOW_WIDTH) - 10, 
-                      glutGet(GLUT_WINDOW_HEIGHT) - 20, Yellow );
+    DrawLine( 10, 20, glutGet(GLUT_WINDOW_WIDTH) - 10,
+              glutGet(GLUT_WINDOW_HEIGHT) - 20, Yellow );
     DrawRectangle( 500, 400, 700, 500, Cyan );
     DrawFilledRectangle( 200, 100, 300, 300, Red );
     DrawEllipse( 100, 50, 600, 200, Green );
@@ -46,17 +46,17 @@ void display()
  ******************************************************************************/
 void keyboard(unsigned char key, int x, int y)
 {
-   // Pressing the ESCAPE Key will exit from the main glut loop
-   
-   int ScreenHeight = glutGet(GLUT_WINDOW_HEIGHT);
+    // Pressing the ESCAPE Key will exit from the main glut loop
 
-   y = ScreenHeight - y;
+    int ScreenHeight = glutGet(GLUT_WINDOW_HEIGHT);
 
-   if (key == ESCAPE_KEY)
-      glutLeaveMainLoop();
-   else
-      cout << "Key " << (char)key << " press detected at ["
-           << x << ", " << y << "]\n";
+    y = ScreenHeight - y;
+
+    if (key == ESCAPE_KEY)
+        glutLeaveMainLoop();
+    else
+        cout << "Key " << (char)key << " press detected at ["
+             << x << ", " << y << "]\n";
 }
 
 /***************************************************************************//**
@@ -69,9 +69,49 @@ void keyboard(unsigned char key, int x, int y)
  ******************************************************************************/
 void mouseClick(int button, int state, int x, int y)
 {
-   y = glutGet(GLUT_WINDOW_HEIGHT) - y;
-   cout << "MouseClick: Button = " << ButtonName[button] << " : State = "
-        << ButtonState[state] << " : Location [" << x << ", " << y << "]\n";
+    y = glutGet(GLUT_WINDOW_HEIGHT) - y;
+    if (x >= 0 && x <= 50 && y >= 0 && y < 50)
+    {
+        DrawFilledRectangle(200, 200, 300, 300, Grey);
+        glutSwapBuffers();
+    }
+    else if (x >= 0 && x <= 50 && y >= 50 && y < 100)
+    {
+        DrawFilledRectangle(200, 200, 300, 300, Red);
+        glutSwapBuffers();
+    }
+    else if (x >= 0 && x <= 100 && y >= 100 && y < 150)
+    {
+        DrawFilledRectangle(200, 200, 300, 300, Green);
+        glutSwapBuffers();
+    }
+    else if (x >= 0 && x <= 50 && y >= 150 && y < 200)
+    {
+        DrawFilledRectangle(200, 200, 300, 300, Blue);
+        glutSwapBuffers();
+    }
+    else if (x >= 0 && x <= 50 && y >= 200 && y < 250)
+    {
+        DrawFilledRectangle(200, 200, 300, 300, Magenta);
+        glutSwapBuffers();
+    }
+    else if (x >= 0 && x <= 50 && y >= 250 && y < 300)
+    {
+        DrawFilledRectangle(200, 200, 300, 300, Cyan);
+        glutSwapBuffers();
+    }
+    else if (x >= 0 && x <= 50 && y >= 300 && y < 350)
+    {
+        DrawFilledRectangle(200, 200, 300, 300, Yellow);
+        glutSwapBuffers();
+    }
+    else if (x >= 0 && x <= 50 && y >= 350 && y < 400)
+    {
+        DrawFilledRectangle(200, 200, 300, 300, White);
+        glutSwapBuffers();
+    }
+    cout << "MouseClick: Button = " << ButtonName[button] << " : State = "
+         << ButtonState[state] << " : Location [" << x << ", " << y << "]\n";
 }
 
 /***************************************************************************//**
