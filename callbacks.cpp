@@ -13,6 +13,16 @@ void display()
     glutInitWindowSize(1024, 999);
     glutInitWindowPosition(100, 100);
 
+    // Color palette
+    DrawFilledRectangle(0, 0, 50, 50, Grey);
+    DrawFilledRectangle(0, 50, 50, 100, Red);
+    DrawFilledRectangle(0, 100, 50, 150, Green);
+    DrawFilledRectangle(0, 150, 50, 200, Blue);
+    DrawFilledRectangle(0, 200, 50, 250, Magenta);
+    DrawFilledRectangle(0, 250, 50, 300, Cyan);
+    DrawFilledRectangle(0, 300, 50, 350, Yellow);
+    DrawFilledRectangle(0, 350, 50, 400, White);
+
     DrawLine( 10, 20, glutGet(GLUT_WINDOW_WIDTH) - 10, 
                       glutGet(GLUT_WINDOW_HEIGHT) - 20, Yellow );
     DrawRectangle( 500, 400, 700, 500, Cyan );
