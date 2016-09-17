@@ -22,13 +22,13 @@ void display()
     DrawFilledRectangle(0, 250, 50, 300, Cyan);
     DrawFilledRectangle(0, 300, 50, 350, Yellow);
     DrawFilledRectangle(0, 350, 50, 400, White);
-
-    DrawLine( 10, 20, glutGet(GLUT_WINDOW_WIDTH) - 10,
-              glutGet(GLUT_WINDOW_HEIGHT) - 20, Yellow );
-    DrawRectangle( 500, 400, 700, 500, Cyan );
-    DrawFilledRectangle( 200, 100, 300, 300, Red );
-    DrawEllipse( 100, 50, 600, 200, Green );
-    DrawFilledEllipse( 100, 50, 250, 450, Magenta );
+	
+    // DrawLine( 10, 20, glutGet(GLUT_WINDOW_WIDTH) - 10,
+    //         glutGet(GLUT_WINDOW_HEIGHT) - 20, Yellow );
+    // DrawRectangle( 500, 400, 700, 500, Cyan );
+    // DrawFilledRectangle( 200, 100, 300, 300, Red );
+   //  DrawEllipse( 100, 50, 600, 200, Green );
+    // DrawFilledEllipse( 100, 50, 250, 450, Magenta );
 
     // label display with text
     DrawTextString( "OpenGL Demo", 32, 800 - 32, White );
@@ -70,6 +70,7 @@ void keyboard(unsigned char key, int x, int y)
 void mouseClick(int button, int state, int x, int y)
 {
     y = glutGet(GLUT_WINDOW_HEIGHT) - y;
+    // Mouse functionality for color palette.
     if (x >= 0 && x <= 50 && y >= 0 && y < 50)
     {
         DrawFilledRectangle(200, 200, 300, 300, Grey);
