@@ -75,12 +75,12 @@ void display()
     glutInitWindowPosition(100, 100);
 
     Color_Palette();
-	
+
     // DrawLine( 10, 20, glutGet(GLUT_WINDOW_WIDTH) - 10,
     //         glutGet(GLUT_WINDOW_HEIGHT) - 20, Yellow );
     // DrawRectangle( 500, 400, 700, 500, Cyan );
     // DrawFilledRectangle( 200, 100, 300, 300, Red );
-   //  DrawEllipse( 100, 50, 600, 200, Green );
+    //  DrawEllipse( 100, 50, 600, 200, Green );
     // DrawFilledEllipse( 100, 50, 250, 450, Magenta );
 
     // label display with text
@@ -123,29 +123,29 @@ void keyboard(unsigned char key, int x, int y)
  ******************************************************************************/
 void mouseClick(int button, int state, int x, int y)
 {
-	static int x_coordinate1;
-	static int y_coordinate1;
-	static int x_coordinate2;
-	static int y_coordinate2;
-	
+    static int x_coordinate1;
+    static int y_coordinate1;
+    static int x_coordinate2;
+    static int y_coordinate2;
+
     y = glutGet(GLUT_WINDOW_HEIGHT) - y;
 
-if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
-	{
-		x_coordinate1 = x;
-		y_coordinate1 = y;
-	}
-	else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
-	{
-		x_coordinate2 = x;
-		y_coordinate2 = y;
-		static Rectangle rect((x_coordinate1 + x_coordinate2) / 2, (y_coordinate1 + 	y_coordinate2) / 2, MAGENTA , x_coordinate2 - x_coordinate1, y_coordinate2 - y_coordinate1);
-		Shape * some_shape = &rect;
-	some_shape->draw();
+    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+    {
+        x_coordinate1 = x;
+        y_coordinate1 = y;
+    }
+    else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
+    {
+        x_coordinate2 = x;
+        y_coordinate2 = y;
+        static Rectangle rect((x_coordinate1 + x_coordinate2) / 2, (y_coordinate1 + 	y_coordinate2) / 2, MAGENTA , x_coordinate2 - x_coordinate1, y_coordinate2 - y_coordinate1);
+        Shape * some_shape = &rect;
+        some_shape->draw();
 
-	}
+    }
     // Mouse functionality for color palette.
-   Choose_Color(button, state, x, y);
+    Choose_Color(button, state, x, y);
     cout << "MouseClick: Button = " << ButtonName[button] << " : State = "
          << ButtonState[state] << " : Location [" << x << ", " << y << "]\n";
 }
