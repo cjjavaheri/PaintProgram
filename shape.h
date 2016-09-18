@@ -29,6 +29,13 @@
 #include "graphics.h"
 using namespace std;
 
+enum ShapeType
+{
+	EMTPY,
+	
+	RECTANGLE
+};
+
 /// Color name enum
 enum ColorType
 {

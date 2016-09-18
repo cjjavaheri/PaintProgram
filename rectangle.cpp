@@ -79,7 +79,7 @@ void Rectangle::changeDimensions( float w, float h )
  *****************************************************************************/
 void Rectangle::draw( ) const
 {
-	DrawFilledRectangle(locX - width / 2, locY - height / 2, locX + width / 2, 
+	DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2, 
 	locY + height / 2, some_color);
 	glutSwapBuffers();
     cout << "Draw  Rectangle: (" <<

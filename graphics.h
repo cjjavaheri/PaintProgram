@@ -17,6 +17,7 @@
 #include <string>
 // the GLUT header automatically includes gl.h and glu.h
 #include <GL/freeglut.h>
+#include "graphics.h"
 
 /// Define the Black color
 const float Black[] = { 0.0, 0.0, 0.0 };
@@ -34,8 +35,8 @@ const float Cyan[]  = { 0.0, 1.0, 1.0 };
 const float Yellow[]    = { 1.0, 1.0, 0.0 };
 /// Define the White color
 const float White[] = { 1.0, 1.0, 1.0 };
-/// Define the grey color
-const float Grey[] = { 0.50, 0.50 , 0.50};
+/// Define the Grey color
+const float Grey[] = {0.50, 0.50, 0.50};
 
 /// DrawLine function
 void DrawLine( float x1, float y1, float x2, float y2, const float color[] );

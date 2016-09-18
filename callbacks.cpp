@@ -22,7 +22,19 @@ void Color_Palette()
 
 }
 
-ColorType Choose_Color(int button, int state, int x, int y, ColorType color)
+ShapeType Choose_Shape(int x, int y, ShapeType shape)
+{
+	if (x >= 50 && x <= 100 && y >= 1 && y < 50)
+	{
+		cout << "shape changed to rectangle." << endl;
+	   return RECTANGLE;
+	}
+	else
+	   return shape;
+
+}
+
+ColorType Choose_Color(int x, int y, ColorType color)
 {
     if (x >= 0 && x <= 50 && y >= 0 && y < 50)
     {
@@ -126,12 +138,14 @@ void mouseClick(int button, int state, int x, int y)
 	static int x_coordinate2;
 	static int y_coordinate2;
 	static ColorType color = BLACK;
+	static ShapeType shape = EMTPY;
 	
     y = glutGet(GLUT_WINDOW_HEIGHT) - y;
 
 if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
-		color = Choose_Color(button, state, x, y, color);
+		color = Choose_Color(x, y, color);
+		shape = Choose_Shape(x, y, shape);
 		x_coordinate1 = x;
 		y_coordinate1 = y;
 	}
@@ -139,9 +153,12 @@ if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
 		x_coordinate2 = x;
 		y_coordinate2 = y;
-	         Rectangle rect((x_coordinate1 + x_coordinate2) / 2, (y_coordinate1 + 		y_coordinate2) / 2, color , x_coordinate2 - x_coordinate1, y_coordinate2 - y_coordinate1);
+		if (color != BLACK && shape == RECTANGLE)
+		{
+	         Rectangle rect((x_coordinate1 + x_coordinate2) / 2, (y_coordinate1 + 			y_coordinate2) / 2, color , x_coordinate2 - x_coordinate1, y_coordinate2 - 			y_coordinate1);
 		Shape * some_shape = &rect;
-	some_shape->draw();
+		some_shape->draw();
+		}
 
 	}
     // Mouse functionality for color palette.
