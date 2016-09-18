@@ -1,10 +1,13 @@
 
 #include "callbacks.h"
 
+
+
 /***************************************************************************//**
- * @author Paul Hinker
+ * @author Cameron Javaheri
  *
- * @brief A callback function for refreshing the display
+ * @brief A function that is used to display the color palette.
+ *
  ******************************************************************************/
 
 
@@ -27,6 +30,19 @@ void Color_Palette()
     
 }
 
+/***************************************************************************//**
+ * @author Cameron Javaheri
+ *
+ * @brief A function that will determine the type of shape to be drawn based
+ * on the location of a mouse click.
+ *
+ * @param[in] x - The x-coordinate of the mouse click.
+ * @param[in] y - The y-coordinate of the mouse click.
+ * @param[in] shape - The type of shape the object is before entering the function.
+ *
+ * @returns The type of shape the object is.
+ ******************************************************************************/
+
 ShapeType Choose_Shape ( int x, int y, ShapeType shape )
 {
     if ( x >= 50 && x < 100 && y >= 1 && y < 50 )
@@ -43,6 +59,20 @@ ShapeType Choose_Shape ( int x, int y, ShapeType shape )
     }
     
 }
+
+/***************************************************************************//**
+ * @author Cameron Javaheri
+ *
+ * @brief This function determines the color of the shape based on the location
+ * of a mouse click.
+ *
+ * @param[in] x - x-coordinate of the mouse click.
+ * @param[in] y - y-coordinate of the mouse click.
+ * @param[in] color - The color of the object before the choose_color function
+ * was called.
+ *
+ * @returns The type of color the object is.
+ ******************************************************************************/
 
 ColorType Choose_Color ( int x, int y, ColorType color )
 {
@@ -85,9 +115,22 @@ ColorType Choose_Color ( int x, int y, ColorType color )
     
 }
 
-void Event ( int button, int state, int x, int y, char key )
+
+/***************************************************************************//**
+ * @author Cameron Javaheri
+ *
+ * @brief An event function that handles mouse events from the user. It dynamically
+ * allocates new shapes using inheritance and draws them to the screen.
+ *
+ * @param[in] button - The button the user pressed.
+ * @param[in] state - Tells whether the user clicked or released the mouse button.
+ * @param[in] x - The x-coordinate of the mouse click.
+ * @param[in] y - The y-coordinate of the mouse click.
+ *
+ ******************************************************************************/
+
+void Event ( int button, int state, int x, int y )
 {
-    static vector< Shape * > vect;
     static int x_initial;
     static int y_initial;
     static int x_final;
@@ -99,15 +142,6 @@ void Event ( int button, int state, int x, int y, char key )
     const float display_rect[4] = { (16 + 35) / 2.0, (415 + 435) / 2.0, 16 - 35, 415 - 435};
     Shape * rect;
     Shape * filled_rect;
-
-
-    if (key == 'd')
-	{
-		rect = vect.back();
-		rect->erase();
-		vect.pop_back();
-		delete rect;
-	}
     
     if ( button == GLUT_LEFT_BUTTON && state == GLUT_DOWN )
     {
@@ -141,7 +175,6 @@ void Event ( int button, int state, int x, int y, char key )
         {
             rect = new Rectangle ( ( x_initial + x_final ) / 2.0, ( y_initial 				+y_final ) /2.0,boundary, x_initial - x_final, y_initial - y_final );
             rect->draw();
-	    vect.push_back(rect);
         }
         else if ( fill != BLACK && shape == FILLED_RECTANGLE )
         {
@@ -149,8 +182,6 @@ void Event ( int button, int state, int x, int y, char key )
             rect = new Rectangle ( ( x_initial + x_final ) / 2.0,( y_initial +  			y_final ) / 2.0,boundary, x_initial - x_final, y_initial - y_final );
 	    filled_rect->draw();
             rect->draw();
-	    vect.push_back(filled_rect);
-	    vect.push_back(rect);
         }
         
     }
@@ -189,6 +220,12 @@ void Event ( int button, int state, int x, int y, char key )
     
     }
 }
+
+/***************************************************************************//**
+ * @author Paul Hinker
+ *
+ * @brief A callback function for refreshing the display
+ ******************************************************************************/
 
 void display()
 {
@@ -236,7 +273,6 @@ void keyboard ( unsigned char key, int x, int y )
     }
     if (char(key) == 'd')
 	{
-		Event(GLUT_MIDDLE_BUTTON, GLUT_UP, 0, 0, char(key));
 	}
     else
         cout << "Key " << ( char ) key << " press detected at ["
@@ -257,7 +293,7 @@ void mouseClick ( int button, int state, int x, int y )
     y = glutGet ( GLUT_WINDOW_HEIGHT ) - y;
     
     
-    Event ( button, state, x, y, 'a' );
+ 	Event(button, state, x, y);
     
     
     cout << "MouseClick: Button = " << ButtonName[button] << " : State = "

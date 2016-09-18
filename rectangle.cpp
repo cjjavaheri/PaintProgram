@@ -30,6 +30,8 @@ using namespace std;
 // Rectangle class implementation
 
 /**************************************************************************//**
+ * @author John Weiss
+ *
  * @brief Rectangle class implementation constructor
  *
  * @param[in] x - x-coordinate of the center of the rectangle
@@ -71,6 +73,8 @@ void Rectangle::changeDimensions( float w, float h )
 }
 
 /**************************************************************************//**
+ * @author Cameron Javaheri
+ * 
  * @brief Rectangle class draw
  *
  * @par Description
@@ -87,6 +91,8 @@ void Rectangle::draw( ) const
 }
 
 /**************************************************************************//**
+ * @author Cameron Javaheri
+ * 
  * @brief Rectangle class erase
  *
  * @par Description
@@ -103,6 +109,8 @@ void Rectangle::erase( ) const
 }
 
 /**************************************************************************//**
+ * @author Cameron Javaheri
+ * 
  * @brief Rectangle class print
  *
  * @par Description
