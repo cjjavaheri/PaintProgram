@@ -96,6 +96,9 @@ void MouseEvent ( int button, int state, int x, int y )
     static ColorType fill = BLACK;
     static ShapeType shape = EMPTY;
     static ShapeType check_shape = EMPTY;
+    Shape * rect;
+    Shape * filled_rect;
+    
     
     if ( button == GLUT_LEFT_BUTTON && state == GLUT_DOWN )
     {
@@ -108,20 +111,18 @@ void MouseEvent ( int button, int state, int x, int y )
         {
             if ( shape == RECTANGLE )
             {
-                Shape *curr_shape = new Rectangle ( ( 16 + 35 ) / 2.0, ( 415 + 435 ) / 2.0, 				boundary, 16 - 35, 415 - 435 );
-                curr_shape->draw();
-                delete curr_shape;
+                rect = new Rectangle ( ( 16 + 35 ) / 2.0, ( 415 + 435 ) / 2.0, 				boundary, 16 - 35, 415 - 435 );
+                rect->draw();
+		delete rect;
             }
             else if ( fill != BLACK && shape == FILLED_RECTANGLE )
             {
-                FilledRectangle fill_rect ( ( 16 + 35 ) / 2.0,
-                       ( 415 + 435 ) / 2.0, fill, 16 - 35, 415 - 435 );
-                Shape *current_shape = new FilledRectangle ( ( 16 + 35 ) / 2.0, ( 415 + 435 ) / 			2.0, fill, 16 - 35, 415 - 435 );
-                current_shape->draw();
-                Shape *curr_rect = new Rectangle ( ( 16 + 35 ) / 2.0,( 415 + 435 ) / 				2.0,boundary, 16 - 35, 415 - 435 );
-                curr_rect->draw();
-                delete current_shape;
-                delete curr_rect;
+                filled_rect = new FilledRectangle ( ( 16 + 35 ) / 2.0, ( 415 + 435 ) / 			2.0, fill, 16 - 35, 415 - 435 );
+                rect = new Rectangle ( ( 16 + 35 ) / 2.0,( 415 + 435 ) / 				2.0,boundary, 16 - 35, 415 - 435 );
+		filled_rect->draw();
+                rect->draw();
+                delete rect;
+                delete filled_rect;
             }
         }
     }
@@ -132,18 +133,18 @@ void MouseEvent ( int button, int state, int x, int y )
         
         if ( boundary != BLACK && shape == RECTANGLE )
         {
-            Shape *some_shape = new Rectangle ( ( x_initial + x_final ) / 2.0, ( y_initial 			+y_final ) /2.0,boundary, x_initial - x_final, y_initial - y_final );
-            some_shape->draw();
-            delete some_shape;
+            rect = new Rectangle ( ( x_initial + x_final ) / 2.0, ( y_initial 				+y_final ) /2.0,boundary, x_initial - x_final, y_initial - y_final );
+            rect->draw();
+            delete rect;
         }
         else if ( fill != BLACK && shape == FILLED_RECTANGLE )
         {
-            Shape *filled_shape = new FilledRectangle ( ( x_initial + x_final ) / 2.0,( y_initial 			+ y_final ) / 2, fill, x_initial - x_final,y_initial - y_final );
-            filled_shape->draw();
-            Shape *boundary_shape = new Rectangle ( ( x_initial + x_final ) / 2.0,( y_initial +  			y_final ) / 2.0,boundary, x_initial - x_final, y_initial - y_final );
-            boundary_shape->draw();
-            delete filled_shape;
-            delete boundary_shape;
+            filled_rect = new FilledRectangle ( ( x_initial + x_final ) / 2.0,( y_initial 			+ y_final ) / 2, fill, x_initial - x_final,y_initial - y_final );
+            rect = new Rectangle ( ( x_initial + x_final ) / 2.0,( y_initial +  			y_final ) / 2.0,boundary, x_initial - x_final, y_initial - y_final );
+	    filled_rect->draw();
+            rect->draw();
+            delete filled_rect;
+            delete rect;
         }
         
     }
@@ -164,15 +165,15 @@ void MouseEvent ( int button, int state, int x, int y )
             {
                 if ( boundary != BLACK )
                 {
-                    Shape *curr_shape = new Rectangle ( ( 16 + 35 ) / 2.0, ( 415 + 435 ) /  2.0, 				boundary, 16 - 35, 415 - 435 );
-                    curr_shape->draw();
-                    delete curr_shape;
+                    rect = new Rectangle ( ( 16 + 35 ) / 2.0, ( 415 + 435 ) /  2.0, 				boundary, 16 - 35, 415 - 435 );
+                    rect->draw();
                 }
                 
-                Shape *current_shape = new FilledRectangle ( ( 16 + 35 ) / 2.0,
-                        ( 415 + 435 ) /                 2.0, fill, 16 - 35, 415 - 435 );
-                current_shape->draw();
-                delete current_shape;
+                filled_rect = new FilledRectangle ( ( 16 + 35 ) / 2.0,
+                        ( 415 + 435 ) /  2.0, fill, 16 - 35, 415 - 435 );
+                filled_rect->draw();
+		delete rect;
+                delete filled_rect;
             }
         }
         
