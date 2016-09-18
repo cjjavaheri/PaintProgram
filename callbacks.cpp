@@ -133,10 +133,10 @@ void keyboard(unsigned char key, int x, int y)
  ******************************************************************************/
 void mouseClick(int button, int state, int x, int y)
 {
-	static int x_coordinate1;
-	static int y_coordinate1;
-	static int x_coordinate2;
-	static int y_coordinate2;
+	static int x_initial;
+	static int y_initial;
+	static int x_final;
+	static int y_final;
 	static ColorType color = BLACK;
 	static ShapeType shape = EMTPY;
 	
@@ -146,16 +146,16 @@ if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
 		color = Choose_Color(x, y, color);
 		shape = Choose_Shape(x, y, shape);
-		x_coordinate1 = x;
-		y_coordinate1 = y;
+		x_initial = x;
+		y_initial = y;
 	}
 	else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
 	{
-		x_coordinate2 = x;
-		y_coordinate2 = y;
+		x_final = x;
+		y_final = y;
 		if (color != BLACK && shape == RECTANGLE)
 		{
-	         Rectangle rect((x_coordinate1 + x_coordinate2) / 2, (y_coordinate1 + 			y_coordinate2) / 2, color , x_coordinate2 - x_coordinate1, y_coordinate2 - 			y_coordinate1);
+	         Rectangle rect((x_initial + x_final) / 2, (y_initial + y_final) / 2, color, 			x_initial - x_final, y_initial - y_final);
 		Shape * some_shape = &rect;
 		some_shape->draw();
 		}
