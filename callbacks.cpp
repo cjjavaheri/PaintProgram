@@ -17,50 +17,48 @@ void Color_Palette()
     DrawFilledRectangle(0, 250, 50, 300, Cyan);
     DrawFilledRectangle(0, 300, 50, 350, Yellow);
     DrawFilledRectangle(0, 350, 50, 400, White);
+    DrawRectangle(50, 1, 100, 50, White);
+    DrawRectangle(65, 15, 85, 35, Yellow);
 
 }
 
-void Choose_Color(int button, int state, int x, int y)
+ColorType Choose_Color(int button, int state, int x, int y, ColorType color)
 {
     if (x >= 0 && x <= 50 && y >= 0 && y < 50)
     {
-        DrawFilledRectangle(200, 200, 300, 300, Grey);
-        glutSwapBuffers();
+        return GREY;
     }
     else if (x >= 0 && x <= 50 && y >= 50 && y < 100)
     {
-        DrawFilledRectangle(200, 200, 300, 300, Red);
-        glutSwapBuffers();
+	return RED;
     }
     else if (x >= 0 && x <= 100 && y >= 100 && y < 150)
     {
-        DrawFilledRectangle(200, 200, 300, 300, Green);
-        glutSwapBuffers();
+	return GREEN;
     }
     else if (x >= 0 && x <= 50 && y >= 150 && y < 200)
     {
-        DrawFilledRectangle(200, 200, 300, 300, Blue);
-        glutSwapBuffers();
+	return BLUE;
     }
     else if (x >= 0 && x <= 50 && y >= 200 && y < 250)
     {
-        DrawFilledRectangle(200, 200, 300, 300, Magenta);
-        glutSwapBuffers();
+	return MAGENTA;
     }
     else if (x >= 0 && x <= 50 && y >= 250 && y < 300)
     {
-        DrawFilledRectangle(200, 200, 300, 300, Cyan);
-        glutSwapBuffers();
+	return CYAN;
     }
     else if (x >= 0 && x <= 50 && y >= 300 && y < 350)
     {
-        DrawFilledRectangle(200, 200, 300, 300, Yellow);
-        glutSwapBuffers();
+	return YELLOW;
     }
     else if (x >= 0 && x <= 50 && y >= 350 && y < 400)
     {
-        DrawFilledRectangle(200, 200, 300, 300, White);
-        glutSwapBuffers();
+	return WHITE;
+    }
+    else
+    {
+	return color;
     }
 
 }
@@ -75,12 +73,12 @@ void display()
     glutInitWindowPosition(100, 100);
 
     Color_Palette();
-
+	
     // DrawLine( 10, 20, glutGet(GLUT_WINDOW_WIDTH) - 10,
     //         glutGet(GLUT_WINDOW_HEIGHT) - 20, Yellow );
     // DrawRectangle( 500, 400, 700, 500, Cyan );
     // DrawFilledRectangle( 200, 100, 300, 300, Red );
-    //  DrawEllipse( 100, 50, 600, 200, Green );
+   //  DrawEllipse( 100, 50, 600, 200, Green );
     // DrawFilledEllipse( 100, 50, 250, 450, Magenta );
 
     // label display with text
@@ -123,29 +121,30 @@ void keyboard(unsigned char key, int x, int y)
  ******************************************************************************/
 void mouseClick(int button, int state, int x, int y)
 {
-    static int x_coordinate1;
-    static int y_coordinate1;
-    static int x_coordinate2;
-    static int y_coordinate2;
-
+	static int x_coordinate1;
+	static int y_coordinate1;
+	static int x_coordinate2;
+	static int y_coordinate2;
+	static ColorType color = BLACK;
+	
     y = glutGet(GLUT_WINDOW_HEIGHT) - y;
 
-    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
-    {
-        x_coordinate1 = x;
-        y_coordinate1 = y;
-    }
-    else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
-    {
-        x_coordinate2 = x;
-        y_coordinate2 = y;
-        Rectangle rect((x_coordinate1 + x_coordinate2) / 2, (y_coordinate1 + 	y_coordinate2) / 2, MAGENTA , x_coordinate2 - x_coordinate1, y_coordinate2 - y_coordinate1);
-        Shape * some_shape = &rect;
-        some_shape->draw();
+if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	{
+		color = Choose_Color(button, state, x, y, color);
+		x_coordinate1 = x;
+		y_coordinate1 = y;
+	}
+	else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
+	{
+		x_coordinate2 = x;
+		y_coordinate2 = y;
+	         Rectangle rect((x_coordinate1 + x_coordinate2) / 2, (y_coordinate1 + 		y_coordinate2) / 2, color , x_coordinate2 - x_coordinate1, y_coordinate2 - y_coordinate1);
+		Shape * some_shape = &rect;
+	some_shape->draw();
 
-    }
+	}
     // Mouse functionality for color palette.
-    Choose_Color(button, state, x, y);
     cout << "MouseClick: Button = " << ButtonName[button] << " : State = "
          << ButtonState[state] << " : Location [" << x << ", " << y << "]\n";
 }
