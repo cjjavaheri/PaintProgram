@@ -10,7 +10,7 @@
  *
  *    This file contains the Point class interface.
  *
- * @author John M. Weiss, Ph.D.
+ * @author John M. Weiss, Ph.D. , Cameron Javaheri
  * 
  * @par Class:  
  *    CSC300 Data Structures
@@ -31,8 +31,9 @@ using namespace std;
 
 enum ShapeType
 {
-	EMTPY,
-	RECTANGLE
+	EMPTY,
+	RECTANGLE,
+	FILLED_RECTANGLE
 };
 
 /// Color name enum

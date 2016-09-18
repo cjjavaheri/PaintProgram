@@ -21,29 +21,23 @@
  *  * Added doxygen style comments                              PJH : 9/5/2016
  *  * Added doxygen style function blocks and parameter desc    PJH : 9/5/2016
  *****************************************************************************/
-#ifndef _Rectangle_H_
-#define _Rectangle_H_
+#ifndef _FilledRectangle_H_
+#define _FilledRectangle_H_
 
-#include "shape.h"
+#include "rectangle.h"
 
 /***************************************************************************//**
  * @class Rectangle
  ******************************************************************************/
-class Rectangle : public Shape
+class FilledRectangle : public Rectangle
 {
-    protected:       /// Rectangle width
-        float width;
-        /// Rectangle height;
-        float height;
 
     public:
         /// Constructor
-        Rectangle( float x = 0.0, float y = 0.0, ColorType c = ColorType( 0 ), float w = 1.0, float h = 1.0 );
+        FilledRectangle( float x = 0.0, float y = 0.0, ColorType c = ColorType( 0 ), float w = 1.0, float h = 1.0 );
         /// Destructor
-        ~Rectangle( );
+        ~FilledRectangle( );
 
-        /// Mutator to change the dimensions of the rectangle
-        void changeDimensions( float w, float h );
         /// Implementation of the base class pure virtual function draw
         void draw( ) const;
         /// Implementation of the base class pure virtual function erase

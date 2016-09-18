@@ -9,6 +9,7 @@
 #include "graphics.h"
 #include "shape.h"
 #include "rectangle.h"
+#include "FilledRectangle.h"
 #include <vector>
 
 using namespace std;

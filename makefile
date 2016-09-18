@@ -2,7 +2,7 @@ all: doxygen main
 
 .PHONY: clean
 
-SRCFILES = callbacks.cpp  callbacks.h  graphics.cpp  graphics.h  main.cpp shape.cpp shape.h rectangle.cpp rectangle.h 
+SRCFILES = callbacks.cpp  callbacks.h  graphics.cpp  graphics.h  main.cpp rectangle.cpp rectangle.h shape.cpp shape.h FilledRectangle.h FilledRectangle.cpp
 
 main: $(SRCFILES)
 	@echo making main

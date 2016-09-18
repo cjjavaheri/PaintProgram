@@ -19,15 +19,22 @@ void Color_Palette()
     DrawFilledRectangle(0, 350, 50, 400, White);
     DrawRectangle(50, 1, 100, 50, White);
     DrawRectangle(65, 15, 85, 35, Yellow);
+    DrawRectangle(100, 1, 150, 50, White);
+    DrawRectangle(115, 15, 135, 35, Yellow);
+    DrawFilledRectangle(115, 15, 134, 34, Grey);
+    DrawRectangle(1, 400, 50, 450, White);
 
 }
 
 ShapeType Choose_Shape(int x, int y, ShapeType shape)
 {
-	if (x >= 50 && x <= 100 && y >= 1 && y < 50)
+	if (x >= 50 && x < 100 && y >= 1 && y < 50)
 	{
-		cout << "shape changed to rectangle." << endl;
 	   return RECTANGLE;
+	}
+	else if (x >= 100 && x < 150 && y >= 1 && y < 50)
+	{
+	   return FILLED_RECTANGLE;
 	}
 	else
 	   return shape;
@@ -75,6 +82,94 @@ ColorType Choose_Color(int x, int y, ColorType color)
 
 }
 
+void MouseEvent(int button, int state, int x, int y)
+{
+
+	static int x_initial;
+	static int y_initial;
+	static int x_final;
+	static int y_final;
+	static ColorType boundary = BLACK;
+	static ColorType fill = BLACK;
+	static ShapeType shape = EMPTY;
+	static ShapeType check_shape = EMPTY;
+
+if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	{
+		boundary = Choose_Color(x, y, boundary);
+		shape = Choose_Shape(x, y, shape);
+		x_initial = x;
+		y_initial = y;
+		if (boundary != BLACK && (shape == RECTANGLE || shape == FILLED_RECTANGLE))
+		{
+			if (shape == RECTANGLE)
+			{
+	       	 		Rectangle curr_rect((16 + 35) / 2.0, (415 + 435) / 2.0,boundary, 					16 - 35,415 - 435);
+				Shape * curr_shape = &curr_rect;
+				curr_shape->draw();
+			}
+			else if (fill != BLACK && shape == FILLED_RECTANGLE)
+			{
+				FilledRectangle fill_rect((16 + 35) / 2.0, (415 + 					435) / 2.0,fill, 16 - 35, 415 - 435);
+				Shape * current_shape = &fill_rect;
+				current_shape->draw();
+				Rectangle curr_rect((16 + 35) / 2.0, (415 + 435) / 2.0,boundary, 					16 - 35, 415 - 435);
+				Shape * curr_shape = &curr_rect;
+				curr_shape->draw();
+			}
+		}
+	}
+else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
+	{
+		x_final = x;
+		y_final = y;
+		if (boundary != BLACK && shape == RECTANGLE)
+		{
+	        Rectangle rect((x_initial + x_final) / 2, (y_initial + y_final) / 2, boundary, 		 	x_initial - x_final, y_initial - y_final);
+		Shape * some_shape = &rect;
+		some_shape->draw();
+		}
+		else if (fill != BLACK && shape == FILLED_RECTANGLE)
+		{
+	         FilledRectangle filledrect((x_initial + x_final) / 2, (y_initial + y_final) / 2, 			fill, x_initial - x_final, y_initial - y_final);
+		Shape * filled_shape = &filledrect;
+		filled_shape->draw();
+		 Rectangle rect((x_initial + x_final) / 2, (y_initial + y_final) / 2, boundary, 		x_initial - x_final, y_initial - y_final);
+		Shape * boundary_shape = &rect;
+		boundary_shape->draw();
+		}
+
+	}
+
+else if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
+	{
+		fill = Choose_Color(x, y, fill);
+		shape = Choose_Shape(x, y, shape);
+		if (shape == FILLED_RECTANGLE)
+			check_shape = FILLED_RECTANGLE;
+		if (check_shape == FILLED_RECTANGLE)
+		{
+			if (fill != BLACK && (shape == FILLED_RECTANGLE || shape == RECTANGLE))
+			{
+				if (boundary != BLACK)
+				{
+				Rectangle curr_rect((16 + 35) / 2.0, (415 + 435) / 2.0,boundary, 					16 - 35, 415 - 435);
+				Shape * curr_shape = &curr_rect;
+				curr_shape->draw();
+				}
+	        	FilledRectangle fill_rect((16 + 35) / 2.0, (415 + 435) / 2.0,fill, 16 - 			35, 415 - 435);
+			Shape * current_shape = &fill_rect;
+			current_shape->draw();
+			}
+		}
+
+		
+	}
+else if (button == GLUT_RIGHT_BUTTON && state == GLUT_UP)
+	{
+		
+	}
+}
 
 void display()
 {
@@ -133,35 +228,11 @@ void keyboard(unsigned char key, int x, int y)
  ******************************************************************************/
 void mouseClick(int button, int state, int x, int y)
 {
-	static int x_initial;
-	static int y_initial;
-	static int x_final;
-	static int y_final;
-	static ColorType color = BLACK;
-	static ShapeType shape = EMTPY;
 	
     y = glutGet(GLUT_WINDOW_HEIGHT) - y;
+	MouseEvent(button, state, x, y);
 
-if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
-	{
-		color = Choose_Color(x, y, color);
-		shape = Choose_Shape(x, y, shape);
-		x_initial = x;
-		y_initial = y;
-	}
-	else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
-	{
-		x_final = x;
-		y_final = y;
-		if (color != BLACK && shape == RECTANGLE)
-		{
-	         Rectangle rect((x_initial + x_final) / 2, (y_initial + y_final) / 2, color, 			x_initial - x_final, y_initial - y_final);
-		Shape * some_shape = &rect;
-		some_shape->draw();
-		}
-
-	}
-    // Mouse functionality for color palette.
+ 
     cout << "MouseClick: Button = " << ButtonName[button] << " : State = "
          << ButtonState[state] << " : Location [" << x << ", " << y << "]\n";
 }
