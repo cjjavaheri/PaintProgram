@@ -96,6 +96,7 @@ void MouseEvent ( int button, int state, int x, int y )
     static ColorType fill = BLACK;
     static ShapeType shape = EMPTY;
     static ShapeType check_shape = EMPTY;
+    const float display_rect[4] = { (16 + 35) / 2.0, (415 + 435) / 2.0, 16 - 35, 415 - 435};
     Shape * rect;
     Shape * filled_rect;
     
@@ -111,18 +112,15 @@ void MouseEvent ( int button, int state, int x, int y )
         {
             if ( shape == RECTANGLE )
             {
-                rect = new Rectangle ( ( 16 + 35 ) / 2.0, ( 415 + 435 ) / 2.0, 				boundary, 16 - 35, 415 - 435 );
+                rect = new Rectangle ( display_rect[0], display_rect[1], 				boundary, display_rect[2], display_rect[3] );
                 rect->draw();
-		delete rect;
             }
             else if ( fill != BLACK && shape == FILLED_RECTANGLE )
             {
-                filled_rect = new FilledRectangle ( ( 16 + 35 ) / 2.0, ( 415 + 435 ) / 			2.0, fill, 16 - 35, 415 - 435 );
-                rect = new Rectangle ( ( 16 + 35 ) / 2.0,( 415 + 435 ) / 				2.0,boundary, 16 - 35, 415 - 435 );
+                filled_rect = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
+                rect = new Rectangle ( display_rect[0], display_rect[1],boundary, display_rect[2], display_rect[3] );
 		filled_rect->draw();
                 rect->draw();
-                delete rect;
-                delete filled_rect;
             }
         }
     }
@@ -135,7 +133,6 @@ void MouseEvent ( int button, int state, int x, int y )
         {
             rect = new Rectangle ( ( x_initial + x_final ) / 2.0, ( y_initial 				+y_final ) /2.0,boundary, x_initial - x_final, y_initial - y_final );
             rect->draw();
-            delete rect;
         }
         else if ( fill != BLACK && shape == FILLED_RECTANGLE )
         {
@@ -143,8 +140,6 @@ void MouseEvent ( int button, int state, int x, int y )
             rect = new Rectangle ( ( x_initial + x_final ) / 2.0,( y_initial +  			y_final ) / 2.0,boundary, x_initial - x_final, y_initial - y_final );
 	    filled_rect->draw();
             rect->draw();
-            delete filled_rect;
-            delete rect;
         }
         
     }
@@ -165,15 +160,13 @@ void MouseEvent ( int button, int state, int x, int y )
             {
                 if ( boundary != BLACK )
                 {
-                    rect = new Rectangle ( ( 16 + 35 ) / 2.0, ( 415 + 435 ) /  2.0, 				boundary, 16 - 35, 415 - 435 );
+                    rect = new Rectangle ( display_rect[0], display_rect[1], 				boundary, display_rect[2], display_rect[3] );
                     rect->draw();
                 }
                 
-                filled_rect = new FilledRectangle ( ( 16 + 35 ) / 2.0,
-                        ( 415 + 435 ) /  2.0, fill, 16 - 35, 415 - 435 );
+                filled_rect = new FilledRectangle ( display_rect[0],
+                        display_rect[1], fill, display_rect[2], display_rect[3] );
                 filled_rect->draw();
-		delete rect;
-                delete filled_rect;
             }
         }
         
