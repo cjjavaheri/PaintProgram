@@ -139,7 +139,7 @@ void mouseClick(int button, int state, int x, int y)
     {
         x_coordinate2 = x;
         y_coordinate2 = y;
-        static Rectangle rect((x_coordinate1 + x_coordinate2) / 2, (y_coordinate1 + 	y_coordinate2) / 2, MAGENTA , x_coordinate2 - x_coordinate1, y_coordinate2 - y_coordinate1);
+        Rectangle rect((x_coordinate1 + x_coordinate2) / 2, (y_coordinate1 + 	y_coordinate2) / 2, MAGENTA , x_coordinate2 - x_coordinate1, y_coordinate2 - y_coordinate1);
         Shape * some_shape = &rect;
         some_shape->draw();
 
