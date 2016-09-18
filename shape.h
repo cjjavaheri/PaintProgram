@@ -32,7 +32,6 @@ using namespace std;
 enum ShapeType
 {
 	EMTPY,
-	
 	RECTANGLE
 };
 
