@@ -80,6 +80,11 @@ void FilledRectangle::draw( ) const
  *****************************************************************************/
 void FilledRectangle::erase( ) const
 {
+	DrawFilledRectangle(locX - width / 2, locY - height / 2, locX + width / 2, 
+	locY + height / 2, Black);
+	DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
+	locY + height / 2,  Black);
+	glutSwapBuffers();
     cout << "Erase Rectangle: (" <<
          locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }

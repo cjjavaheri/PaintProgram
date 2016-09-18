@@ -85,9 +85,9 @@ ColorType Choose_Color ( int x, int y, ColorType color )
     
 }
 
-void MouseEvent ( int button, int state, int x, int y )
+void Event ( int button, int state, int x, int y, char key )
 {
-
+    static vector< Shape * > vect;
     static int x_initial;
     static int y_initial;
     static int x_final;
@@ -99,7 +99,15 @@ void MouseEvent ( int button, int state, int x, int y )
     const float display_rect[4] = { (16 + 35) / 2.0, (415 + 435) / 2.0, 16 - 35, 415 - 435};
     Shape * rect;
     Shape * filled_rect;
-    
+
+
+    if (key == 'd')
+	{
+		rect = vect.back();
+		rect->erase();
+		vect.pop_back();
+		delete rect;
+	}
     
     if ( button == GLUT_LEFT_BUTTON && state == GLUT_DOWN )
     {
@@ -117,8 +125,8 @@ void MouseEvent ( int button, int state, int x, int y )
             }
             else if ( fill != BLACK && shape == FILLED_RECTANGLE )
             {
-                filled_rect = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
-                rect = new Rectangle ( display_rect[0], display_rect[1],boundary, display_rect[2], display_rect[3] );
+                filled_rect = new FilledRectangle ( display_rect[0], display_rect[1], fill, 				display_rect[2], display_rect[3] );
+                rect = new Rectangle ( display_rect[0], display_rect[1],boundary, 				display_rect[2],display_rect[3] );
 		filled_rect->draw();
                 rect->draw();
             }
@@ -133,6 +141,7 @@ void MouseEvent ( int button, int state, int x, int y )
         {
             rect = new Rectangle ( ( x_initial + x_final ) / 2.0, ( y_initial 				+y_final ) /2.0,boundary, x_initial - x_final, y_initial - y_final );
             rect->draw();
+	    vect.push_back(rect);
         }
         else if ( fill != BLACK && shape == FILLED_RECTANGLE )
         {
@@ -140,6 +149,8 @@ void MouseEvent ( int button, int state, int x, int y )
             rect = new Rectangle ( ( x_initial + x_final ) / 2.0,( y_initial +  			y_final ) / 2.0,boundary, x_initial - x_final, y_initial - y_final );
 	    filled_rect->draw();
             rect->draw();
+	    vect.push_back(filled_rect);
+	    vect.push_back(rect);
         }
         
     }
@@ -158,15 +169,16 @@ void MouseEvent ( int button, int state, int x, int y )
         {
             if ( fill != BLACK && ( shape == FILLED_RECTANGLE || shape == RECTANGLE ) )
             {
+
+		filled_rect = new FilledRectangle ( display_rect[0],
+                display_rect[1], fill, display_rect[2], display_rect[3] );
+                filled_rect->draw();
                 if ( boundary != BLACK )
                 {
                     rect = new Rectangle ( display_rect[0], display_rect[1], 				boundary, display_rect[2], display_rect[3] );
                     rect->draw();
                 }
                 
-                filled_rect = new FilledRectangle ( display_rect[0],
-                        display_rect[1], fill, display_rect[2], display_rect[3] );
-                filled_rect->draw();
             }
         }
         
@@ -222,6 +234,10 @@ void keyboard ( unsigned char key, int x, int y )
     {
         glutLeaveMainLoop();
     }
+    if (char(key) == 'd')
+	{
+		Event(GLUT_MIDDLE_BUTTON, GLUT_UP, 0, 0, char(key));
+	}
     else
         cout << "Key " << ( char ) key << " press detected at ["
              << x << ", " << y << "]\n";
@@ -241,7 +257,7 @@ void mouseClick ( int button, int state, int x, int y )
     y = glutGet ( GLUT_WINDOW_HEIGHT ) - y;
     
     
-    MouseEvent ( button, state, x, y );
+    Event ( button, state, x, y, 'a' );
     
     
     cout << "MouseClick: Button = " << ButtonName[button] << " : State = "

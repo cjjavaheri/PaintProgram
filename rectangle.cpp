@@ -95,6 +95,9 @@ void Rectangle::draw( ) const
  *****************************************************************************/
 void Rectangle::erase( ) const
 {
+	DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
+	locY + height / 2,  Black);
+	glutSwapBuffers();
     cout << "Erase Rectangle: (" <<
          locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
