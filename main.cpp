@@ -19,6 +19,7 @@
 #include <GL/freeglut.h>
 #include "callbacks.h"
 #include "graphics.h"
+#include "shape.h"
 
 using namespace std;
 
@@ -31,15 +32,15 @@ void oneTimeInit(int num, char **arrOfStr);
  * @param[in] argv - array of C strings representing the command line
  *  arguments
  *
- * @return main does not return due to the glutMainLoop function not
+ * @return main does not return due to the glutMainLoop function not  
  * returning
  ****************************************************************************/
 int main(int argc, char** argv)
 {
-    // Call the glut functions to initialize everything
-    oneTimeInit(argc, argv);
-    glutMainLoop();
-    return 0;
+   // Call the glut functions to initialize everything
+   oneTimeInit(argc, argv);
+   glutMainLoop();
+   return 0;
 }
 
 /*************************************************************************//**
@@ -52,7 +53,7 @@ int main(int argc, char** argv)
  *   * Sets the initial window position
  *   * Creates the window and sets the window title
  *   * Sets the DisplayFunc callback
- *   * Sets the KeyboardFunc callback
+ *   * Sets the KeyboardFunc callback 
  *   * Sets the MouseFunc callback
  *   * Sets the clear color
  *
@@ -76,9 +77,9 @@ void oneTimeInit(int num, char **arrOfStr)
 
     // Give the window a title
     if (num > 1)
-        glutCreateWindow(arrOfStr[1]);
+       glutCreateWindow(arrOfStr[1]);
     else
-        glutCreateWindow("Simple Example Window Title");
+       glutCreateWindow("Simple Example Window Title");
 
     // Set the function for the glutMainLoop to call when refreshing window
     glutDisplayFunc(display);
@@ -96,4 +97,6 @@ void oneTimeInit(int num, char **arrOfStr)
     // 0% blue, 0% alpha
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 }
+
+
 

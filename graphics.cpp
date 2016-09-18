@@ -1,7 +1,7 @@
 /**************************************************************************//**
  * @file graphics.cpp
  *
- * @brief OpenGL graphics program, illustrating use of GLUT and callback
+ * @brief OpenGL graphics program, illustrating use of GLUT and callback 
  * functions.
  *
  * @author: John M. Weiss, Ph.D.
@@ -31,8 +31,8 @@ void DrawLine( float x1, float y1, float x2, float y2, const float color[] )
     // glLineWidth( 10 );
     glColor3fv( color );
     glBegin( GL_LINES );
-    glVertex2f( x1, y1 );
-    glVertex2f( x2, y2 );
+        glVertex2f( x1, y1 );
+        glVertex2f( x2, y2 );
     glEnd();
     glFlush();
 }
@@ -51,16 +51,16 @@ void DrawRectangle( float x1, float y1, float x2, float y2, const float color[] 
 {
     glColor3fv( color );
     glBegin( GL_LINE_LOOP );
-    glVertex2f( x1, y1 );
-    glVertex2f( x2, y1 );
-    glVertex2f( x2, y2 );
-    glVertex2f( x1, y2 );
+        glVertex2f( x1, y1 );
+        glVertex2f( x2, y1 );
+        glVertex2f( x2, y2 );
+        glVertex2f( x1, y2 );
     glEnd();
     glFlush();
 }
 
 /**************************************************************************//**
- * @brief Draw a filled rectangle in the active window from point [x1,y1] to
+ * @brief Draw a filled rectangle in the active window from point [x1,y1] to 
  * [x2,y2]
  *
  * @param[in] x1 - x-coordinate of the left-lower corner
@@ -74,10 +74,10 @@ void DrawFilledRectangle( float x1, float y1, float x2, float y2, const float co
 {
     glColor3fv( color );
     glBegin( GL_POLYGON );
-    glVertex2f( x1, y1 );
-    glVertex2f( x2, y1 );
-    glVertex2f( x2, y2 );
-    glVertex2f( x1, y2 );
+        glVertex2f( x1, y1 );
+        glVertex2f( x2, y1 );
+        glVertex2f( x2, y2 );
+        glVertex2f( x1, y2 );
     glEnd();
     glFlush();
 }
@@ -100,9 +100,9 @@ void DrawEllipse( float xRadius, float yRadius, int x, int y, const float color[
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
     glTranslatef( x, y, 0 );
-
+    
     // by ratio of major to minor axes
-    glScalef( xRadius / radius, yRadius / radius, 1.0 );
+    glScalef( xRadius / radius, yRadius / radius, 1.0 );	
     GLUquadricObj *disk = gluNewQuadric();
     gluDisk( disk, radius - 1, radius, int( radius ), 1 );
     gluDeleteQuadric( disk );
@@ -129,7 +129,7 @@ void DrawFilledEllipse( float xRadius, float yRadius, int x, int y, const float 
     glLoadIdentity();
     glTranslatef( x, y, 0 );
 
-    // by ratio of major to minor axes
+	// by ratio of major to minor axes
     glScalef( xRadius / radius, yRadius / radius, 1.0 );
     GLUquadricObj *disk = gluNewQuadric();
     gluDisk( disk, 0, radius, int( radius ), 1 );
@@ -152,5 +152,5 @@ void DrawTextString(std::string str, int x, int y, const float color[] )
     glColor3fv( color );
     glRasterPos2i( x, y );
     for (auto x : str)
-        glutBitmapCharacter( GLUT_BITMAP_8_BY_13, x );
+	   glutBitmapCharacter( GLUT_BITMAP_8_BY_13, x );
 }

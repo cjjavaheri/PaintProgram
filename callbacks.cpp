@@ -123,7 +123,27 @@ void keyboard(unsigned char key, int x, int y)
  ******************************************************************************/
 void mouseClick(int button, int state, int x, int y)
 {
+	static int x_coordinate1;
+	static int y_coordinate1;
+	static int x_coordinate2;
+	static int y_coordinate2;
+	
     y = glutGet(GLUT_WINDOW_HEIGHT) - y;
+
+if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	{
+		x_coordinate1 = x;
+		y_coordinate1 = y;
+	}
+	else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
+	{
+		x_coordinate2 = x;
+		y_coordinate2 = y;
+		static Rectangle rect((x_coordinate1 + x_coordinate2) / 2, (y_coordinate1 + 		y_coordinate2) / 2, MAGENTA , x_coordinate2 - x_coordinate1, y_coordinate2 - y_coordinate1);
+		Shape * some_shape = &rect;
+	some_shape->draw();
+
+	}
     // Mouse functionality for color palette.
    Choose_Color(button, state, x, y);
     cout << "MouseClick: Button = " << ButtonName[button] << " : State = "

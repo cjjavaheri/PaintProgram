@@ -7,6 +7,9 @@
 #include <GL/freeglut.h>
 #include <string>
 #include "graphics.h"
+#include "shape.h"
+#include "rectangle.h"
+#include <vector>
 
 using namespace std;
 
@@ -16,19 +19,19 @@ using namespace std;
 #define ESCAPE_KEY 27
 
 /// Maps button number to button name
-const std::string ButtonName[] =
+const std::string ButtonName[] = 
 {
-    "Left",
-    "Middle",
-    "Right",
-    "Trackball Fwd",
-    "Trackball Bkwd"
+   "Left", 
+   "Middle", 
+   "Right", 
+   "Trackball Fwd", 
+   "Trackball Bkwd"
 };
 /// Maps button state# to action
-const std::string ButtonState[] =
+const std::string ButtonState[] = 
 {
-    "Down",
-    "Up"
+   "Down", 
+   "Up"
 };
 
 void display();

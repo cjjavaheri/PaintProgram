@@ -17,7 +17,6 @@
 #include <string>
 // the GLUT header automatically includes gl.h and glu.h
 #include <GL/freeglut.h>
-#include "graphics.h"
 
 /// Define the Black color
 const float Black[] = { 0.0, 0.0, 0.0 };
