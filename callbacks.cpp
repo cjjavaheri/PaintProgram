@@ -9,8 +9,6 @@
  * @brief A function that is used to display the color palette.
  *
  ******************************************************************************/
-
-
 void Color_Palette()
 {
     DrawFilledRectangle ( 0, 0, 50, 50, Grey );
@@ -27,7 +25,6 @@ void Color_Palette()
     DrawRectangle ( 115, 15, 135, 35, Yellow );
     DrawFilledRectangle ( 115, 15, 134, 34, Grey );
     DrawRectangle ( 1, 400, 50, 450, White );
-    
 }
 
 /***************************************************************************//**
@@ -57,7 +54,7 @@ ShapeType Choose_Shape ( int x, int y, ShapeType shape )
     {
         return shape;
     }
-    
+
 }
 
 /***************************************************************************//**
@@ -73,7 +70,6 @@ ShapeType Choose_Shape ( int x, int y, ShapeType shape )
  *
  * @returns The type of color the object is.
  ******************************************************************************/
-
 ColorType Choose_Color ( int x, int y, ColorType color )
 {
     if ( x >= 0 && x <= 50 && y >= 0 && y < 50 )
@@ -112,7 +108,7 @@ ColorType Choose_Color ( int x, int y, ColorType color )
     {
         return color;
     }
-    
+
 }
 
 
@@ -128,7 +124,6 @@ ColorType Choose_Color ( int x, int y, ColorType color )
  * @param[in] y - The y-coordinate of the mouse click.
  *
  ******************************************************************************/
-
 void Event ( int button, int state, int x, int y )
 {
     static int x_initial;
@@ -142,14 +137,14 @@ void Event ( int button, int state, int x, int y )
     const float display_rect[4] = { (16 + 35) / 2.0, (415 + 435) / 2.0, 16 - 35, 415 - 435};
     Shape * rect;
     Shape * filled_rect;
-    
+
     if ( button == GLUT_LEFT_BUTTON && state == GLUT_DOWN )
     {
         boundary = Choose_Color ( x, y, boundary );
         shape = Choose_Shape ( x, y, shape );
         x_initial = x;
         y_initial = y;
-        
+
         if ( boundary != BLACK && ( shape == RECTANGLE || shape == FILLED_RECTANGLE ) )
         {
             if ( shape == RECTANGLE )
@@ -170,7 +165,7 @@ void Event ( int button, int state, int x, int y )
     {
         x_final = x;
         y_final = y;
-        
+
         if ( boundary != BLACK && shape == RECTANGLE )
         {
             rect = new Rectangle ( ( x_initial + x_final ) / 2.0, ( y_initial 				+y_final ) /2.0,boundary, x_initial - x_final, y_initial - y_final );
@@ -183,19 +178,19 @@ void Event ( int button, int state, int x, int y )
 	    filled_rect->draw();
             rect->draw();
         }
-        
+
     }
-    
+
     else if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN )
     {
         fill = Choose_Color ( x, y, fill );
         shape = Choose_Shape ( x, y, shape );
-        
+
         if ( shape == FILLED_RECTANGLE )
         {
             check_shape = FILLED_RECTANGLE;
         }
-        
+
         if ( check_shape == FILLED_RECTANGLE )
         {
             if ( fill != BLACK && ( shape == FILLED_RECTANGLE || shape == RECTANGLE ) )
@@ -209,15 +204,15 @@ void Event ( int button, int state, int x, int y )
                     rect = new Rectangle ( display_rect[0], display_rect[1], 				boundary, display_rect[2], display_rect[3] );
                     rect->draw();
                 }
-                
+
             }
         }
-        
-        
+
+
     }
     else if ( button == GLUT_RIGHT_BUTTON && state == GLUT_UP )
     {
-    
+
     }
 }
 
@@ -226,27 +221,29 @@ void Event ( int button, int state, int x, int y )
  *
  * @brief A callback function for refreshing the display
  ******************************************************************************/
-
 void display()
 {
     // Clear the window
     glClear ( GL_COLOR_BUFFER_BIT );
-    
+
     glutInitWindowSize ( 1024, 999 );
     glutInitWindowPosition ( 100, 100 );
-    
+
     Color_Palette();
-    
+
     // DrawLine( 10, 20, glutGet(GLUT_WINDOW_WIDTH) - 10,
     //         glutGet(GLUT_WINDOW_HEIGHT) - 20, Yellow );
     // DrawRectangle( 500, 400, 700, 500, Cyan );
     // DrawFilledRectangle( 200, 100, 300, 300, Red );
     //  DrawEllipse( 100, 50, 600, 200, Green );
     // DrawFilledEllipse( 100, 50, 250, 450, Magenta );
-    
+
     // label display with text
     DrawTextString ( "OpenGL Demo", 32, 800 - 32, White );
-    
+
+    Event(GLUT_LEFT_BUTTON, GLUT_DOWN, -1, -1);
+    Event(GLUT_LEFT_BUTTON, GLUT_UP, -1, -1);
+
     // Make sure all the draw functions a complete to the buffer
     glutSwapBuffers();
 }
@@ -262,11 +259,11 @@ void display()
 void keyboard ( unsigned char key, int x, int y )
 {
     // Pressing the ESCAPE Key will exit from the main glut loop
-    
+
     int ScreenHeight = glutGet ( GLUT_WINDOW_HEIGHT );
-    
+
     y = ScreenHeight - y;
-    
+
     if ( key == ESCAPE_KEY )
     {
         glutLeaveMainLoop();
@@ -291,11 +288,11 @@ void mouseClick ( int button, int state, int x, int y )
 {
 
     y = glutGet ( GLUT_WINDOW_HEIGHT ) - y;
-    
-    
+
+
  	Event(button, state, x, y);
-    
-    
+
+
     cout << "MouseClick: Button = " << ButtonName[button] << " : State = "
          << ButtonState[state] << " : Location [" << x << ", " << y << "]\n";
 }
@@ -312,6 +309,9 @@ void reshape ( int w, int h )
     glLoadIdentity();                   // initialize transformation matrix
     gluOrtho2D ( 0.0, w, 0.0, h );      // make OpenGL coordinates
     glViewport ( 0, 0, w, h );          // the same as the screen coordinates
+    //Event(GLUT_LEFT_BUTTON, GLUT_DOWN, -1, -1);
+    //Event(GLUT_LEFT_BUTTON, GLUT_UP, -1, -1);
+    //display();
 }
-	
+
 
