@@ -11,6 +11,7 @@
 #include "rectangle.h"
 #include "FilledRectangle.h"
 #include "ellipse.h"
+#include "FilledEllipse.h"
 #include <vector>
 
 using namespace std;

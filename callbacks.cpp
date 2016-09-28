@@ -169,6 +169,9 @@ void Event ( char key, int button, int state, int x, int y )
 					break;
 				case FILLED_RECTANGLE:
 					temp_shape = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
+					temp_shape->draw();
+					delete temp_shape;
+					temp_shape = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
 					break;
 				case ELLIPSE:
 					temp_shape = new Ellipse( 25, 425, boundary, 15, 10 );
@@ -222,11 +225,19 @@ void Event ( char key, int button, int state, int x, int y )
 	else
 	{
 		//do key stuff
+		float f[] = {1.0, 1.0, 0.0};
 		switch(key)
 		{
 			case 'd':
 				break;
-			case 'e':
+			case 't':
+				temp_shape = new FilledEllipse(100, 100, boundary, fill, 15, 15);
+				temp_shape->draw();
+				delete temp_shape;
+				temp_shape = nullptr;
+				break;
+			case 'r':
+				//redraw the screen
 				break;
 			default:
 				break;
@@ -259,8 +270,7 @@ void display()
 	// label display with text
 	DrawTextString ( "OpenGL Demo", 32, 800 - 32, White );
 
-	Event('\0', GLUT_LEFT_BUTTON, GLUT_DOWN, -1, -1);
-	Event('\0', GLUT_LEFT_BUTTON, GLUT_UP, -1, -1);
+	Event('r', 0, 0, 0, 0); //r for redraw
 
 	// Make sure all the draw functions a complete to the buffer
 	glutSwapBuffers();
