@@ -19,6 +19,8 @@
 #include <GL/freeglut.h>
 #include "graphics.h"
 
+using namespace std;
+
 /// Define the Black color
 const float Black[] = { 0.0, 0.0, 0.0 };
 /// Define the Red color
@@ -49,6 +51,6 @@ void DrawEllipse( float xRadius, float yRadius, int x, int y, const float color[
 /// DrawFilledEllipse function
 void DrawFilledEllipse( float xRadius, float yRadius, int x, int y, const float color[] );
 /// DrawTextString function
-void DrawTextString( std::string str, int x, int y, const float color[] );
+void DrawTextString( string str, int x, int y, const float color[] );
 
 #endif

@@ -16,6 +16,8 @@
  ******************************************************************************/
 #include "graphics.h"
 
+using namespace std;
+
 /**************************************************************************//**
  * @brief Draw a line in the active window from point [x1,y1] to [x2,y2]
  *
@@ -147,7 +149,7 @@ void DrawFilledEllipse( float xRadius, float yRadius, int x, int y, const float 
  * @param[in] color - float array containing the filled color of the ellipse
  *
  ******************************************************************************/
-void DrawTextString(std::string str, int x, int y, const float color[] )
+void DrawTextString(string str, int x, int y, const float color[] )
 {
 	glColor3fv( color );
 	glRasterPos2i( x, y );

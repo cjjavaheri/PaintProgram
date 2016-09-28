@@ -20,7 +20,7 @@ using namespace std;
 #define ESCAPE_KEY 27
 
 /// Maps button number to button name
-const std::string ButtonName[] =
+const string ButtonName[] =
 {
 	"Left",
 	"Middle",
@@ -29,7 +29,7 @@ const std::string ButtonName[] =
 	"Trackball Bkwd"
 };
 /// Maps button state# to action
-const std::string ButtonState[] =
+const string ButtonState[] =
 {
 	"Down",
 	"Up"
