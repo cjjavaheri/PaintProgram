@@ -3,13 +3,14 @@
 
 
 /***************************************************************************//**
- * @author Cameron Javaheri
+ * @author Cameron Javaheri, Matthew Schallenkamp
  *
  * @brief A function that is used to display the color palette.
  *
  ******************************************************************************/
 void Color_Palette()
 {
+	//color boxes
 	DrawFilledRectangle ( 0, 0, 50, 50, Grey );
 	DrawFilledRectangle ( 0, 50, 50, 100, Red );
 	DrawFilledRectangle ( 0, 100, 50, 150, Green );
@@ -18,12 +19,21 @@ void Color_Palette()
 	DrawFilledRectangle ( 0, 250, 50, 300, Cyan );
 	DrawFilledRectangle ( 0, 300, 50, 350, Yellow );
 	DrawFilledRectangle ( 0, 350, 50, 400, White );
-	DrawRectangle ( 50, 1, 100, 50, White );
-	DrawRectangle ( 65, 15, 85, 35, Yellow );
-	DrawRectangle ( 100, 1, 150, 50, White );
-	DrawRectangle ( 115, 15, 135, 35, Yellow );
-	DrawFilledRectangle ( 115, 15, 134, 34, Grey );
+
+	//to draw preview
 	DrawRectangle ( 1, 400, 50, 450, White );
+
+	//open rectangle
+	DrawRectangle ( 50, 0, 100, 50, White );
+	DrawRectangle ( 65, 15, 85, 35, Yellow );
+	//filled rectangle
+	DrawRectangle ( 100, 0, 150, 50, White );
+	DrawFilledRectangle ( 115, 15, 134, 35, Grey );
+	DrawRectangle ( 115, 15, 135, 35, Yellow );
+	//open ellipse
+	DrawRectangle ( 50, 50, 100, 100, White );
+	DrawEllipse ( 15, 10, 75, 75, Yellow );
+
 }
 
 /***************************************************************************//**
@@ -48,6 +58,10 @@ ShapeType Choose_Shape ( int x, int y, ShapeType shape )
 	else if ( x >= 100 && x < 150 && y >= 1 && y < 50 )
 	{
 		return FILLED_RECTANGLE;
+	}
+	else if ( x >= 50 && x < 100 && y >= 50 && y < 100 )
+	{
+		return ELLIPSE;
 	}
 	else
 	{
@@ -143,14 +157,14 @@ void Event ( char key, int button, int state, int x, int y )
 			x_initial = x;
 			y_initial = y;
 
-			if ( boundary != BLACK && ( shape == RECTANGLE || shape == FILLED_RECTANGLE ) )
+			if ( shape == RECTANGLE || shape == FILLED_RECTANGLE )
 			{
 				if ( shape == RECTANGLE )
 				{
 					new_shape = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
 					new_shape->draw();
 				}
-				else if ( fill != BLACK && shape == FILLED_RECTANGLE )
+				else if ( shape == FILLED_RECTANGLE )
 				{
 					new_shape = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
 					new_shape->draw();
@@ -161,12 +175,12 @@ void Event ( char key, int button, int state, int x, int y )
 		}
 		else if ( button == GLUT_LEFT_BUTTON && state == GLUT_UP )
 		{
-			if ( boundary != BLACK && shape == RECTANGLE )
+			if ( shape == RECTANGLE )
 			{
 				new_shape = new Rectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2.0, boundary, x_initial - x, y_initial - y );
 				new_shape->draw();
 			}
-			else if ( fill != BLACK && shape == FILLED_RECTANGLE )
+			else if ( shape == FILLED_RECTANGLE )
 			{
 				new_shape = new FilledRectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2, fill, x_initial - x, y_initial - y );
 				new_shape->draw();
@@ -184,27 +198,26 @@ void Event ( char key, int button, int state, int x, int y )
 			}
 			if ( check_shape == FILLED_RECTANGLE )
 			{
-				if ( fill != BLACK && ( shape == FILLED_RECTANGLE || shape == RECTANGLE ) )
+				if ( shape == FILLED_RECTANGLE || shape == RECTANGLE )
 				{
-
 					new_shape = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
 					new_shape->draw();
-					if ( boundary != BLACK )
-					{
-						new_shape = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
-						new_shape->draw();
-					}
 				}
 			}
-		}
-		else if ( button == GLUT_RIGHT_BUTTON && state == GLUT_UP )
-		{
-
 		}
 	}
 	else
 	{
 		//do key stuff
+		switch(key)
+		{
+			case 'd':
+				break;
+			case 'e':
+				break;
+			default:
+				break;
+		}
 	}
 }
 

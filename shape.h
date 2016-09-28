@@ -33,7 +33,8 @@ enum ShapeType
 {
 	EMPTY,
 	RECTANGLE,
-	FILLED_RECTANGLE
+	FILLED_RECTANGLE,
+	ELLIPSE
 };
 
 /// Color name enum
