@@ -27,6 +27,8 @@
 // include files
 #include <iostream>
 #include "graphics.h"
+#include <map>
+#include <vector>
 using namespace std;
 
 enum ShapeType
@@ -76,19 +78,95 @@ enum ColorType
 	WHITE
 };
 
+
 /***************************************************************************//**
  * @class Circle
  ******************************************************************************/
 class Shape
 {
-protected:                    // note use of protected instead of private
+
+protected:// note use of protected instead of private
+	const map<ColorType, vector<float> > glutColor =
+	{
+		{
+			BLACK,
+			{
+				0.00,
+				0.00,
+				0.00,
+			}
+		},
+		{
+			RED,
+			{
+				1.00,
+				0.00,
+				0.00,
+			}
+		}, {
+			GREEN,
+			{
+				0.00,
+				1.00,
+				0.00,
+			}
+		}, {
+			BLUE,
+			{
+				0.00,
+				0.00,
+				1.00,
+			}
+		}, {
+			MAGENTA,
+			{
+				1.00,
+				0.00,
+				1.00,
+			}
+		}, {
+			GREY,
+			{
+				0.50,
+				0.50,
+				0.50,
+			}
+		}, {
+			CYAN,
+			{
+				0.00,
+				1.00,
+				1.00,
+			}
+		}, {
+			YELLOW,
+			{
+				1.00,
+				1.00,
+				0.00,
+			}
+		}, {
+			WHITE,
+			{
+				1.00,
+				1.00,
+				1.00,
+			}
+		}, {
+			GREY,
+			{
+				0.50,
+				0.50,
+				0.50,
+			}
+		}
+	};
 	/// x-location of the shape
 	float locX;
 	/// y-location of the shape
 	float locY;
 	/// Color of the shape
 	ColorType color;
-	float some_color[3];
 
 	/// public methods
 public:
@@ -103,7 +181,6 @@ public:
 
 	/// change color of object
 	void changeColor( ColorType c );
-	void ConvertColorToFloat( ColorType c);
 
 	// print, draw and erase methods:
 	// pure virtual methods that must be overridden in non-abstract derived classes

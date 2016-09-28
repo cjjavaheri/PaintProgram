@@ -35,7 +35,6 @@ using namespace std;
  *****************************************************************************/
 Shape::Shape( float x, float y, ColorType c ) : locX( x ), locY( y ), color( c )
 {
-	ConvertColorToFloat(c);
 	cout << "Shape constructor: (" << locX << "," << locY << ") = " << color << endl;
 }
 
@@ -77,68 +76,3 @@ void Shape::changeColor( ColorType c )
 	cout << "Change Shape color from " << color << " to " << c << endl;
 	color = c;
 }
-
-void Shape::ConvertColorToFloat( ColorType c)
-{
-	if (c == BLACK)
-	{
-		some_color[0] = 0.00;
-		some_color[1] = 0.00;
-		some_color[2] = 0.00;
-	}
-	else if (c == RED)
-	{
-		some_color[0] = 1.00;
-		some_color[1] = 0.00;
-		some_color[2] = 0.00;
-	}
-	else if (c == GREEN)
-	{
-		some_color[0] = 0.00;
-		some_color[1] = 1.00;
-		some_color[2] = 0.00;
-	}
-	else if (c == BLUE)
-	{
-		some_color[0] = 0.00;
-		some_color[1] = 0.00;
-		some_color[2] = 1.00;
-	}
-	else if (c == MAGENTA)
-	{
-		some_color[0] = 1.00;
-		some_color[1] = 0.00;
-		some_color[2] = 1.00;
-	}
-	else if (c == GREY)
-	{
-		some_color[0] = 0.50;
-		some_color[1] = 0.50;
-		some_color[2] = 0.50;
-	}
-	else if (c == CYAN)
-	{
-		some_color[0] = 0.00;
-		some_color[1] = 1.00;
-		some_color[2] = 1.00;
-	}
-	else if (c == YELLOW)
-	{
-		some_color[0] = 1.00;
-		some_color[1] = 1.00;
-		some_color[2] = 0.00;
-	}
-	else if (c == WHITE)
-	{
-		some_color[0] = 1.00;
-		some_color[1] = 1.00;
-		some_color[2] = 1.00;
-	}
-	else if (c == GREY)
-	{
-		some_color[0] = 0.50;
-		some_color[1] = 0.50;
-		some_color[2] = 0.50;
-	}
-}
-
