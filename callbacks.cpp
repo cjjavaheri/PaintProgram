@@ -33,11 +33,14 @@ void Color_Palette()
 	//open ellipse
 	DrawRectangle ( 50, 50, 100, 100, White );
 	DrawEllipse ( 15, 10, 75, 75, Yellow );
-
+	//filled ellipse
+	DrawRectangle ( 100, 50, 150, 100, White );
+	DrawFilledEllipse( 15, 10, 125, 75, Grey );
+	DrawEllipse ( 15, 10, 125, 75, Yellow );
 }
 
 /***************************************************************************//**
- * @author Cameron Javaheri
+ * @author Cameron Javaheri, Matthew Schallenkamp
  *
  * @brief A function that will determine the type of shape to be drawn based
  * on the location of a mouse click.
@@ -62,6 +65,10 @@ ShapeType Choose_Shape ( int x, int y, ShapeType shape )
 	else if ( x >= 50 && x < 100 && y >= 50 && y < 100 )
 	{
 		return ELLIPSE;
+	}
+	else if ( x >= 100 && x < 150 && y >= 50 && y < 100 )
+	{
+		return FILLED_ELLIPSE;
 	}
 	else
 	{
@@ -122,6 +129,52 @@ ColorType Choose_Color ( int x, int y, ColorType color )
 	}
 }
 
+/***************************************************************************//**
+ * @author Cameron Javaheri, Matthew Schallenkamp
+ *
+ * @brief A function that is used to display the preview box.
+ *
+ ******************************************************************************/
+void Preview_Box(ShapeType shape, ColorType boundary, ColorType fill)
+{
+	const float display_rect[4] = { (16 + 35) / 2.0, (415 + 435) / 2.0, 16 - 35, 415 - 435};
+	const FilledRectangle preview_back( 25, 425, BLACK, 48, 48 );
+	//clear the old selection
+	preview_back.draw();
+
+	//prep to draw the new selection
+	Shape *temp_shape;
+	switch(shape)
+	{
+		case RECTANGLE:
+			temp_shape = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
+			break;
+		case FILLED_RECTANGLE:
+			//CAMERON FIX
+			temp_shape = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
+			temp_shape->draw();
+			delete temp_shape;
+			temp_shape = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
+			break;
+		case ELLIPSE:
+			temp_shape = new Ellipse( 25, 425, boundary, 15, 10 );
+			break;
+		case FILLED_ELLIPSE:
+			temp_shape = new FilledEllipse( 25, 425, boundary, fill, 15, 10 );
+			break;
+		default:
+			temp_shape = nullptr;
+			break;
+	}
+
+	//draw the new selection
+	if(temp_shape != nullptr)
+	{
+		temp_shape->draw();
+		delete temp_shape;
+		temp_shape = nullptr;
+	}
+}
 
 /***************************************************************************//**
  * @author Cameron Javaheri, Matthew Schallenkamp
@@ -138,16 +191,16 @@ ColorType Choose_Color ( int x, int y, ColorType color )
  ******************************************************************************/
 void Event ( char key, int button, int state, int x, int y )
 {
+
 	static int x_initial;
 	static int y_initial;
 	static ColorType boundary = BLACK;
 	static ColorType fill = BLACK;
 	static ShapeType shape = EMPTY;
 	static ShapeType check_shape = EMPTY;
-	const float display_rect[4] = { (16 + 35) / 2.0, (415 + 435) / 2.0, 16 - 35, 415 - 435};
-	const FilledRectangle preview_back( 25, 425, BLACK, 48, 48 );
+	static vector<Shape *> items;
+
 	Shape * temp_shape = nullptr;
-	vector<Shape *> items;
 
 	if(key == '\0')
 	{
@@ -158,36 +211,14 @@ void Event ( char key, int button, int state, int x, int y )
 			x_initial = x;
 			y_initial = y;
 
-			//clear the old selection
-			preview_back.draw();
+			Preview_Box(shape, boundary, fill);
+		}
+		else if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN )
+		{
+			fill = Choose_Color ( x, y, fill );
+			shape = Choose_Shape ( x, y, shape );
 
-			//prep to draw the new selection
-			switch(shape)
-			{
-				case RECTANGLE:
-					temp_shape = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
-					break;
-				case FILLED_RECTANGLE:
-					temp_shape = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
-					temp_shape->draw();
-					delete temp_shape;
-					temp_shape = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
-					break;
-				case ELLIPSE:
-					temp_shape = new Ellipse( 25, 425, boundary, 15, 10 );
-					break;
-				default:
-					temp_shape = nullptr;
-					break;
-			}
-
-			//draw the new selection
-			if(temp_shape != nullptr)
-			{
-				temp_shape->draw();
-				delete temp_shape;
-				temp_shape = nullptr;
-			}
+			Preview_Box(shape, boundary, fill);
 		}
 		else if ( button == GLUT_LEFT_BUTTON && state == GLUT_UP )
 		{
@@ -204,40 +235,16 @@ void Event ( char key, int button, int state, int x, int y )
 				temp_shape->draw();
 			}
 		}
-		else if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN )
-		{
-			fill = Choose_Color ( x, y, fill );
-			shape = Choose_Shape ( x, y, shape );
-			if ( shape == FILLED_RECTANGLE )
-			{
-				check_shape = FILLED_RECTANGLE;
-			}
-			if ( check_shape == FILLED_RECTANGLE )
-			{
-				if ( shape == FILLED_RECTANGLE || shape == RECTANGLE )
-				{
-					temp_shape = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
-					temp_shape->draw();
-				}
-			}
-		}
 	}
 	else
 	{
 		//do key stuff
-		float f[] = {1.0, 1.0, 0.0};
 		switch(key)
 		{
-			case 'd':
-				break;
-			case 't':
-				temp_shape = new FilledEllipse(100, 100, boundary, fill, 15, 15);
-				temp_shape->draw();
-				delete temp_shape;
-				temp_shape = nullptr;
+			case 'd': //to delete TODO
 				break;
 			case 'r':
-				//redraw the screen
+				//redraw the screen TODO
 				break;
 			default:
 				break;

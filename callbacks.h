@@ -37,6 +37,20 @@ const string ButtonState[] =
 	"Up"
 };
 
+enum ShapeType
+{
+	EMPTY,
+	RECTANGLE,
+	FILLED_RECTANGLE,
+	ELLIPSE,
+	FILLED_ELLIPSE
+};
+
+
+void Color_Palette();
+ShapeType Choose_Shape ( int x, int y, ShapeType shape );
+ColorType Choose_Color ( int x, int y, ColorType color );
+void Preview_Box(ShapeType shape, ColorType boundary, ColorType fill);
 void display();
 void keyboard(unsigned char key, int x, int y);
 void mouseClick(int button, int state, int x, int y);

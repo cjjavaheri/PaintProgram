@@ -31,14 +31,6 @@
 #include <vector>
 using namespace std;
 
-enum ShapeType
-{
-	EMPTY,
-	RECTANGLE,
-	FILLED_RECTANGLE,
-	ELLIPSE
-};
-
 /// Color name enum
 enum ColorType
 {
