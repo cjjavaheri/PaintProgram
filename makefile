@@ -1,4 +1,4 @@
-all: doxygen main
+all: main
 
 .PHONY: clean
 
