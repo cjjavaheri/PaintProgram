@@ -76,3 +76,80 @@ void Shape::changeColor( ColorType c )
 	cout << "Change Shape color from " << color << " to " << c << endl;
 	color = c;
 }
+
+
+const map<ColorType, vector<float> > Shape::glutColor =
+{
+	{
+		BLACK,
+		{
+			0.00,
+			0.00,
+			0.00,
+		}
+	},
+	{
+		RED,
+		{
+			1.00,
+			0.00,
+			0.00,
+		}
+	}, {
+		GREEN,
+		{
+			0.00,
+			1.00,
+			0.00,
+		}
+	}, {
+		BLUE,
+		{
+			0.00,
+			0.00,
+			1.00,
+		}
+	}, {
+		MAGENTA,
+		{
+			1.00,
+			0.00,
+			1.00,
+		}
+	}, {
+		GREY,
+		{
+			0.50,
+			0.50,
+			0.50,
+		}
+	}, {
+		CYAN,
+		{
+			0.00,
+			1.00,
+			1.00,
+		}
+	}, {
+		YELLOW,
+		{
+			1.00,
+			1.00,
+			0.00,
+		}
+	}, {
+		WHITE,
+		{
+			1.00,
+			1.00,
+			1.00,
+		}
+	}, {
+		GREY,
+		{
+			0.50,
+			0.50,
+			0.50,
+		}
+	}
+};
