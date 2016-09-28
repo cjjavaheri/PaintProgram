@@ -1,4 +1,3 @@
-
 #include "callbacks.h"
 
 
@@ -111,18 +110,19 @@ ColorType Choose_Color ( int x, int y, ColorType color )
 
 
 /***************************************************************************//**
- * @author Cameron Javaheri
+ * @author Cameron Javaheri, Matthew Schallenkamp
  *
  * @brief An event function that handles mouse events from the user. It dynamically
  * allocates new shapes using inheritance and draws them to the screen.
  *
+ * @param[in] key - the key that the user pressed. if none, \0
  * @param[in] button - The button the user pressed.
  * @param[in] state - Tells whether the user clicked or released the mouse button.
  * @param[in] x - The x-coordinate of the mouse click.
  * @param[in] y - The y-coordinate of the mouse click.
  *
  ******************************************************************************/
-void Event ( int button, int state, int x, int y )
+void Event ( char key, int button, int state, int x, int y )
 {
 	static int x_initial;
 	static int y_initial;
@@ -137,78 +137,81 @@ void Event ( int button, int state, int x, int y )
 	Shape * filled_rect;
 	vector<Shape *> items;
 
-	if ( button == GLUT_LEFT_BUTTON && state == GLUT_DOWN )
+	if(key == '\0')
 	{
-		boundary = Choose_Color ( x, y, boundary );
-		shape = Choose_Shape ( x, y, shape );
-		x_initial = x;
-		y_initial = y;
-
-		if ( boundary != BLACK && ( shape == RECTANGLE || shape == FILLED_RECTANGLE ) )
+		if ( button == GLUT_LEFT_BUTTON && state == GLUT_DOWN )
 		{
-			if ( shape == RECTANGLE )
+			boundary = Choose_Color ( x, y, boundary );
+			shape = Choose_Shape ( x, y, shape );
+			x_initial = x;
+			y_initial = y;
+
+			if ( boundary != BLACK && ( shape == RECTANGLE || shape == FILLED_RECTANGLE ) )
 			{
-				rect = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
-				rect->draw();
-			}
-			else if ( fill != BLACK && shape == FILLED_RECTANGLE )
-			{
-				filled_rect = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
-				rect = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
-				filled_rect->draw();
-				rect->draw();
-			}
-		}
-	}
-	else if ( button == GLUT_LEFT_BUTTON && state == GLUT_UP )
-	{
-		x_final = x;
-		y_final = y;
-
-		if ( boundary != BLACK && shape == RECTANGLE )
-		{
-			rect = new Rectangle ( ( x_initial + x_final ) / 2.0, ( y_initial + y_final ) / 2.0, boundary, x_initial - x_final, y_initial - y_final );
-			rect->draw();
-		}
-		else if ( fill != BLACK && shape == FILLED_RECTANGLE )
-		{
-			filled_rect = new FilledRectangle ( ( x_initial + x_final ) / 2.0, ( y_initial + y_final ) / 2, fill, x_initial - x_final, y_initial - y_final );
-			rect = new Rectangle ( ( x_initial + x_final ) / 2.0, ( y_initial + y_final ) / 2.0, boundary, x_initial - x_final, y_initial - y_final );
-			filled_rect->draw();
-			rect->draw();
-		}
-
-	}
-
-	else if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN )
-	{
-		fill = Choose_Color ( x, y, fill );
-		shape = Choose_Shape ( x, y, shape );
-
-		if ( shape == FILLED_RECTANGLE )
-		{
-			check_shape = FILLED_RECTANGLE;
-		}
-
-		if ( check_shape == FILLED_RECTANGLE )
-		{
-			if ( fill != BLACK && ( shape == FILLED_RECTANGLE || shape == RECTANGLE ) )
-			{
-
-				filled_rect = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
-				filled_rect->draw();
-				if ( boundary != BLACK )
+				if ( shape == RECTANGLE )
 				{
 					rect = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
 					rect->draw();
 				}
-
+				else if ( fill != BLACK && shape == FILLED_RECTANGLE )
+				{
+					filled_rect = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
+					rect = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
+					filled_rect->draw();
+					rect->draw();
+				}
 			}
 		}
-	}
-	else if ( button == GLUT_RIGHT_BUTTON && state == GLUT_UP )
-	{
+		else if ( button == GLUT_LEFT_BUTTON && state == GLUT_UP )
+		{
+			x_final = x;
+			y_final = y;
 
+			if ( boundary != BLACK && shape == RECTANGLE )
+			{
+				rect = new Rectangle ( ( x_initial + x_final ) / 2.0, ( y_initial + y_final ) / 2.0, boundary, x_initial - x_final, y_initial - y_final );
+				rect->draw();
+			}
+			else if ( fill != BLACK && shape == FILLED_RECTANGLE )
+			{
+				filled_rect = new FilledRectangle ( ( x_initial + x_final ) / 2.0, ( y_initial + y_final ) / 2, fill, x_initial - x_final, y_initial - y_final );
+				rect = new Rectangle ( ( x_initial + x_final ) / 2.0, ( y_initial + y_final ) / 2.0, boundary, x_initial - x_final, y_initial - y_final );
+				filled_rect->draw();
+				rect->draw();
+			}
+		}
+		else if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN )
+		{
+			fill = Choose_Color ( x, y, fill );
+			shape = Choose_Shape ( x, y, shape );
+			if ( shape == FILLED_RECTANGLE )
+			{
+				check_shape = FILLED_RECTANGLE;
+			}
+			if ( check_shape == FILLED_RECTANGLE )
+			{
+				if ( fill != BLACK && ( shape == FILLED_RECTANGLE || shape == RECTANGLE ) )
+				{
+
+					filled_rect = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
+					filled_rect->draw();
+					if ( boundary != BLACK )
+					{
+						rect = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
+						rect->draw();
+					}
+
+				}
+			}
+		}
+		else if ( button == GLUT_RIGHT_BUTTON && state == GLUT_UP )
+		{
+
+		}
+	}
+	else
+	{
+		//do key stuff
 	}
 }
 
@@ -237,8 +240,8 @@ void display()
 	// label display with text
 	DrawTextString ( "OpenGL Demo", 32, 800 - 32, White );
 
-	Event(GLUT_LEFT_BUTTON, GLUT_DOWN, -1, -1);
-	Event(GLUT_LEFT_BUTTON, GLUT_UP, -1, -1);
+	Event('\0', GLUT_LEFT_BUTTON, GLUT_DOWN, -1, -1);
+	Event('\0', GLUT_LEFT_BUTTON, GLUT_UP, -1, -1);
 
 	// Make sure all the draw functions a complete to the buffer
 	glutSwapBuffers();
@@ -264,19 +267,9 @@ void keyboard ( unsigned char key, int x, int y )
 	{
 		glutLeaveMainLoop();
 	}
-	if (char(key) == 'd')
-	{
-	}
-	if (char(key) == 'e')
-	{
-			Shape * ns = new Ellipse(100, 100, BLUE, 15.0, 25.0);
-			ns->draw();
-			ns = new Ellipse(100, 100, BLUE, 5.0, 5.0);
-			ns->draw();
-	}
-	else
-		cout << "Key " << ( char ) key << " press detected at ["
-		 << x << ", " << y << "]\n";
+	cout << "Key " << ( char ) key << " press detected at ["
+	 		 << x << ", " << y << "]\n";
+	Event(key, 0, 0, x, y);
 }
 
 /***************************************************************************//**
@@ -292,8 +285,8 @@ void mouseClick ( int button, int state, int x, int y )
 
 	y = glutGet ( GLUT_WINDOW_HEIGHT ) - y;
 
-
-	Event(button, state, x, y);
+	// \0 because there is no key pressed
+	Event('\0', button, state, x, y);
 
 
 	cout << "MouseClick: Button = " << ButtonName[button] << " : State = "
@@ -312,9 +305,6 @@ void reshape ( int w, int h )
 	glLoadIdentity();  // initialize transformation matrix
 	gluOrtho2D ( 0.0, w, 0.0, h ); // make OpenGL coordinates
 	glViewport ( 0, 0, w, h ); // the same as the screen coordinates
-	//Event(GLUT_LEFT_BUTTON, GLUT_DOWN, -1, -1);
-	//Event(GLUT_LEFT_BUTTON, GLUT_UP, -1, -1);
-	//display();
 }
 
 
