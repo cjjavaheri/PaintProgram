@@ -2,17 +2,17 @@
  * @file rectangle.cpp
  *
  * @par Description
- *    OOP example illustrating inheritance and late binding via virtual 
+ *    OOP example illustrating inheritance and late binding via virtual
  *    functions in C++.
  *
- *    Inheritance is used to derive various shape classes (Point, Line, Circle, 
+ *    Inheritance is used to derive various shape classes (Point, Line, Circle,
  *    Rectangle, Square) from a base Shape class.
  *
  *    This file contains the Rectangle class implementation.
  *
  * @author John M. Weiss, Ph.D.
- * 
- * @par Class:  
+ *
+ * @par Class:
  *    CSC300 Data Structures
  *
  * @date Fall 2015
@@ -39,10 +39,10 @@ using namespace std;
  * @param[in] h - height of the rectangle
  *****************************************************************************/
 FilledRectangle::FilledRectangle( float x, float y, ColorType c, float w, float h ) :
-    Rectangle( x, y, c, w, h )
+	Rectangle( x, y, c, w, h )
 {
-    cout << "FilledRectangle constructor: (" <<
-         x << "," << y << ") = " << c << ", width " << w << " x height " << h << endl;
+	cout << "FilledRectangle constructor: (" <<
+	     x << "," << y << ") = " << c << ", width " << w << " x height " << h << endl;
 }
 
 /**************************************************************************//**
@@ -50,8 +50,8 @@ FilledRectangle::FilledRectangle( float x, float y, ColorType c, float w, float 
  *****************************************************************************/
 FilledRectangle::~FilledRectangle( )
 {
-    cout << "FilledRectangle destructor: (" <<
-         locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+	cout << "FilledRectangle destructor: (" <<
+	     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
 
 
@@ -64,11 +64,11 @@ FilledRectangle::~FilledRectangle( )
  *****************************************************************************/
 void FilledRectangle::draw( ) const
 {
-	DrawFilledRectangle(locX - width / 2, locY - height / 2, locX + width / 2, 
-	locY + height / 2, some_color);
+	DrawFilledRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
+	                    locY + height / 2, some_color);
 	glutSwapBuffers();
-    cout << "Draw  Rectangle: (" <<
-         locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+	cout << "Draw  Rectangle: (" <<
+	     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
 
 /**************************************************************************//**
@@ -81,12 +81,12 @@ void FilledRectangle::draw( ) const
 void FilledRectangle::erase( ) const
 {
 	DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
-	locY + height / 2,  Black);
-	DrawFilledRectangle(locX - width / 2, locY - height / 2, locX + width / 2, 
-	locY + height / 2, Black);
+	              locY + height / 2,  Black);
+	DrawFilledRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
+	                    locY + height / 2, Black);
 	glutSwapBuffers();
-    cout << "Erase Rectangle: (" <<
-         locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+	cout << "Erase Rectangle: (" <<
+	     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
 
 /**************************************************************************//**
@@ -98,7 +98,7 @@ void FilledRectangle::erase( ) const
  *****************************************************************************/
 void FilledRectangle::print( ostream& out ) const
 {
-    out << ( width == height ? "square" : "rectangle" ) << " at position (" << locX << "," << locY << ")"
-        << " with sides " << width << " and " << height << endl;
+	out << ( width == height ? "square" : "rectangle" ) << " at position (" << locX << "," << locY << ")"
+	    << " with sides " << width << " and " << height << endl;
 }
 

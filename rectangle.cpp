@@ -2,17 +2,17 @@
  * @file rectangle.cpp
  *
  * @par Description
- *    OOP example illustrating inheritance and late binding via virtual 
+ *    OOP example illustrating inheritance and late binding via virtual
  *    functions in C++.
  *
- *    Inheritance is used to derive various shape classes (Point, Line, Circle, 
+ *    Inheritance is used to derive various shape classes (Point, Line, Circle,
  *    Rectangle, Square) from a base Shape class.
  *
  *    This file contains the Rectangle class implementation.
  *
  * @author John M. Weiss, Ph.D.
- * 
- * @par Class:  
+ *
+ * @par Class:
  *    CSC300 Data Structures
  *
  * @date Fall 2015
@@ -41,10 +41,10 @@ using namespace std;
  * @param[in] h - height of the rectangle
  *****************************************************************************/
 Rectangle::Rectangle( float x, float y, ColorType c, float w, float h ) :
-    Shape( x, y, c ), width( w ), height( h )
+	Shape( x, y, c ), width( w ), height( h )
 {
-    cout << "Rectangle constructor: (" <<
-         x << "," << y << ") = " << c << ", width " << w << " x height " << h << endl;
+	cout << "Rectangle constructor: (" <<
+	     x << "," << y << ") = " << c << ", width " << w << " x height " << h << endl;
 }
 
 /**************************************************************************//**
@@ -52,8 +52,8 @@ Rectangle::Rectangle( float x, float y, ColorType c, float w, float h ) :
  *****************************************************************************/
 Rectangle::~Rectangle( )
 {
-    cout << "Rectangle destructor: (" <<
-         locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+	cout << "Rectangle destructor: (" <<
+	     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
 
 /**************************************************************************//**
@@ -67,14 +67,14 @@ Rectangle::~Rectangle( )
  *****************************************************************************/
 void Rectangle::changeDimensions( float w, float h )
 {
-    cout << "Change Rectangle dimensions from " << width << " x " << height << " to " << w << " x " << h << endl;
-    width = w;
-    height = h;
+	cout << "Change Rectangle dimensions from " << width << " x " << height << " to " << w << " x " << h << endl;
+	width = w;
+	height = h;
 }
 
 /**************************************************************************//**
  * @author Cameron Javaheri
- * 
+ *
  * @brief Rectangle class draw
  *
  * @par Description
@@ -83,16 +83,16 @@ void Rectangle::changeDimensions( float w, float h )
  *****************************************************************************/
 void Rectangle::draw( ) const
 {
-	DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2, 
-	locY + height / 2, some_color);
+	DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
+	              locY + height / 2, some_color);
 	glutSwapBuffers();
-    cout << "Draw  Rectangle: (" <<
-         locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+	cout << "Draw  Rectangle: (" <<
+	     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
 
 /**************************************************************************//**
  * @author Cameron Javaheri
- * 
+ *
  * @brief Rectangle class erase
  *
  * @par Description
@@ -102,15 +102,15 @@ void Rectangle::draw( ) const
 void Rectangle::erase( ) const
 {
 	DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
-	locY + height / 2,  Black);
+	              locY + height / 2,  Black);
 	glutSwapBuffers();
-    cout << "Erase Rectangle: (" <<
-         locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+	cout << "Erase Rectangle: (" <<
+	     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
 
 /**************************************************************************//**
  * @author Cameron Javaheri
- * 
+ *
  * @brief Rectangle class print
  *
  * @par Description
@@ -119,7 +119,7 @@ void Rectangle::erase( ) const
  *****************************************************************************/
 void Rectangle::print( ostream& out ) const
 {
-    out << ( width == height ? "square" : "rectangle" ) << " at position (" << locX << "," << locY << ")"
-        << " with sides " << width << " and " << height << endl;
+	out << ( width == height ? "square" : "rectangle" ) << " at position (" << locX << "," << locY << ")"
+	    << " with sides " << width << " and " << height << endl;
 }
 

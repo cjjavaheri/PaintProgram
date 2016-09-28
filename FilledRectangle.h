@@ -2,19 +2,19 @@
  * @file rectangle.h
  *
  * @par Description
- *    OOP example illustrating inheritance and late binding via virtual 
+ *    OOP example illustrating inheritance and late binding via virtual
  *    functions in C++.
- *    
+ *
  *    Inheritance is used to derive various shape classes (Point, Line, Circle,
  *    Rectangle, Square) from a base Shape class.
  *
  *    This file contains the Point class interface.
  *
  * @author John M. Weiss, Ph.D. , Cameron Javaheri
- * 
- * @par Class:  
+ *
+ * @par Class:
  *    CSC300 Data Structures
- * 
+ *
  * @date Fall 2015
  *
  * Modifications:
@@ -32,18 +32,18 @@
 class FilledRectangle : public Rectangle
 {
 
-    public:
-        /// Constructor
-        FilledRectangle( float x = 0.0, float y = 0.0, ColorType c = ColorType( 0 ), float w = 1.0, float h = 1.0 );
-        /// Destructor
-        ~FilledRectangle( );
+public:
+	/// Constructor
+	FilledRectangle( float x = 0.0, float y = 0.0, ColorType c = ColorType( 0 ), float w = 1.0, float h = 1.0 );
+	/// Destructor
+	~FilledRectangle( );
 
-        /// Implementation of the base class pure virtual function draw
-        void draw( ) const;
-        /// Implementation of the base class pure virtual function erase
-        void erase( ) const;
-        /// Implementation of the base class pure virtual function print
-        void print( ostream& out ) const;
+	/// Implementation of the base class pure virtual function draw
+	void draw( ) const;
+	/// Implementation of the base class pure virtual function erase
+	void erase( ) const;
+	/// Implementation of the base class pure virtual function print
+	void print( ostream& out ) const;
 };
 
 #endif

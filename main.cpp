@@ -32,15 +32,15 @@ void oneTimeInit(int num, char **arrOfStr);
  * @param[in] argv - array of C strings representing the command line
  *  arguments
  *
- * @return main does not return due to the glutMainLoop function not  
+ * @return main does not return due to the glutMainLoop function not
  * returning
  ****************************************************************************/
 int main(int argc, char** argv)
 {
-   // Call the glut functions to initialize everything
-   oneTimeInit(argc, argv);
-   glutMainLoop();
-   return 0;
+	// Call the glut functions to initialize everything
+	oneTimeInit(argc, argv);
+	glutMainLoop();
+	return 0;
 }
 
 /*************************************************************************//**
@@ -53,7 +53,7 @@ int main(int argc, char** argv)
  *   * Sets the initial window position
  *   * Creates the window and sets the window title
  *   * Sets the DisplayFunc callback
- *   * Sets the KeyboardFunc callback 
+ *   * Sets the KeyboardFunc callback
  *   * Sets the MouseFunc callback
  *   * Sets the clear color
  *
@@ -63,39 +63,39 @@ int main(int argc, char** argv)
  ****************************************************************************/
 void oneTimeInit(int num, char **arrOfStr)
 {
-    // Initialize GLUT (OpenGL Utility Toolkit)
-    glutInit(&num, arrOfStr);
+	// Initialize GLUT (OpenGL Utility Toolkit)
+	glutInit(&num, arrOfStr);
 
-    // Set the display mode [double buffering, 4-channel red,green,blue,alpha]
-    glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA);
+	// Set the display mode [double buffering, 4-channel red,green,blue,alpha]
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
 
-    // Make the window 640 columns x 480 rows of pixels
-    glutInitWindowSize(640, 480);
+	// Make the window 640 columns x 480 rows of pixels
+	glutInitWindowSize(640, 480);
 
-    // Start the window at 100 pixels down and 100 pixels right of upper-left
-    glutInitWindowPosition(100, 100);
+	// Start the window at 100 pixels down and 100 pixels right of upper-left
+	glutInitWindowPosition(100, 100);
 
-    // Give the window a title
-    if (num > 1)
-       glutCreateWindow(arrOfStr[1]);
-    else
-       glutCreateWindow("Simple Example Window Title");
+	// Give the window a title
+	if (num > 1)
+		glutCreateWindow(arrOfStr[1]);
+	else
+		glutCreateWindow("Simple Example Window Title");
 
-    // Set the function for the glutMainLoop to call when refreshing window
-    glutDisplayFunc(display);
+	// Set the function for the glutMainLoop to call when refreshing window
+	glutDisplayFunc(display);
 
-    // Window resize callback
-    glutReshapeFunc(reshape);
+	// Window resize callback
+	glutReshapeFunc(reshape);
 
-    // Set the function to call in response to keyboard events
-    glutKeyboardFunc(keyboard);
+	// Set the function to call in response to keyboard events
+	glutKeyboardFunc(keyboard);
 
-    // Set the function to call for mouse events
-    glutMouseFunc(mouseClick);
+	// Set the function to call for mouse events
+	glutMouseFunc(mouseClick);
 
-    // When the window is cleared, use the color that's 0% red, 100% green,
-    // 0% blue, 0% alpha
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	// When the window is cleared, use the color that's 0% red, 100% green,
+	// 0% blue, 0% alpha
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 }
 
 
