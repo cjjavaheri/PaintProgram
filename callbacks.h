@@ -10,6 +10,7 @@
 #include "shape.h"
 #include "rectangle.h"
 #include "FilledRectangle.h"
+#include "ellipse.h"
 #include <vector>
 
 using namespace std;

@@ -54,7 +54,6 @@ ShapeType Choose_Shape ( int x, int y, ShapeType shape )
 	{
 		return shape;
 	}
-
 }
 
 /***************************************************************************//**
@@ -108,7 +107,6 @@ ColorType Choose_Color ( int x, int y, ColorType color )
 	{
 		return color;
 	}
-
 }
 
 
@@ -150,13 +148,13 @@ void Event ( int button, int state, int x, int y )
 		{
 			if ( shape == RECTANGLE )
 			{
-				rect = new Rectangle ( display_rect[0], display_rect[1],                boundary, display_rect[2], display_rect[3] );
+				rect = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
 				rect->draw();
 			}
 			else if ( fill != BLACK && shape == FILLED_RECTANGLE )
 			{
-				filled_rect = new FilledRectangle ( display_rect[0], display_rect[1], fill,                 display_rect[2], display_rect[3] );
-				rect = new Rectangle ( display_rect[0], display_rect[1], boundary,               display_rect[2], display_rect[3] );
+				filled_rect = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
+				rect = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
 				filled_rect->draw();
 				rect->draw();
 			}
@@ -169,13 +167,13 @@ void Event ( int button, int state, int x, int y )
 
 		if ( boundary != BLACK && shape == RECTANGLE )
 		{
-			rect = new Rectangle ( ( x_initial + x_final ) / 2.0, ( y_initial               + y_final ) / 2.0, boundary, x_initial - x_final, y_initial - y_final );
+			rect = new Rectangle ( ( x_initial + x_final ) / 2.0, ( y_initial + y_final ) / 2.0, boundary, x_initial - x_final, y_initial - y_final );
 			rect->draw();
 		}
 		else if ( fill != BLACK && shape == FILLED_RECTANGLE )
 		{
-			filled_rect = new FilledRectangle ( ( x_initial + x_final ) / 2.0, ( y_initial           + y_final ) / 2, fill, x_initial - x_final, y_initial - y_final );
-			rect = new Rectangle ( ( x_initial + x_final ) / 2.0, ( y_initial +              y_final ) / 2.0, boundary, x_initial - x_final, y_initial - y_final );
+			filled_rect = new FilledRectangle ( ( x_initial + x_final ) / 2.0, ( y_initial + y_final ) / 2, fill, x_initial - x_final, y_initial - y_final );
+			rect = new Rectangle ( ( x_initial + x_final ) / 2.0, ( y_initial + y_final ) / 2.0, boundary, x_initial - x_final, y_initial - y_final );
 			filled_rect->draw();
 			rect->draw();
 		}
@@ -197,19 +195,16 @@ void Event ( int button, int state, int x, int y )
 			if ( fill != BLACK && ( shape == FILLED_RECTANGLE || shape == RECTANGLE ) )
 			{
 
-				filled_rect = new FilledRectangle ( display_rect[0],
-				                                    display_rect[1], fill, display_rect[2], display_rect[3] );
+				filled_rect = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
 				filled_rect->draw();
 				if ( boundary != BLACK )
 				{
-					rect = new Rectangle ( display_rect[0], display_rect[1],                boundary, display_rect[2], display_rect[3] );
+					rect = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
 					rect->draw();
 				}
 
 			}
 		}
-
-
 	}
 	else if ( button == GLUT_RIGHT_BUTTON && state == GLUT_UP )
 	{
@@ -233,10 +228,10 @@ void display()
 	Color_Palette();
 
 	// DrawLine( 10, 20, glutGet(GLUT_WINDOW_WIDTH) - 10,
-	//         glutGet(GLUT_WINDOW_HEIGHT) - 20, Yellow );
+	// glutGet(GLUT_WINDOW_HEIGHT) - 20, Yellow );
 	// DrawRectangle( 500, 400, 700, 500, Cyan );
 	// DrawFilledRectangle( 200, 100, 300, 300, Red );
-	//  DrawEllipse( 100, 50, 600, 200, Green );
+	// DrawEllipse( 100, 50, 600, 200, Green );
 	// DrawFilledEllipse( 100, 50, 250, 450, Magenta );
 
 	// label display with text
@@ -254,8 +249,8 @@ void display()
  * @brief A callback function for handling keyboard input
  *
  * @param[in] key - the key that was pressed
- * @param[in] x   - the x-coordinate when the key was pressed
- * @param[in] y   - the y-coordinate when the key was pressed
+ * @param[in] x - the x-coordinate when the key was pressed
+ * @param[in] y - the y-coordinate when the key was pressed
  ******************************************************************************/
 void keyboard ( unsigned char key, int x, int y )
 {
@@ -272,18 +267,25 @@ void keyboard ( unsigned char key, int x, int y )
 	if (char(key) == 'd')
 	{
 	}
+	if (char(key) == 'e')
+	{
+			Shape * ns = new Ellipse(100, 100, BLUE, 15.0, 25.0);
+			ns->draw();
+			ns = new Ellipse(100, 100, BLUE, 5.0, 5.0);
+			ns->draw();
+	}
 	else
 		cout << "Key " << ( char ) key << " press detected at ["
-		     << x << ", " << y << "]\n";
+		 << x << ", " << y << "]\n";
 }
 
 /***************************************************************************//**
  * @brief A callback function for handling mouse click events
  *
  * @param[in] button - the mouse button pushed
- * @param[in] state  - the state of the button (i.e. GLUT_UP, GLUT_DOWN)
- * @param[in] x      - the x-coordinate when the button is pressed
- * @param[in] y      - the y-coordinate when the button is pressed
+ * @param[in] state - the state of the button (i.e. GLUT_UP, GLUT_DOWN)
+ * @param[in] x - the x-coordinate when the button is pressed
+ * @param[in] y - the y-coordinate when the button is pressed
  ******************************************************************************/
 void mouseClick ( int button, int state, int x, int y )
 {
@@ -295,21 +297,21 @@ void mouseClick ( int button, int state, int x, int y )
 
 
 	cout << "MouseClick: Button = " << ButtonName[button] << " : State = "
-	     << ButtonState[state] << " : Location [" << x << ", " << y << "]\n";
+	 << ButtonState[state] << " : Location [" << x << ", " << y << "]\n";
 }
 
 /***************************************************************************//**
  * @brief A callback function for handling reshape events
  *
- * @param[in] w      - the width of the newly reshaped window
- * @param[in] h      - the height of the newly reshaped window
+ * @param[in] w - the width of the newly reshaped window
+ * @param[in] h - the height of the newly reshaped window
  ******************************************************************************/
 void reshape ( int w, int h )
 {
-	glMatrixMode ( GL_PROJECTION );     // use an orthographic projection
-	glLoadIdentity();                   // initialize transformation matrix
-	gluOrtho2D ( 0.0, w, 0.0, h );      // make OpenGL coordinates
-	glViewport ( 0, 0, w, h );          // the same as the screen coordinates
+	glMatrixMode ( GL_PROJECTION ); // use an orthographic projection
+	glLoadIdentity();  // initialize transformation matrix
+	gluOrtho2D ( 0.0, w, 0.0, h ); // make OpenGL coordinates
+	glViewport ( 0, 0, w, h ); // the same as the screen coordinates
 	//Event(GLUT_LEFT_BUTTON, GLUT_DOWN, -1, -1);
 	//Event(GLUT_LEFT_BUTTON, GLUT_UP, -1, -1);
 	//display();
