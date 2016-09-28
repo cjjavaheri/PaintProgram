@@ -17,7 +17,6 @@
 #include <string>
 // the GLUT header automatically includes gl.h and glu.h
 #include <GL/freeglut.h>
-#include "graphics.h"
 
 using namespace std;
 

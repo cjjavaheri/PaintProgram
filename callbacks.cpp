@@ -145,7 +145,8 @@ void Event ( char key, int button, int state, int x, int y )
 	static ShapeType shape = EMPTY;
 	static ShapeType check_shape = EMPTY;
 	const float display_rect[4] = { (16 + 35) / 2.0, (415 + 435) / 2.0, 16 - 35, 415 - 435};
-	Shape * new_shape;
+	const FilledRectangle preview_back( 25, 425, BLACK, 48, 48 );
+	Shape * temp_shape = nullptr;
 	vector<Shape *> items;
 
 	if(key == '\0')
@@ -157,35 +158,47 @@ void Event ( char key, int button, int state, int x, int y )
 			x_initial = x;
 			y_initial = y;
 
-			if ( shape == RECTANGLE || shape == FILLED_RECTANGLE )
+			//clear the old selection
+			preview_back.draw();
+
+			//prep to draw the new selection
+			switch(shape)
 			{
-				if ( shape == RECTANGLE )
-				{
-					new_shape = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
-					new_shape->draw();
-				}
-				else if ( shape == FILLED_RECTANGLE )
-				{
-					new_shape = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
-					new_shape->draw();
-					new_shape = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
-					new_shape->draw();
-				}
+				case RECTANGLE:
+					temp_shape = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
+					break;
+				case FILLED_RECTANGLE:
+					temp_shape = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
+					break;
+				case ELLIPSE:
+					temp_shape = new Ellipse( 25, 425, boundary, 15, 10 );
+					break;
+				default:
+					temp_shape = nullptr;
+					break;
+			}
+
+			//draw the new selection
+			if(temp_shape != nullptr)
+			{
+				temp_shape->draw();
+				delete temp_shape;
+				temp_shape = nullptr;
 			}
 		}
 		else if ( button == GLUT_LEFT_BUTTON && state == GLUT_UP )
 		{
 			if ( shape == RECTANGLE )
 			{
-				new_shape = new Rectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2.0, boundary, x_initial - x, y_initial - y );
-				new_shape->draw();
+				temp_shape = new Rectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2.0, boundary, x_initial - x, y_initial - y );
+				temp_shape->draw();
 			}
 			else if ( shape == FILLED_RECTANGLE )
 			{
-				new_shape = new FilledRectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2, fill, x_initial - x, y_initial - y );
-				new_shape->draw();
-				new_shape = new Rectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2.0, boundary, x_initial - x, y_initial - y );
-				new_shape->draw();
+				temp_shape = new FilledRectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2, fill, x_initial - x, y_initial - y );
+				temp_shape->draw();
+				temp_shape = new Rectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2.0, boundary, x_initial - x, y_initial - y );
+				temp_shape->draw();
 			}
 		}
 		else if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN )
@@ -200,8 +213,8 @@ void Event ( char key, int button, int state, int x, int y )
 			{
 				if ( shape == FILLED_RECTANGLE || shape == RECTANGLE )
 				{
-					new_shape = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
-					new_shape->draw();
+					temp_shape = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
+					temp_shape->draw();
 				}
 			}
 		}
