@@ -62,7 +62,7 @@ Ellipse::~Ellipse( )
  *****************************************************************************/
 void Ellipse::draw( ) const
 {
-	DrawEllipse( radius_x, radius_y, locX, locY, some_color );
+	DrawEllipse( radius_x, radius_y, locX, locY, glutColor.at(color).data() );
 	glutSwapBuffers();
 	cout << "Draw  Ellipse: ("
 	     << locX << "," << locY << ") = " << color

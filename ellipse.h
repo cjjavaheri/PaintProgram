@@ -10,7 +10,7 @@
  *
  *    This file contains the Ellipse class interface.
  *
- * @author John M. Weiss, Ph.D.
+ * @author John M. Weiss, Ph.D., Matthew Schallenkamp
  *
  * @par Class:
  *    CSC300 Data Structures
@@ -33,7 +33,7 @@
  ******************************************************************************/
 class Ellipse : public Shape
 {
-private:
+protected:
 	/// Radius of the Ellipse
 	float radius_x;
 	float radius_y;
