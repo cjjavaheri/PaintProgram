@@ -21,22 +21,6 @@ using namespace std;
 /// A mnemonic name for the ascii value of the escape key
 #define ESCAPE_KEY 27
 
-/// Maps button number to button name
-const string ButtonName[] =
-{
-	"Left",
-	"Middle",
-	"Right",
-	"Trackball Fwd",
-	"Trackball Bkwd"
-};
-/// Maps button state# to action
-const string ButtonState[] =
-{
-	"Down",
-	"Up"
-};
-
 enum ShapeType
 {
 	EMPTY,
@@ -45,7 +29,6 @@ enum ShapeType
 	ELLIPSE,
 	FILLED_ELLIPSE
 };
-
 
 void Color_Palette();
 ShapeType Choose_Shape ( int x, int y, ShapeType shape );

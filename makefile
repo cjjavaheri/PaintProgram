@@ -6,7 +6,7 @@ SRCFILES = callbacks.cpp callbacks.h graphics.cpp graphics.h main.cpp rectangle.
 
 main: $(SRCFILES)
 	@echo making main
-	g++ $(SRCFILES) -o main -lglut -lGL -lGLU -lm
+	g++ $(SRCFILES) -o main -lglut -lGL -lGLU -lm -Wall
 
 	@echo "    _    _    "
 	@echo "   (o)--(o)   "

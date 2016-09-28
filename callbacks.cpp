@@ -1,6 +1,22 @@
 #include "callbacks.h"
 
 
+/// Maps button number to button name
+const string ButtonName[] =
+{
+	"Left",
+	"Middle",
+	"Right",
+	"Trackball Fwd",
+	"Trackball Bkwd"
+};
+
+/// Maps button state# to action
+const string ButtonState[] =
+{
+	"Down",
+	"Up"
+};
 
 /***************************************************************************//**
  * @author Cameron Javaheri, Matthew Schallenkamp
@@ -150,7 +166,7 @@ void Preview_Box(ShapeType shape, ColorType boundary, ColorType fill)
 			temp_shape = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
 			break;
 		case FILLED_RECTANGLE:
-			//CAMERON FIX
+			//CAMERON TODO fix filled rectangle
 			temp_shape = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
 			temp_shape->draw();
 			delete temp_shape;
@@ -197,7 +213,6 @@ void Event ( char key, int button, int state, int x, int y )
 	static ColorType boundary = BLACK;
 	static ColorType fill = BLACK;
 	static ShapeType shape = EMPTY;
-	static ShapeType check_shape = EMPTY;
 	static vector<Shape *> items;
 
 	Shape * temp_shape = nullptr;
