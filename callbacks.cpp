@@ -126,15 +126,12 @@ void Event ( char key, int button, int state, int x, int y )
 {
 	static int x_initial;
 	static int y_initial;
-	static int x_final;
-	static int y_final;
 	static ColorType boundary = BLACK;
 	static ColorType fill = BLACK;
 	static ShapeType shape = EMPTY;
 	static ShapeType check_shape = EMPTY;
 	const float display_rect[4] = { (16 + 35) / 2.0, (415 + 435) / 2.0, 16 - 35, 415 - 435};
-	Shape * rect;
-	Shape * filled_rect;
+	Shape * new_shape;
 	vector<Shape *> items;
 
 	if(key == '\0')
@@ -150,34 +147,31 @@ void Event ( char key, int button, int state, int x, int y )
 			{
 				if ( shape == RECTANGLE )
 				{
-					rect = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
-					rect->draw();
+					new_shape = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
+					new_shape->draw();
 				}
 				else if ( fill != BLACK && shape == FILLED_RECTANGLE )
 				{
-					filled_rect = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
-					rect = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
-					filled_rect->draw();
-					rect->draw();
+					new_shape = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
+					new_shape->draw();
+					new_shape = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
+					new_shape->draw();
 				}
 			}
 		}
 		else if ( button == GLUT_LEFT_BUTTON && state == GLUT_UP )
 		{
-			x_final = x;
-			y_final = y;
-
 			if ( boundary != BLACK && shape == RECTANGLE )
 			{
-				rect = new Rectangle ( ( x_initial + x_final ) / 2.0, ( y_initial + y_final ) / 2.0, boundary, x_initial - x_final, y_initial - y_final );
-				rect->draw();
+				new_shape = new Rectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2.0, boundary, x_initial - x, y_initial - y );
+				new_shape->draw();
 			}
 			else if ( fill != BLACK && shape == FILLED_RECTANGLE )
 			{
-				filled_rect = new FilledRectangle ( ( x_initial + x_final ) / 2.0, ( y_initial + y_final ) / 2, fill, x_initial - x_final, y_initial - y_final );
-				rect = new Rectangle ( ( x_initial + x_final ) / 2.0, ( y_initial + y_final ) / 2.0, boundary, x_initial - x_final, y_initial - y_final );
-				filled_rect->draw();
-				rect->draw();
+				new_shape = new FilledRectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2, fill, x_initial - x, y_initial - y );
+				new_shape->draw();
+				new_shape = new Rectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2.0, boundary, x_initial - x, y_initial - y );
+				new_shape->draw();
 			}
 		}
 		else if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN )
@@ -193,14 +187,13 @@ void Event ( char key, int button, int state, int x, int y )
 				if ( fill != BLACK && ( shape == FILLED_RECTANGLE || shape == RECTANGLE ) )
 				{
 
-					filled_rect = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
-					filled_rect->draw();
+					new_shape = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
+					new_shape->draw();
 					if ( boundary != BLACK )
 					{
-						rect = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
-						rect->draw();
+						new_shape = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
+						new_shape->draw();
 					}
-
 				}
 			}
 		}
