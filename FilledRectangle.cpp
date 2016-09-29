@@ -43,7 +43,7 @@ FilledRectangle::FilledRectangle( float x, float y, ColorType c, ColorType f, fl
 {
 	cout << "FilledRectangle constructor: (" <<
 	     x << "," << y << ") = " << c << ", width " << w << " x height " << h
-	 << "filled color" << f << endl;
+	     << "filled color" << f << endl;
 }
 
 /**************************************************************************//**
@@ -68,7 +68,7 @@ void FilledRectangle::draw( ) const
 	DrawFilledRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
 	                    locY + height / 2, glutColor.at(fill_color).data());
 	DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
-	                    locY + height / 2, glutColor.at(color).data());
+	              locY + height / 2, glutColor.at(color).data());
 	glutSwapBuffers();
 	cout << "Draw  Rectangle: (" <<
 	     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;

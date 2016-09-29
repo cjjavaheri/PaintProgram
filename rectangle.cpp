@@ -105,10 +105,10 @@ void Rectangle::draw( ) const
 void Rectangle::erase( ) const
 {
 	//DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
-	              //locY + height / 2,  Black);
+	//locY + height / 2,  Black);
 	//glutSwapBuffers();
 	//cout << "Erase Rectangle: (" <<
-	     //locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+	//locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
 
 /**************************************************************************//**
@@ -123,6 +123,6 @@ void Rectangle::erase( ) const
 void Rectangle::print( ostream& out ) const
 {
 	//out << ( width == height ? "square" : "rectangle" ) << " at position (" << locX << "," << locY << ")"
-	    //<< " with sides " << width << " and " << height << endl;
+	//<< " with sides " << width << " and " << height << endl;
 }
 

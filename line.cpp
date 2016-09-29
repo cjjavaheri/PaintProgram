@@ -73,10 +73,10 @@ Line::~Line( )
 
 //void Line::changeDimensions( float x, float y )
 //{
-	//cout << "Change line dimensions from [" << locX << "," << locY << "]"
-        //<< "to [" << x << "," << "y]" << endl;
-	//locX = x;
-	//locY = y;
+//cout << "Change line dimensions from [" << locX << "," << locY << "]"
+//<< "to [" << x << "," << "y]" << endl;
+//locX = x;
+//locY = y;
 //}
 
 
@@ -94,7 +94,7 @@ Line::~Line( )
 void Line::draw( ) const
 {
 	DrawLine(locX - length / 2, locY - height / 2, locX + length / 2, locY + height / 2,
-		glutColor.at(color).data());
+	         glutColor.at(color).data());
 	glutSwapBuffers();
 	cout << "Draw  Line: (" <<
 	     locX << "," << locY << ") = " << color << ", length " << length << " height " << height << endl;
@@ -112,10 +112,10 @@ void Line::draw( ) const
 void Line::erase( ) const
 {
 	//DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
-	     //         locY + height / 2,  Black);
+	//         locY + height / 2,  Black);
 	//glutSwapBuffers();
 	//cout << "Erase Rectangle: (" <<
-	     //locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+	//locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
 
 /**************************************************************************//**
@@ -130,6 +130,6 @@ void Line::erase( ) const
 void Line::print( ostream& out ) const
 {
 	//out << ( width == height ? "square" : "rectangle" ) << " at position (" << locX << "," << locY << ")"
-	    //<< " with sides " << width << " and " << height << endl;
+	//<< " with sides " << width << " and " << height << endl;
 }
 

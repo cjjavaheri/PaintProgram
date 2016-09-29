@@ -167,31 +167,30 @@ void Preview_Box(ShapeType shape, ColorType boundary, ColorType fill)
 
 	//prep to draw the new selection
 	Shape *temp_shape;
-	switch(shape)
+	switch (shape)
 	{
-		case RECTANGLE:
-			temp_shape = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
-			break;
-		case FILLED_RECTANGLE:
-			//CAMERON TODO fix filled rectangle
-			temp_shape = new FilledRectangle ( display_rect[0], display_rect[1], boundary, fill, display_rect[2], display_rect[3] );
-			break;
-		case ELLIPSE:
-			temp_shape = new Ellipse( 25, 425, boundary, 15, 10 );
-			break;
-		case FILLED_ELLIPSE:
-			temp_shape = new FilledEllipse( 25, 425, boundary, fill, 15, 10 );
-			break;
-		case LINE:
-			temp_shape = new Line(25, 425, boundary, 19, 20);
-			break;
-		default:
-			temp_shape = nullptr;
-			break;
+	case RECTANGLE:
+		temp_shape = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
+		break;
+	case FILLED_RECTANGLE:
+		temp_shape = new FilledRectangle ( display_rect[0], display_rect[1], boundary, fill, display_rect[2], display_rect[3] );
+		break;
+	case ELLIPSE:
+		temp_shape = new Ellipse( 25, 425, boundary, 15, 10 );
+		break;
+	case FILLED_ELLIPSE:
+		temp_shape = new FilledEllipse( 25, 425, boundary, fill, 15, 10 );
+		break;
+	case LINE:
+		temp_shape = new Line(25, 425, boundary, 19, 20);
+		break;
+	default:
+		temp_shape = nullptr;
+		break;
 	}
 
 	//draw the new selection
-	if(temp_shape != nullptr)
+	if (temp_shape != nullptr)
 	{
 		temp_shape->draw();
 		delete temp_shape;
@@ -224,7 +223,7 @@ void Event ( char key, int button, int state, int x, int y )
 
 	Shape * temp_shape = nullptr;
 
-	if(key == '\0')
+	if (key == '\0')
 	{
 		if ( button == GLUT_LEFT_BUTTON && state == GLUT_DOWN )
 		{
@@ -249,32 +248,31 @@ void Event ( char key, int button, int state, int x, int y )
 			float x_mid, y_mid, x_size, y_size;
 			x_mid = ( x_initial + x ) / 2.0;
 			y_mid = ( y_initial + y ) / 2.0;
-			x_size = abs(x_initial - x);
-			y_size = abs(y_initial - y);
+			x_size = abs( x_initial - x );
+			y_size = abs( y_initial - y );
 
-			switch(shape)
+			switch (shape)
 			{
-				case RECTANGLE:
-					temp_shape = new Rectangle ( x_mid, y_mid, boundary, x_size, y_size );
-					break;
-				case FILLED_RECTANGLE:
-					//CAMERON TODO fix filled rectangle
-					temp_shape = new FilledRectangle ( x_mid, y_mid, boundary, fill, x_size, y_size );
-					break;
-				case ELLIPSE:
-					temp_shape = new Ellipse( x_mid, y_mid, boundary, x_size / 2, y_size / 2 );
-					break;
-				case FILLED_ELLIPSE:
-					temp_shape = new FilledEllipse( x_mid, y_mid, boundary, fill, x_size / 2, y_size / 2 );
-					break;
-				case LINE:
-					temp_shape = new Line( x_mid, y_mid, boundary, x - x_initial, y - y_initial );
-					break;
-				default:
-					temp_shape = nullptr;
-					break;
+			case RECTANGLE:
+				temp_shape = new Rectangle ( x_mid, y_mid, boundary, x_size, y_size );
+				break;
+			case FILLED_RECTANGLE:
+				temp_shape = new FilledRectangle ( x_mid, y_mid, boundary, fill, x_size, y_size );
+				break;
+			case ELLIPSE:
+				temp_shape = new Ellipse( x_mid, y_mid, boundary, x_size / 2, y_size / 2 );
+				break;
+			case FILLED_ELLIPSE:
+				temp_shape = new FilledEllipse( x_mid, y_mid, boundary, fill, x_size / 2, y_size / 2 );
+				break;
+			case LINE:
+				temp_shape = new Line( x_mid, y_mid, boundary, x - x_initial, y - y_initial );
+				break;
+			default:
+				temp_shape = nullptr;
+				break;
 			}
-			if(temp_shape != nullptr)
+			if (temp_shape != nullptr)
 			{
 				items.push_back(temp_shape);
 				temp_shape->draw();
@@ -285,15 +283,15 @@ void Event ( char key, int button, int state, int x, int y )
 	else
 	{
 		//do key stuff
-		switch(key)
+		switch (key)
 		{
-			case 'd': //to delete TODO
-				break;
-			case 'r':
-				//redraw the screen TODO
-				break;
-			default:
-				break;
+		case 'd': //to delete TODO
+			break;
+		case 'r':
+			//redraw the screen TODO
+			break;
+		default:
+			break;
 		}
 	}
 }
@@ -350,7 +348,7 @@ void keyboard ( unsigned char key, int x, int y )
 		glutLeaveMainLoop();
 	}
 	cout << "Key " << ( char ) key << " press detected at ["
-	 		 << x << ", " << y << "]\n";
+	     << x << ", " << y << "]\n";
 	Event(key, 0, 0, x, y);
 }
 
@@ -372,7 +370,7 @@ void mouseClick ( int button, int state, int x, int y )
 
 
 	cout << "MouseClick: Button = " << ButtonName[button] << " : State = "
-	 << ButtonState[state] << " : Location [" << x << ", " << y << "]\n";
+	     << ButtonState[state] << " : Location [" << x << ", " << y << "]\n";
 }
 
 /***************************************************************************//**

@@ -19,7 +19,7 @@
  * @par Modifications:
  *  * Added doxygen style comments                       PJH : 9/5/2016
  *  * Added function headers and parameter descriptions  PJH : 9/5/2016
- *  * Changed from Ellipse to Ellipse                     MJS : 9/27/16
+ *  * Changed from Ellipse to Ellipse                    MJS : 9/27/16
  ******************************************************************************/
 #include <iostream>
 using namespace std;

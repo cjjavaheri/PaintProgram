@@ -40,8 +40,7 @@ protected:
 
 public:
 	/// Constructor
-	Line( float x = 0.0, float y = 0.0, ColorType c = ColorType(0), float l = 0.0,
-              float h = 0.0 );
+	Line( float x = 0.0, float y = 0.0, ColorType c = ColorType(0), float l = 0.0, float h = 0.0 );
 	/// Destructor
 	~Line( );
 

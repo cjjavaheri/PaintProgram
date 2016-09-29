@@ -20,7 +20,7 @@
  * Modifications:
  *  * Added doxygen style comments                              PJH : 9/5/2016
  *  * Added doxygen style function blocks and parameter desc    PJH : 9/5/2016
- *  * Changed from Ellipse to Ellipse                            MJS : 9/27/16
+ *  * Changed from Ellipse to Ellipse                           MJS : 9/27/16
  *****************************************************************************/
 // guard against multiple inclusions
 #ifndef _ELLIPSE_H_
