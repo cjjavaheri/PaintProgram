@@ -60,7 +60,7 @@ FilledRectangle::~FilledRectangle( )
  * @brief Rectangle class draw
  *
  * @par Description
- *   must override pure virtual Shape::draw() method to instantiate class
+ *   Draws a filled rectangle.
  *
  *****************************************************************************/
 void FilledRectangle::draw( ) const

@@ -157,6 +157,10 @@ ColorType Choose_Color ( int x, int y, ColorType color )
  *
  * @brief A function that is used to display the preview box.
  *
+ * @param[in] shape - The type of shape to be displayed.
+ * @param[in] boundary - The color of the boundary of the shape.
+ * @param[in] fill - The filled color of the shape.
+ *
  ******************************************************************************/
 void Preview_Box(ShapeType shape, ColorType boundary, ColorType fill)
 {
@@ -198,6 +202,24 @@ void Preview_Box(ShapeType shape, ColorType boundary, ColorType fill)
 	}
 }
 
+
+/***************************************************************************//**
+ * @author Cameron Javaheri, Matthew Schallenkamp
+ *
+ * @brief A function that is used to insert a shape object into a vector.
+ *
+ * @param[in] shape - The type of shape of the object.
+ * @param[in,out] items - A vector of shape pointers.
+ * @param[in] boundary - The color of the boundary of the shape.
+ * @param[in] fill - The filled color of the shape.
+ * @param[in] ix - The initial x-coordinate of the mouse click.
+ * @param[in] iy - The initial y-coordinate of the mouse click.
+ * @param[in] fx - The final x-coordinate of the mouse click.
+ * @param[in] fy - The final y-coordinate of the mouse click.
+ *
+ ******************************************************************************/
+
+
 void Insert_Shape(ShapeType shape, vector<Shape *> &items, ColorType boundary, ColorType fill,
                   float ix, float iy, float fx, float fy)
 {
@@ -236,6 +258,19 @@ void Insert_Shape(ShapeType shape, vector<Shape *> &items, ColorType boundary, C
 	}
 }
 
+
+/***************************************************************************//**
+ * @author Cameron Javaheri, Matthew Schallenkamp
+ *
+ * @brief A function that determines which shape is currently selected.
+ *
+ * @param[in,out] items - A vector of shape pointers.
+ * @param[in] prev_selection - The previous index for the vector containing shape pointers.
+ * @param[in] x - The x-coordinate of the right mouse click.
+ * @param[in] y - The y-coordinate of the right mouse click.
+ *
+ * @returns An index for the shape vector for the newly selected shape.
+ ******************************************************************************/
 
 int selection(const vector<Shape *> &items, int prev_selection, int x, int y)
 {

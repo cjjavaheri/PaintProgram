@@ -88,7 +88,7 @@ Line::~Line( )
  * @brief Line class draw
  *
  * @par Description
- *   must override pure virtual Shape::draw() method to instantiate class
+ *   Draws a line.
  *
  *****************************************************************************/
 void Line::draw( ) const

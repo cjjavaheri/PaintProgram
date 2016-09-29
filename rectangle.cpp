@@ -81,7 +81,7 @@ void Rectangle::changeDimensions( float w, float h )
  * @brief Rectangle class draw
  *
  * @par Description
- *   must override pure virtual Shape::draw() method to instantiate class
+ *   Draws a rectangle.
  *
  *****************************************************************************/
 void Rectangle::draw( ) const
