@@ -77,6 +77,16 @@ void Shape::changeColor( ColorType c )
 	color = c;
 }
 
+float Shape::getX()
+{
+	return locX;
+}
+
+float Shape::getY()
+{
+	return locY;
+}
+
 
 const map<ColorType, vector<float> > Shape::glutColor =
 {

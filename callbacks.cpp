@@ -237,6 +237,24 @@ void Insert_Shape(ShapeType shape, vector<Shape *> &items, ColorType boundary, C
 }
 
 
+int selection(const vector<Shape *> &items, int prev_selection, int x, int y)
+{
+int i;
+float Centerx;
+float Centery;
+	for (i = items.size() - 1; i >= 0; i--)
+	{
+		Centerx = items[i]->getX();
+		Centery = items[i]->getY();
+		if (abs(Centerx - x) <= 20 && abs(Centery - y) <= 20)
+		{
+			return i;
+		}
+	}
+	return prev_selection;
+
+}
+
 /***************************************************************************//**
  * @author Cameron Javaheri, Matthew Schallenkamp
  *
@@ -258,6 +276,7 @@ void Event ( char key, int button, int state, int x, int y )
 	static ColorType fill = BLACK;
 	static ShapeType shape = EMPTY;
 	static vector<Shape *> items;
+	static int index = 0;
 
 	if (key == '\0')
 	{
@@ -274,14 +293,23 @@ void Event ( char key, int button, int state, int x, int y )
 		{
 			fill = Choose_Color ( x, y, fill );
 			shape = Choose_Shape ( x, y, shape );
+			index = selection(items, index, x, y);
+			cout << index << endl;
 
 			Preview_Box(shape, boundary, fill);
 		}
 		else if ( button == GLUT_LEFT_BUTTON && state == GLUT_UP )
 		{
 			Insert_Shape(shape, items, boundary, fill, x_initial, y_initial, x, y);
+			index = items.size() - 1;
+			cout << index << endl;
+			glutSwapBuffers();
 		}
-		glutSwapBuffers();
+		else if (button == GLUT_RIGHT_BUTTON && state == GLUT_UP)
+		{
+			items[index]->moveTo(x, y);
+			Event('r', 0, 0, 0, 0);
+		}
 	}
 	else
 	{
@@ -296,10 +324,15 @@ void Event ( char key, int button, int state, int x, int y )
 				delete s;
 			}
 			items.clear();
-			Event('r', 0, 0, 0, 0);
-			break;
-		case 'd': //to delete TODO
-			break;
+			index = 0;
+		case 'd':
+			if (index < items.size())
+			{
+				items.erase(items.begin() + index);
+				index = items.size() - 1;
+				if (index == -1)
+					index = 0;
+			}
 		case 'r':
 		default:
 			cout << "redraw" << endl;

@@ -88,6 +88,8 @@ protected:// note use of protected instead of private
 
 	/// public methods
 public:
+	float getX();
+	float getY();
 	/// constructor
 	Shape( float x = 0.0, float y = 0.0, ColorType c = ColorType( 0 ) );
 
