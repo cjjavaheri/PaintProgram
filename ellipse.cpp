@@ -38,9 +38,9 @@ using namespace std;
 Ellipse::Ellipse( float x, float y, ColorType c, float r_x, float r_y)
 	: Shape( x, y, c ), radius_x( r_x ), radius_y( r_y )
 {
-	cout << "Ellipse constructor: ("
-	     <<	x << "," << y << ") = " << c
-	     << ", radius = " << radius_x << endl;
+	//cout << "Ellipse constructor: ("
+	//     <<	x << "," << y << ") = " << c
+	//     << ", radius = " << radius_x << endl;
 }
 
 /**************************************************************************//**
@@ -48,9 +48,9 @@ Ellipse::Ellipse( float x, float y, ColorType c, float r_x, float r_y)
  *****************************************************************************/
 Ellipse::~Ellipse( )
 {
-	cout << "Ellipse destructor: ("
-	     << locX << "," << locY << ") = " << color
-	     << ", r_x = " << radius_x << ", r_y = " << radius_y << endl;
+	//cout << "Ellipse destructor: ("
+	//     << locX << "," << locY << ") = " << color
+	//     << ", r_x = " << radius_x << ", r_y = " << radius_y << endl;
 }
 
 /**************************************************************************//**
@@ -63,9 +63,9 @@ Ellipse::~Ellipse( )
 void Ellipse::draw( ) const
 {
 	DrawEllipse( radius_x, radius_y, locX, locY, glutColor.at(color).data() );
-	cout << "Draw  Ellipse: ("
-	     << locX << "," << locY << ") = " << color
-	     << ", r_x = " << radius_x << ", r_y = " << radius_y << endl;
+	//cout << "Draw  Ellipse: ("
+	//     << locX << "," << locY << ") = " << color
+	//     << ", r_x = " << radius_x << ", r_y = " << radius_y << endl;
 }
 
 /**************************************************************************//**
@@ -77,9 +77,9 @@ void Ellipse::draw( ) const
  *****************************************************************************/
 void Ellipse::erase( ) const
 {
-	cout << "Erase Ellipse: ("
-	     << locX << "," << locY << ") = " << color
-	     << ", r_x = " << radius_x << ", r_y = " << radius_y << endl;
+	//cout << "Erase Ellipse: ("
+	//     << locX << "," << locY << ") = " << color
+	//     << ", r_x = " << radius_x << ", r_y = " << radius_y << endl;
 }
 
 

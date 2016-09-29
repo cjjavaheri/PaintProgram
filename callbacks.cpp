@@ -233,7 +233,6 @@ void Insert_Shape(ShapeType shape, vector<Shape *> &items, ColorType boundary, C
 	{
 		items.push_back(temp_shape);
 		temp_shape->draw();
-		temp_shape = nullptr;
 	}
 }
 
@@ -253,7 +252,6 @@ void Insert_Shape(ShapeType shape, vector<Shape *> &items, ColorType boundary, C
  ******************************************************************************/
 void Event ( char key, int button, int state, int x, int y )
 {
-
 	static int x_initial;
 	static int y_initial;
 	static ColorType boundary = BLACK;
@@ -281,7 +279,6 @@ void Event ( char key, int button, int state, int x, int y )
 		}
 		else if ( button == GLUT_LEFT_BUTTON && state == GLUT_UP )
 		{
-			cout << "drawing" << endl << endl;
 			Insert_Shape(shape, items, boundary, fill, x_initial, y_initial, x, y);
 		}
 		glutSwapBuffers();
@@ -328,7 +325,7 @@ void Event ( char key, int button, int state, int x, int y )
  ******************************************************************************/
 void display()
 {
-	cout << "displaying" << endl << endl;
+	cout << "displaying" << endl;
 	// Clear the window
 	glClear ( GL_COLOR_BUFFER_BIT );
 
@@ -367,12 +364,13 @@ void keyboard ( unsigned char key, int x, int y )
 
 	y = ScreenHeight - y;
 
-	if ( key == ESCAPE_KEY )
+	if ( key == ESCAPE_KEY || key == 'q' || key == 'Q')
 	{
 		glutLeaveMainLoop();
+		return;
 	}
-	cout << "Key " << ( char ) key << " press detected at ["
-	     << x << ", " << y << "]\n";
+	//cout << "Key " << ( char ) key << " press detected at ["
+	//     << x << ", " << y << "]\n";
 	Event(key, 0, 0, x, y);
 }
 
@@ -393,8 +391,8 @@ void mouseClick ( int button, int state, int x, int y )
 	Event('\0', button, state, x, y);
 
 
-	cout << "MouseClick: Button = " << ButtonName[button] << " : State = "
-	     << ButtonState[state] << " : Location [" << x << ", " << y << "]\n";
+	//cout << "MouseClick: Button = " << ButtonName[button] << " : State = "
+	//     << ButtonState[state] << " : Location [" << x << ", " << y << "]\n";
 }
 
 /***************************************************************************//**
@@ -405,7 +403,7 @@ void mouseClick ( int button, int state, int x, int y )
  ******************************************************************************/
 void reshape ( int w, int h )
 {
-	cout << "reshape" << endl << endl << endl;
+	cout << "reshape" << endl;
 	glMatrixMode ( GL_PROJECTION ); // use an orthographic projection
 	glLoadIdentity();  // initialize transformation matrix
 	gluOrtho2D ( 0.0, w, 0.0, h ); // make OpenGL coordinates

@@ -35,7 +35,7 @@ using namespace std;
  *****************************************************************************/
 Shape::Shape( float x, float y, ColorType c ) : locX( x ), locY( y ), color( c )
 {
-	cout << "Shape constructor: (" << locX << "," << locY << ") = " << color << endl;
+	//cout << "Shape constructor: (" << locX << "," << locY << ") = " << color << endl;
 }
 
 /**************************************************************************//**
@@ -43,7 +43,7 @@ Shape::Shape( float x, float y, ColorType c ) : locX( x ), locY( y ), color( c )
  *****************************************************************************/
 Shape::~Shape( )
 {
-	cout << "Shape destructor: (" << locX << "," << locY << ") = " << color << endl;
+	//cout << "Shape destructor: (" << locX << "," << locY << ") = " << color << endl;
 }
 
 /**************************************************************************//**
@@ -73,7 +73,7 @@ void Shape::moveTo( float x, float y )
  *****************************************************************************/
 void Shape::changeColor( ColorType c )
 {
-	cout << "Change Shape color from " << color << " to " << c << endl;
+	//cout << "Change Shape color from " << color << " to " << c << endl;
 	color = c;
 }
 

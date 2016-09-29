@@ -43,8 +43,8 @@ using namespace std;
 Rectangle::Rectangle( float x, float y, ColorType c, float w, float h ) :
 	Shape( x, y, c ), width( w ), height( h )
 {
-	cout << "Rectangle constructor: (" <<
-	     x << "," << y << ") = " << c << ", width " << w << " x height " << h << endl;
+	//cout << "Rectangle constructor: (" <<
+	//     x << "," << y << ") = " << c << ", width " << w << " x height " << h << endl;
 }
 
 /**************************************************************************//**
@@ -53,8 +53,8 @@ Rectangle::Rectangle( float x, float y, ColorType c, float w, float h ) :
  *****************************************************************************/
 Rectangle::~Rectangle( )
 {
-	cout << "Rectangle destructor: (" <<
-	     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+	//cout << "Rectangle destructor: (" <<
+	//     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
 
 /**************************************************************************//**
@@ -88,8 +88,8 @@ void Rectangle::draw( ) const
 {
 	DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
 	              locY + height / 2, glutColor.at(color).data());
-	cout << "Draw  Rectangle: (" <<
-	     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+	//cout << "Draw  Rectangle: (" <<
+	//     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
 
 /**************************************************************************//**
@@ -121,7 +121,7 @@ void Rectangle::erase( ) const
  *****************************************************************************/
 void Rectangle::print( ostream& out ) const
 {
-	//out << ( width == height ? "square" : "rectangle" ) << " at position (" << locX << "," << locY << ")"
-	//<< " with sides " << width << " and " << height << endl;
+	out << ( width == height ? "square" : "rectangle" ) << " at position (" << locX << "," << locY << ")"
+	    << " with sides " << width << " and " << height << endl;
 }
 
