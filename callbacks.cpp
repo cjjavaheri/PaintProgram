@@ -244,23 +244,41 @@ void Event ( char key, int button, int state, int x, int y )
 		}
 		else if ( button == GLUT_LEFT_BUTTON && state == GLUT_UP )
 		{
-			if ( shape == RECTANGLE )
+			cout << "drawing" << endl << endl;
+
+			float x_mid, y_mid, x_size, y_size;
+			x_mid = ( x_initial + x ) / 2.0;
+			y_mid = ( y_initial + y ) / 2.0;
+			x_size = abs(x_initial - x);
+			y_size = abs(y_initial - y);
+
+			switch(shape)
 			{
-				temp_shape = new Rectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2.0, boundary, x_initial - x, y_initial - y );
-				temp_shape->draw();
+				case RECTANGLE:
+					temp_shape = new Rectangle ( x_mid, y_mid, boundary, x_size, y_size );
+					break;
+				case FILLED_RECTANGLE:
+					//CAMERON TODO fix filled rectangle
+					temp_shape = new FilledRectangle ( x_mid, y_mid, boundary, fill, x_size, y_size );
+					break;
+				case ELLIPSE:
+					temp_shape = new Ellipse( x_mid, y_mid, boundary, x_size / 2, y_size / 2 );
+					break;
+				case FILLED_ELLIPSE:
+					temp_shape = new FilledEllipse( x_mid, y_mid, boundary, fill, x_size / 2, y_size / 2 );
+					break;
+				case LINE:
+					temp_shape = new Line( x_mid, y_mid, boundary, x - x_initial, y - y_initial );
+					break;
+				default:
+					temp_shape = nullptr;
+					break;
 			}
-			else if ( shape == FILLED_RECTANGLE )
+			if(temp_shape != nullptr)
 			{
-				temp_shape = new FilledRectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2.0, boundary,  fill, x_initial - x, y_initial - y );
+				items.push_back(temp_shape);
 				temp_shape->draw();
-				temp_shape = new Rectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2.0, boundary, x_initial - x, y_initial - y );
-				temp_shape->draw();
-			}
-			else if (shape == LINE)
-			{
-				temp_shape = new Line( ( x_initial + x) / 2.0, (y_initial + y)
-/ 2.0, boundary, x_initial - x, y_initial - y);
-				temp_shape->draw();
+				temp_shape = nullptr;
 			}
 		}
 	}
