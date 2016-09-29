@@ -53,6 +53,9 @@ void Color_Palette()
 	DrawRectangle ( 100, 50, 150, 100, White );
 	DrawFilledEllipse( 15, 10, 125, 75, Grey );
 	DrawEllipse ( 15, 10, 125, 75, Yellow );
+	// line
+	DrawRectangle(50, 100 , 100, 150, White);
+	DrawLine(65, 115, 85, 135, Yellow);
 }
 
 /***************************************************************************//**
@@ -86,6 +89,10 @@ ShapeType Choose_Shape ( int x, int y, ShapeType shape )
 	{
 		return FILLED_ELLIPSE;
 	}
+	else if ( x >= 50 && x < 100 && y >= 100 && y < 150)
+	{
+		return LINE;
+	}
 	else
 	{
 		return shape;
@@ -115,7 +122,7 @@ ColorType Choose_Color ( int x, int y, ColorType color )
 	{
 		return RED;
 	}
-	else if ( x >= 0 && x <= 100 && y >= 100 && y < 150 )
+	else if ( x >= 0 && x <= 50 && y >= 100 && y < 150 )
 	{
 		return GREEN;
 	}
@@ -174,6 +181,9 @@ void Preview_Box(ShapeType shape, ColorType boundary, ColorType fill)
 			break;
 		case FILLED_ELLIPSE:
 			temp_shape = new FilledEllipse( 25, 425, boundary, fill, 15, 10 );
+			break;
+		case LINE:
+			temp_shape = new Line(25, 425, boundary, 19, 20);
 			break;
 		default:
 			temp_shape = nullptr;
@@ -241,9 +251,15 @@ void Event ( char key, int button, int state, int x, int y )
 			}
 			else if ( shape == FILLED_RECTANGLE )
 			{
-				temp_shape = new FilledRectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2, boundary,  fill, x_initial - x, y_initial - y );
+				temp_shape = new FilledRectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2.0, boundary,  fill, x_initial - x, y_initial - y );
 				temp_shape->draw();
 				temp_shape = new Rectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2.0, boundary, x_initial - x, y_initial - y );
+				temp_shape->draw();
+			}
+			else if (shape == LINE)
+			{
+				temp_shape = new Line( ( x_initial + x) / 2.0, (y_initial + y)
+/ 2.0, boundary, x_initial - x, y_initial - y);
 				temp_shape->draw();
 			}
 		}

@@ -12,6 +12,7 @@
 #include "FilledRectangle.h"
 #include "ellipse.h"
 #include "FilledEllipse.h"
+#include "line.h"
 #include <vector>
 
 using namespace std;
@@ -27,7 +28,8 @@ enum ShapeType
 	RECTANGLE,
 	FILLED_RECTANGLE,
 	ELLIPSE,
-	FILLED_ELLIPSE
+	FILLED_ELLIPSE,
+	LINE
 };
 
 void Color_Palette();

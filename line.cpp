@@ -1,5 +1,5 @@
 /***************************************************************************//**
- * @file rectangle.cpp
+ * @file line.cpp
  *
  * @par Description
  *    OOP example illustrating inheritance and late binding via virtual
@@ -8,9 +8,9 @@
  *    Inheritance is used to derive various shape classes (Point, Line, Circle,
  *    Rectangle, Square) from a base Shape class.
  *
- *    This file contains the Rectangle class implementation.
+ *    This file contains the line class implementation.
  *
- * @author John M. Weiss, Ph.D. , Cameron Javaheri
+ * @author Cameron Javaheri
  *
  * @par Class:
  *    CSC300 Data Structures
@@ -25,87 +25,94 @@
 #include <iostream>
 using namespace std;
 
-#include "rectangle.h"
+#include "line.h"
 
 // Rectangle class implementation
 
 /**************************************************************************//**
- * @author John Weiss
+ * @author Cameron Javaheri
  *
- * @brief Rectangle class implementation constructor
+ * @brief Line class implementation constructor
  *
- * @param[in] x - x-coordinate of the center of the rectangle
- * @param[in] y - y-coordinate of the center of the rectangle
- * @param[in] c - the color of the rectangle boundary
- * @param[in] w - width of the rectangle
- * @param[in] h - height of the rectangle
+ * @param[in] x - x-coordinate of the center of the line
+ * @param[in] y - y-coordinate of the center of the line
+ * @param[in] c - the color of the line
+ * @param[in] l - Difference in x-coordinates of the line.
+ * @param[in] h - Difference in y-coordinates of the line.
  *****************************************************************************/
-Rectangle::Rectangle( float x, float y, ColorType c, float w, float h ) :
-	Shape( x, y, c ), width( w ), height( h )
+Line::Line( float x, float y, ColorType c, float l, float h ) :
+	Shape( x, y, c ), length(l), height(h)
 {
-	cout << "Rectangle constructor: (" <<
-	     x << "," << y << ") = " << c << ", width " << w << " x height " << h << endl;
-}
-
-/**************************************************************************//**
- * @author John Weiss
- * @brief Rectangle class implementation destructor
- *****************************************************************************/
-Rectangle::~Rectangle( )
-{
-	cout << "Rectangle destructor: (" <<
-	     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
-}
-
-/**************************************************************************//**
- * @author John Weiss
- *
- * @brief Rectangle class change radius
- *
- * @par Description
- *    mutator method for Rectangle class
- *
- * @param[in] w - the new width for the rectangle
- * @param[in] h - the new height for the rectangle
- *****************************************************************************/
-void Rectangle::changeDimensions( float w, float h )
-{
-	cout << "Change Rectangle dimensions from " << width << " x " << height << " to " << w << " x " << h << endl;
-	width = w;
-	height = h;
+	cout << "Line constructor: (" <<
+	     x << "," << y << ") = " << c << endl;
 }
 
 /**************************************************************************//**
  * @author Cameron Javaheri
+ * @brief Line class implementation destructor
+ *****************************************************************************/
+Line::~Line( )
+{
+	cout << "Line destructor: (" <<
+	     locX << "," << locY << ") = " << color << endl;
+}
+
+/**************************************************************************//**
+ * *@author Cameron Javaheri
  *
- * @brief Rectangle class draw
+ * @brief Line class change location function
+ *
+ * @par Description
+ *    mutator method for Line class
+ *
+ * @param[in] x - the new center x-location for the line
+ * @param[in] y - the new center y-location for the line
+ *****************************************************************************/
+
+
+
+//void Line::changeDimensions( float x, float y )
+//{
+	//cout << "Change line dimensions from [" << locX << "," << locY << "]"
+        //<< "to [" << x << "," << "y]" << endl;
+	//locX = x;
+	//locY = y;
+//}
+
+
+
+
+/**************************************************************************//**
+ * @author Cameron Javaheri
+ *
+ * @brief Line class draw
  *
  * @par Description
  *   must override pure virtual Shape::draw() method to instantiate class
  *
  *****************************************************************************/
-void Rectangle::draw( ) const
+void Line::draw( ) const
 {
-	DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
-	              locY + height / 2, glutColor.at(color).data());
+	DrawLine(locX - length / 2, locY - height / 2, locX + length / 2, locY + height / 2,
+		glutColor.at(color).data());
 	glutSwapBuffers();
-	cout << "Draw  Rectangle: (" <<
-	     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+	cout << "Draw  Line: (" <<
+	     locX << "," << locY << ") = " << color << ", length " << length << " height " << height << endl;
 }
 
 /**************************************************************************//**
  * @author Cameron Javaheri
  *
- * @brief Rectangle class erase
+ * @brief Line class erase
  *
  * @par Description
  *    must override pure virtual Shape::erase() method to instantiate class
  *
  *****************************************************************************/
-void Rectangle::erase( ) const
+void Line::erase( ) const
 {
 	//DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
-	              //locY + height / 2,  Black);
+	     //         locY + height / 2,  Black);
 	//glutSwapBuffers();
 	//cout << "Erase Rectangle: (" <<
 	     //locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
@@ -114,13 +121,13 @@ void Rectangle::erase( ) const
 /**************************************************************************//**
  * @author Cameron Javaheri
  *
- * @brief Rectangle class print
+ * @brief Line class print
  *
  * @par Description
  *    must override pure virtual Shape::erase() method to instantiate class
  *
  *****************************************************************************/
-void Rectangle::print( ostream& out ) const
+void Line::print( ostream& out ) const
 {
 	//out << ( width == height ? "square" : "rectangle" ) << " at position (" << locX << "," << locY << ")"
 	    //<< " with sides " << width << " and " << height << endl;
