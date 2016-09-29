@@ -64,7 +64,6 @@ void FilledEllipse::draw( ) const
 {
 	DrawFilledEllipse( radius_x, radius_y, locX, locY, glutColor.at(fill_color).data() );
 	DrawEllipse( radius_x, radius_y, locX, locY, glutColor.at(color).data() );
-	glutSwapBuffers();
 	cout << "Draw  FilledEllipse: ("
 	     << locX << "," << locY << ") = " << color
 	     << ", r_x = " << radius_x << ", r_y = " << radius_y << endl;

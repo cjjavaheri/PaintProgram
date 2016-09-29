@@ -95,7 +95,6 @@ void Line::draw( ) const
 {
 	DrawLine(locX - length / 2, locY - height / 2, locX + length / 2, locY + height / 2,
 	         glutColor.at(color).data());
-	glutSwapBuffers();
 	cout << "Draw  Line: (" <<
 	     locX << "," << locY << ") = " << color << ", length " << length << " height " << height << endl;
 }

@@ -79,7 +79,7 @@ void oneTimeInit(int num, char **arrOfStr)
 	if (num > 1)
 		glutCreateWindow(arrOfStr[1]);
 	else
-		glutCreateWindow("Simple Example Window Title");
+		glutCreateWindow("SDSM&T PAINT");
 
 	// Set the function for the glutMainLoop to call when refreshing window
 	glutDisplayFunc(display);
@@ -97,6 +97,3 @@ void oneTimeInit(int num, char **arrOfStr)
 	// 0% blue, 0% alpha
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 }
-
-
-

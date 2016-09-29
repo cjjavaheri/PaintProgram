@@ -198,6 +198,46 @@ void Preview_Box(ShapeType shape, ColorType boundary, ColorType fill)
 	}
 }
 
+void Insert_Shape(ShapeType shape, vector<Shape *> &items, ColorType boundary, ColorType fill,
+                  float ix, float iy, float fx, float fy)
+{
+	Shape * temp_shape;
+	float x_mid, y_mid, x_size, y_size;
+	x_mid = ( ix + fx ) / 2.0;
+	y_mid = ( iy + fy ) / 2.0;
+	x_size = abs( ix - fx );
+	y_size = abs( iy - fy );
+
+	switch (shape)
+	{
+	case RECTANGLE:
+		temp_shape = new Rectangle ( x_mid, y_mid, boundary, x_size, y_size );
+		break;
+	case FILLED_RECTANGLE:
+		temp_shape = new FilledRectangle ( x_mid, y_mid, boundary, fill, x_size, y_size );
+		break;
+	case ELLIPSE:
+		temp_shape = new Ellipse( x_mid, y_mid, boundary, x_size / 2, y_size / 2 );
+		break;
+	case FILLED_ELLIPSE:
+		temp_shape = new FilledEllipse( x_mid, y_mid, boundary, fill, x_size / 2, y_size / 2 );
+		break;
+	case LINE:
+		temp_shape = new Line( x_mid, y_mid, boundary, fx - ix, fy - iy );
+		break;
+	default:
+		temp_shape = nullptr;
+		break;
+	}
+	if (temp_shape != nullptr)
+	{
+		items.push_back(temp_shape);
+		temp_shape->draw();
+		temp_shape = nullptr;
+	}
+}
+
+
 /***************************************************************************//**
  * @author Cameron Javaheri, Matthew Schallenkamp
  *
@@ -221,8 +261,6 @@ void Event ( char key, int button, int state, int x, int y )
 	static ShapeType shape = EMPTY;
 	static vector<Shape *> items;
 
-	Shape * temp_shape = nullptr;
-
 	if (key == '\0')
 	{
 		if ( button == GLUT_LEFT_BUTTON && state == GLUT_DOWN )
@@ -244,53 +282,40 @@ void Event ( char key, int button, int state, int x, int y )
 		else if ( button == GLUT_LEFT_BUTTON && state == GLUT_UP )
 		{
 			cout << "drawing" << endl << endl;
-
-			float x_mid, y_mid, x_size, y_size;
-			x_mid = ( x_initial + x ) / 2.0;
-			y_mid = ( y_initial + y ) / 2.0;
-			x_size = abs( x_initial - x );
-			y_size = abs( y_initial - y );
-
-			switch (shape)
-			{
-			case RECTANGLE:
-				temp_shape = new Rectangle ( x_mid, y_mid, boundary, x_size, y_size );
-				break;
-			case FILLED_RECTANGLE:
-				temp_shape = new FilledRectangle ( x_mid, y_mid, boundary, fill, x_size, y_size );
-				break;
-			case ELLIPSE:
-				temp_shape = new Ellipse( x_mid, y_mid, boundary, x_size / 2, y_size / 2 );
-				break;
-			case FILLED_ELLIPSE:
-				temp_shape = new FilledEllipse( x_mid, y_mid, boundary, fill, x_size / 2, y_size / 2 );
-				break;
-			case LINE:
-				temp_shape = new Line( x_mid, y_mid, boundary, x - x_initial, y - y_initial );
-				break;
-			default:
-				temp_shape = nullptr;
-				break;
-			}
-			if (temp_shape != nullptr)
-			{
-				items.push_back(temp_shape);
-				temp_shape->draw();
-				temp_shape = nullptr;
-			}
+			Insert_Shape(shape, items, boundary, fill, x_initial, y_initial, x, y);
 		}
+		glutSwapBuffers();
 	}
 	else
 	{
 		//do key stuff
 		switch (key)
 		{
+		case 'c':
+			cout << "clear" << endl;
+			//clear screen
+			for(auto &s : items)
+			{
+				delete s;
+			}
+			items = {};
+			Event('r', 0, 0, 0, 0);
+			break;
 		case 'd': //to delete TODO
 			break;
 		case 'r':
-			//redraw the screen TODO
-			break;
 		default:
+			cout << "redraw" << endl;
+			//redraw the screen TODO
+			glClearColor(0.0f, 0.0f, 0.0f, 1.0f );
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			Color_Palette();
+			Preview_Box(shape, boundary, fill);
+			for(auto &s : items)
+			{
+				s->draw();
+			}
+			glutSwapBuffers();
 			break;
 		}
 	}
@@ -303,13 +328,14 @@ void Event ( char key, int button, int state, int x, int y )
  ******************************************************************************/
 void display()
 {
+	cout << "displaying" << endl << endl;
 	// Clear the window
 	glClear ( GL_COLOR_BUFFER_BIT );
 
 	glutInitWindowSize ( 1024, 999 );
 	glutInitWindowPosition ( 100, 100 );
 
-	Color_Palette();
+	Event('r', 0, 0, 0, 0);
 
 	// DrawLine( 10, 20, glutGet(GLUT_WINDOW_WIDTH) - 10,
 	// glutGet(GLUT_WINDOW_HEIGHT) - 20, Yellow );
@@ -319,9 +345,7 @@ void display()
 	// DrawFilledEllipse( 100, 50, 250, 450, Magenta );
 
 	// label display with text
-	DrawTextString ( "OpenGL Demo", 32, 800 - 32, White );
-
-	Event('r', 0, 0, 0, 0); //r for redraw
+	//DrawTextString ( "OpenGL Demo", 32, 800 - 32, White );
 
 	// Make sure all the draw functions a complete to the buffer
 	glutSwapBuffers();
@@ -381,10 +405,12 @@ void mouseClick ( int button, int state, int x, int y )
  ******************************************************************************/
 void reshape ( int w, int h )
 {
+	cout << "reshape" << endl << endl << endl;
 	glMatrixMode ( GL_PROJECTION ); // use an orthographic projection
 	glLoadIdentity();  // initialize transformation matrix
 	gluOrtho2D ( 0.0, w, 0.0, h ); // make OpenGL coordinates
 	glViewport ( 0, 0, w, h ); // the same as the screen coordinates
+	glutPostRedisplay();
 }
 
 
