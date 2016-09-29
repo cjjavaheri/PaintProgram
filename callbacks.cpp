@@ -154,7 +154,7 @@ ColorType Choose_Color ( int x, int y, ColorType color )
 void Preview_Box(ShapeType shape, ColorType boundary, ColorType fill)
 {
 	const float display_rect[4] = { (16 + 35) / 2.0, (415 + 435) / 2.0, 16 - 35, 415 - 435};
-	const FilledRectangle preview_back( 25, 425, BLACK, 48, 48 );
+	const FilledRectangle preview_back( 25, 425, BLACK, BLACK, 48, 48 );
 	//clear the old selection
 	preview_back.draw();
 
@@ -167,10 +167,7 @@ void Preview_Box(ShapeType shape, ColorType boundary, ColorType fill)
 			break;
 		case FILLED_RECTANGLE:
 			//CAMERON TODO fix filled rectangle
-			temp_shape = new FilledRectangle ( display_rect[0], display_rect[1], fill, display_rect[2], display_rect[3] );
-			temp_shape->draw();
-			delete temp_shape;
-			temp_shape = new Rectangle ( display_rect[0], display_rect[1], boundary, display_rect[2], display_rect[3] );
+			temp_shape = new FilledRectangle ( display_rect[0], display_rect[1], boundary, fill, display_rect[2], display_rect[3] );
 			break;
 		case ELLIPSE:
 			temp_shape = new Ellipse( 25, 425, boundary, 15, 10 );
@@ -244,7 +241,7 @@ void Event ( char key, int button, int state, int x, int y )
 			}
 			else if ( shape == FILLED_RECTANGLE )
 			{
-				temp_shape = new FilledRectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2, fill, x_initial - x, y_initial - y );
+				temp_shape = new FilledRectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2, boundary,  fill, x_initial - x, y_initial - y );
 				temp_shape->draw();
 				temp_shape = new Rectangle ( ( x_initial + x ) / 2.0, ( y_initial + y ) / 2.0, boundary, x_initial - x, y_initial - y );
 				temp_shape->draw();

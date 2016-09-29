@@ -32,9 +32,12 @@
 class FilledRectangle : public Rectangle
 {
 
+protected:
+	ColorType fill_color;
+
 public:
 	/// Constructor
-	FilledRectangle( float x = 0.0, float y = 0.0, ColorType c = ColorType( 0 ), float w = 1.0, float h = 1.0 );
+	FilledRectangle( float x = 0.0, float y = 0.0, ColorType c = ColorType( 0 ), ColorType f = ColorType(0), float w = 1.0, float h = 1.0 );
 	/// Destructor
 	~FilledRectangle( );
 

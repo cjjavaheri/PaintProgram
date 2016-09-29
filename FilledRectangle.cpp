@@ -38,11 +38,12 @@ using namespace std;
  * @param[in] w - width of the rectangle
  * @param[in] h - height of the rectangle
  *****************************************************************************/
-FilledRectangle::FilledRectangle( float x, float y, ColorType c, float w, float h ) :
-	Rectangle( x, y, c, w, h )
+FilledRectangle::FilledRectangle( float x, float y, ColorType c, ColorType f, float w, float h ) :
+	Rectangle( x, y, c, w, h ), fill_color(f)
 {
 	cout << "FilledRectangle constructor: (" <<
-	     x << "," << y << ") = " << c << ", width " << w << " x height " << h << endl;
+	     x << "," << y << ") = " << c << ", width " << w << " x height " << h
+	 << "filled color" << f << endl;
 }
 
 /**************************************************************************//**
@@ -65,6 +66,8 @@ FilledRectangle::~FilledRectangle( )
 void FilledRectangle::draw( ) const
 {
 	DrawFilledRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
+	                    locY + height / 2, glutColor.at(fill_color).data());
+	DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
 	                    locY + height / 2, glutColor.at(color).data());
 	glutSwapBuffers();
 	cout << "Draw  Rectangle: (" <<
