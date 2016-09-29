@@ -295,7 +295,7 @@ void Event ( char key, int button, int state, int x, int y )
 			{
 				delete s;
 			}
-			items = {};
+			items.clear();
 			Event('r', 0, 0, 0, 0);
 			break;
 		case 'd': //to delete TODO
