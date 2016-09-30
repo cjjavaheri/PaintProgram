@@ -1,0 +1,39 @@
+Checkpoint #1:
+?  Code compiles
+*  Some or all of the palette is visible
+*  Partial palette behaves when window is resized
+*  All team members show repository activity
+
+Repo Activity:
+    19  Javaheri, Cameron <cameron.javaheri@mines.sdsmt.edu>
+     3  Matthew Schallenkamp <matthew.schallenkamp@gmail.com>
+
+   Concerned about the lack of balance in the repo activity.  Make sure everyone
+is doing frequent commits and pushes whenever code is working.
+
+    Default build target does not build due to missing file (doxy_config)
+
+   Full palette visible.  Filled and non-filled rectangles can be drawn.
+   Well ahead of the required development pace.  Keep it up.
+
+   Shapes disappear when window is resized.
+
+Checkpoint #2:
+*  All requirements from Sept. 22 checkpoint (.h files not required on the compile line)
+*  Full palette is displayed
+?  Existing functions have function headers
+*  Can select border and fill colors
+*  Can draw (at least) a single shape with (above) border and fill color
+
+Repo Activity:
+    21  Javaheri, Cameron <cameron.javaheri@mines.sdsmt.edu>
+    20  Matthew Schallenkamp <matthew.schallenkamp@gmail.com>
+
+   Much better frequency, balance, overall activity in the repository.
+
+   Function headers require parameter descriptions.  Some are missing (e.g.
+Preview_Box)
+
+   All shapes (filled and non-filled) appear to be working
+
+   Shapes disappear when window is resized.
