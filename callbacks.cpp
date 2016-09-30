@@ -157,6 +157,10 @@ ColorType Choose_Color ( int x, int y, ColorType color )
  *
  * @brief A function that is used to display the preview box.
  *
+ * @param[in] shape - The type of shape to be displayed.
+ * @param[in] boundary - The color of the boundary of the shape.
+ * @param[in] fill - The filled color of the shape.
+ *
  ******************************************************************************/
 void Preview_Box(ShapeType shape, ColorType boundary, ColorType fill)
 {
@@ -198,6 +202,94 @@ void Preview_Box(ShapeType shape, ColorType boundary, ColorType fill)
 	}
 }
 
+
+/***************************************************************************//**
+ * @author Cameron Javaheri, Matthew Schallenkamp
+ *
+ * @brief A function that is used to insert a shape object into a vector.
+ *
+ * @param[in] shape - The type of shape of the object.
+ * @param[in,out] items - A vector of shape pointers.
+ * @param[in] boundary - The color of the boundary of the shape.
+ * @param[in] fill - The filled color of the shape.
+ * @param[in] ix - The initial x-coordinate of the mouse click.
+ * @param[in] iy - The initial y-coordinate of the mouse click.
+ * @param[in] fx - The final x-coordinate of the mouse click.
+ * @param[in] fy - The final y-coordinate of the mouse click.
+ *
+ ******************************************************************************/
+
+
+void Insert_Shape(ShapeType shape, vector<Shape *> &items, ColorType boundary, ColorType fill,
+                  float ix, float iy, float fx, float fy)
+{
+	Shape * temp_shape;
+	float x_mid, y_mid, x_size, y_size;
+	x_mid = ( ix + fx ) / 2.0;
+	y_mid = ( iy + fy ) / 2.0;
+	x_size = abs( ix - fx );
+	y_size = abs( iy - fy );
+
+	switch (shape)
+	{
+	case RECTANGLE:
+		temp_shape = new Rectangle ( x_mid, y_mid, boundary, x_size, y_size );
+		break;
+	case FILLED_RECTANGLE:
+		temp_shape = new FilledRectangle ( x_mid, y_mid, boundary, fill, x_size, y_size );
+		break;
+	case ELLIPSE:
+		temp_shape = new Ellipse( x_mid, y_mid, boundary, x_size / 2, y_size / 2 );
+		break;
+	case FILLED_ELLIPSE:
+		temp_shape = new FilledEllipse( x_mid, y_mid, boundary, fill, x_size / 2, y_size / 2 );
+		break;
+	case LINE:
+		temp_shape = new Line( x_mid, y_mid, boundary, fx - ix, fy - iy );
+		break;
+	default:
+		temp_shape = nullptr;
+		break;
+	}
+	if (temp_shape != nullptr)
+	{
+		items.push_back(temp_shape);
+		temp_shape->draw();
+	}
+}
+
+
+/***************************************************************************//**
+ * @author Cameron Javaheri, Matthew Schallenkamp
+ *
+ * @brief A function that determines which shape is currently selected.
+ *
+ * @param[in,out] items - A vector of shape pointers.
+ * @param[in] prev_selection - The previous index for the vector containing shape pointers.
+ * @param[in] x - The x-coordinate of the right mouse click.
+ * @param[in] y - The y-coordinate of the right mouse click.
+ *
+ * @returns An index for the shape vector for the newly selected shape.
+ ******************************************************************************/
+
+int selection(const vector<Shape *> &items, int prev_selection, int x, int y)
+{
+int i;
+float Centerx;
+float Centery;
+	for (i = items.size() - 1; i >= 0; i--)
+	{
+		Centerx = items[i]->getX();
+		Centery = items[i]->getY();
+		if (abs(Centerx - x) <= 20 && abs(Centery - y) <= 20)
+		{
+			return i;
+		}
+	}
+	return prev_selection;
+
+}
+
 /***************************************************************************//**
  * @author Cameron Javaheri, Matthew Schallenkamp
  *
@@ -213,15 +305,13 @@ void Preview_Box(ShapeType shape, ColorType boundary, ColorType fill)
  ******************************************************************************/
 void Event ( char key, int button, int state, int x, int y )
 {
-
 	static int x_initial;
 	static int y_initial;
 	static ColorType boundary = BLACK;
 	static ColorType fill = BLACK;
 	static ShapeType shape = EMPTY;
 	static vector<Shape *> items;
-
-	Shape * temp_shape = nullptr;
+	static int index = 0;
 
 	if (key == '\0')
 	{
@@ -238,46 +328,22 @@ void Event ( char key, int button, int state, int x, int y )
 		{
 			fill = Choose_Color ( x, y, fill );
 			shape = Choose_Shape ( x, y, shape );
+			index = selection(items, index, x, y);
+			cout << index << endl;
 
 			Preview_Box(shape, boundary, fill);
 		}
 		else if ( button == GLUT_LEFT_BUTTON && state == GLUT_UP )
 		{
-			cout << "drawing" << endl << endl;
-
-			float x_mid, y_mid, x_size, y_size;
-			x_mid = ( x_initial + x ) / 2.0;
-			y_mid = ( y_initial + y ) / 2.0;
-			x_size = abs( x_initial - x );
-			y_size = abs( y_initial - y );
-
-			switch (shape)
-			{
-			case RECTANGLE:
-				temp_shape = new Rectangle ( x_mid, y_mid, boundary, x_size, y_size );
-				break;
-			case FILLED_RECTANGLE:
-				temp_shape = new FilledRectangle ( x_mid, y_mid, boundary, fill, x_size, y_size );
-				break;
-			case ELLIPSE:
-				temp_shape = new Ellipse( x_mid, y_mid, boundary, x_size / 2, y_size / 2 );
-				break;
-			case FILLED_ELLIPSE:
-				temp_shape = new FilledEllipse( x_mid, y_mid, boundary, fill, x_size / 2, y_size / 2 );
-				break;
-			case LINE:
-				temp_shape = new Line( x_mid, y_mid, boundary, x - x_initial, y - y_initial );
-				break;
-			default:
-				temp_shape = nullptr;
-				break;
-			}
-			if (temp_shape != nullptr)
-			{
-				items.push_back(temp_shape);
-				temp_shape->draw();
-				temp_shape = nullptr;
-			}
+			Insert_Shape(shape, items, boundary, fill, x_initial, y_initial, x, y);
+			index = items.size() - 1;
+			cout << index << endl;
+			glutSwapBuffers();
+		}
+		else if (button == GLUT_RIGHT_BUTTON && state == GLUT_UP)
+		{
+			items[index]->moveTo(x, y);
+			Event('r', 0, 0, 0, 0);
 		}
 	}
 	else
@@ -285,12 +351,36 @@ void Event ( char key, int button, int state, int x, int y )
 		//do key stuff
 		switch (key)
 		{
-		case 'd': //to delete TODO
-			break;
+		case 'c':
+			cout << "clear" << endl;
+			//clear screen
+			for(auto &s : items)
+			{
+				delete s;
+			}
+			items.clear();
+			index = 0;
+		case 'd':
+			if (index < items.size())
+			{
+				items.erase(items.begin() + index);
+				index = items.size() - 1;
+				if (index == -1)
+					index = 0;
+			}
 		case 'r':
-			//redraw the screen TODO
-			break;
 		default:
+			cout << "redraw" << endl;
+			//redraw the screen TODO
+			glClearColor(0.0f, 0.0f, 0.0f, 1.0f );
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			Color_Palette();
+			Preview_Box(shape, boundary, fill);
+			for(auto &s : items)
+			{
+				s->draw();
+			}
+			glutSwapBuffers();
 			break;
 		}
 	}
@@ -303,13 +393,14 @@ void Event ( char key, int button, int state, int x, int y )
  ******************************************************************************/
 void display()
 {
+	cout << "displaying" << endl;
 	// Clear the window
 	glClear ( GL_COLOR_BUFFER_BIT );
 
 	glutInitWindowSize ( 1024, 999 );
 	glutInitWindowPosition ( 100, 100 );
 
-	Color_Palette();
+	Event('r', 0, 0, 0, 0);
 
 	// DrawLine( 10, 20, glutGet(GLUT_WINDOW_WIDTH) - 10,
 	// glutGet(GLUT_WINDOW_HEIGHT) - 20, Yellow );
@@ -319,9 +410,7 @@ void display()
 	// DrawFilledEllipse( 100, 50, 250, 450, Magenta );
 
 	// label display with text
-	DrawTextString ( "OpenGL Demo", 32, 800 - 32, White );
-
-	Event('r', 0, 0, 0, 0); //r for redraw
+	//DrawTextString ( "OpenGL Demo", 32, 800 - 32, White );
 
 	// Make sure all the draw functions a complete to the buffer
 	glutSwapBuffers();
@@ -343,12 +432,13 @@ void keyboard ( unsigned char key, int x, int y )
 
 	y = ScreenHeight - y;
 
-	if ( key == ESCAPE_KEY )
+	if ( key == ESCAPE_KEY || key == 'q' || key == 'Q')
 	{
 		glutLeaveMainLoop();
+		return;
 	}
-	cout << "Key " << ( char ) key << " press detected at ["
-	     << x << ", " << y << "]\n";
+	//cout << "Key " << ( char ) key << " press detected at ["
+	//     << x << ", " << y << "]\n";
 	Event(key, 0, 0, x, y);
 }
 
@@ -369,8 +459,8 @@ void mouseClick ( int button, int state, int x, int y )
 	Event('\0', button, state, x, y);
 
 
-	cout << "MouseClick: Button = " << ButtonName[button] << " : State = "
-	     << ButtonState[state] << " : Location [" << x << ", " << y << "]\n";
+	//cout << "MouseClick: Button = " << ButtonName[button] << " : State = "
+	//     << ButtonState[state] << " : Location [" << x << ", " << y << "]\n";
 }
 
 /***************************************************************************//**
@@ -381,10 +471,12 @@ void mouseClick ( int button, int state, int x, int y )
  ******************************************************************************/
 void reshape ( int w, int h )
 {
+	cout << "reshape" << endl;
 	glMatrixMode ( GL_PROJECTION ); // use an orthographic projection
 	glLoadIdentity();  // initialize transformation matrix
 	gluOrtho2D ( 0.0, w, 0.0, h ); // make OpenGL coordinates
 	glViewport ( 0, 0, w, h ); // the same as the screen coordinates
+	glutPostRedisplay();
 }
 
 

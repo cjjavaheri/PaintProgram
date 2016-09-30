@@ -43,8 +43,8 @@ using namespace std;
 Line::Line( float x, float y, ColorType c, float l, float h ) :
 	Shape( x, y, c ), length(l), height(h)
 {
-	cout << "Line constructor: (" <<
-	     x << "," << y << ") = " << c << endl;
+	//cout << "Line constructor: (" <<
+	//     x << "," << y << ") = " << c << endl;
 }
 
 /**************************************************************************//**
@@ -53,8 +53,8 @@ Line::Line( float x, float y, ColorType c, float l, float h ) :
  *****************************************************************************/
 Line::~Line( )
 {
-	cout << "Line destructor: (" <<
-	     locX << "," << locY << ") = " << color << endl;
+	//cout << "Line destructor: (" <<
+	//     locX << "," << locY << ") = " << color << endl;
 }
 
 /**************************************************************************//**
@@ -88,16 +88,15 @@ Line::~Line( )
  * @brief Line class draw
  *
  * @par Description
- *   must override pure virtual Shape::draw() method to instantiate class
+ *   Draws a line.
  *
  *****************************************************************************/
 void Line::draw( ) const
 {
 	DrawLine(locX - length / 2, locY - height / 2, locX + length / 2, locY + height / 2,
 	         glutColor.at(color).data());
-	glutSwapBuffers();
-	cout << "Draw  Line: (" <<
-	     locX << "," << locY << ") = " << color << ", length " << length << " height " << height << endl;
+	//cout << "Draw  Line: (" <<
+	//     locX << "," << locY << ") = " << color << ", length " << length << " height " << height << endl;
 }
 
 /**************************************************************************//**
@@ -129,7 +128,7 @@ void Line::erase( ) const
  *****************************************************************************/
 void Line::print( ostream& out ) const
 {
-	//out << ( width == height ? "square" : "rectangle" ) << " at position (" << locX << "," << locY << ")"
-	//<< " with sides " << width << " and " << height << endl;
+	out << ( length == height ? "square" : "rectangle" ) << " at position (" << locX << "," << locY << ")"
+	    << " with sides " << length << " and " << height << endl;
 }
 

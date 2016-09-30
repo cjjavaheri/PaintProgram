@@ -41,9 +41,9 @@ using namespace std;
 FilledRectangle::FilledRectangle( float x, float y, ColorType c, ColorType f, float w, float h ) :
 	Rectangle( x, y, c, w, h ), fill_color(f)
 {
-	cout << "FilledRectangle constructor: (" <<
-	     x << "," << y << ") = " << c << ", width " << w << " x height " << h
-	     << "filled color" << f << endl;
+	//cout << "FilledRectangle constructor: (" <<
+	//     x << "," << y << ") = " << c << ", width " << w << " x height " << h
+	//     << "filled color" << f << endl;
 }
 
 /**************************************************************************//**
@@ -51,8 +51,8 @@ FilledRectangle::FilledRectangle( float x, float y, ColorType c, ColorType f, fl
  *****************************************************************************/
 FilledRectangle::~FilledRectangle( )
 {
-	cout << "FilledRectangle destructor: (" <<
-	     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+	//cout << "FilledRectangle destructor: (" <<
+	//     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
 
 
@@ -60,7 +60,7 @@ FilledRectangle::~FilledRectangle( )
  * @brief Rectangle class draw
  *
  * @par Description
- *   must override pure virtual Shape::draw() method to instantiate class
+ *   Draws a filled rectangle.
  *
  *****************************************************************************/
 void FilledRectangle::draw( ) const
@@ -69,9 +69,8 @@ void FilledRectangle::draw( ) const
 	                    locY + height / 2, glutColor.at(fill_color).data());
 	DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
 	              locY + height / 2, glutColor.at(color).data());
-	glutSwapBuffers();
-	cout << "Draw  Rectangle: (" <<
-	     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+	//cout << "Draw  Rectangle: (" <<
+	//     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
 
 /**************************************************************************//**
@@ -87,9 +86,8 @@ void FilledRectangle::erase( ) const
 	              locY + height / 2,  Black);
 	DrawFilledRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
 	                    locY + height / 2, Black);
-	glutSwapBuffers();
-	cout << "Erase Rectangle: (" <<
-	     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+	//cout << "Erase Rectangle: (" <<
+	//     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
 
 /**************************************************************************//**

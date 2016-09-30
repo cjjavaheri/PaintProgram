@@ -38,9 +38,9 @@ using namespace std;
 FilledEllipse::FilledEllipse( float x, float y, ColorType c, ColorType f, float r_x, float r_y)
 	: Ellipse(x, y, c, r_x, r_y), fill_color(f)
 {
-	cout << "FilledEllipse constructor: ("
-	     <<	x << "," << y << ") = " << c
-	     << ", radius = " << radius_x << endl;
+	//cout << "FilledEllipse constructor: ("
+	//     <<	x << "," << y << ") = " << c
+	//     << ", radius = " << radius_x << endl;
 }
 
 /**************************************************************************//**
@@ -48,9 +48,9 @@ FilledEllipse::FilledEllipse( float x, float y, ColorType c, ColorType f, float 
  *****************************************************************************/
 FilledEllipse::~FilledEllipse( )
 {
-	cout << "FilledEllipse destructor: ("
-	     << locX << "," << locY << ") = " << color
-	     << ", r_x = " << radius_x << ", r_y = " << radius_y << endl;
+	//cout << "FilledEllipse destructor: ("
+	//     << locX << "," << locY << ") = " << color
+	//     << ", r_x = " << radius_x << ", r_y = " << radius_y << endl;
 }
 
 /**************************************************************************//**
@@ -64,10 +64,9 @@ void FilledEllipse::draw( ) const
 {
 	DrawFilledEllipse( radius_x, radius_y, locX, locY, glutColor.at(fill_color).data() );
 	DrawEllipse( radius_x, radius_y, locX, locY, glutColor.at(color).data() );
-	glutSwapBuffers();
-	cout << "Draw  FilledEllipse: ("
-	     << locX << "," << locY << ") = " << color
-	     << ", r_x = " << radius_x << ", r_y = " << radius_y << endl;
+	//cout << "Draw  FilledEllipse: ("
+	//     << locX << "," << locY << ") = " << color
+	//     << ", r_x = " << radius_x << ", r_y = " << radius_y << endl;
 }
 
 /**************************************************************************//**
@@ -79,9 +78,9 @@ void FilledEllipse::draw( ) const
  *****************************************************************************/
 void FilledEllipse::erase( ) const
 {
-	cout << "Erase FilledEllipse: ("
-	     << locX << "," << locY << ") = " << color
-	     << ", r_x = " << radius_x << ", r_y = " << radius_y << endl;
+	//cout << "Erase FilledEllipse: ("
+	//     << locX << "," << locY << ") = " << color
+	//     << ", r_x = " << radius_x << ", r_y = " << radius_y << endl;
 }
 
 
