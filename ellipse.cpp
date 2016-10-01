@@ -57,21 +57,6 @@ void Ellipse::draw( ) const
 }
 
 /**************************************************************************//**
- * @brief Ellipse class erase
- *
- * @par Description
- *    must override pure virtual Shape::erase() method to instantiate class
- *
- *****************************************************************************/
-void Ellipse::erase( ) const
-{
-	//cout << "Erase Ellipse: ("
-	//     << locX << "," << locY << ") = " << color
-	//     << ", r_x = " << radius_x << ", r_y = " << radius_y << endl;
-}
-
-
-/**************************************************************************//**
  * @brief Ellipse class print
  *
  * @par Description

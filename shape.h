@@ -108,8 +108,6 @@ public:
 	virtual void print( ostream& ) const = 0;
 	/// pure virtual draw
 	virtual void draw() const = 0;
-	/// pure virtual erase
-	virtual void erase() const = 0;
 };
 
 #endif

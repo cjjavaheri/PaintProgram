@@ -57,21 +57,6 @@ void FilledEllipse::draw( ) const
 }
 
 /**************************************************************************//**
- * @brief FilledEllipse class erase
- *
- * @par Description
- *    must override pure virtual Shape::erase() method to instantiate class
- *
- *****************************************************************************/
-void FilledEllipse::erase( ) const
-{
-	//cout << "Erase FilledEllipse: ("
-	//     << locX << "," << locY << ") = " << color
-	//     << ", r_x = " << radius_x << ", r_y = " << radius_y << endl;
-}
-
-
-/**************************************************************************//**
  * @brief FilledEllipse class print
  *
  * @par Description
