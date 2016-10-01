@@ -1,5 +1,7 @@
 /**************************************************************************//**
- * @file Ellipse.h
+ * @file FilledEllipse.h
+ *
+ * @brief A class for drawing filled ellipses
  *
  * @par Description
  *    OOP example illustrating inheritance and late binding via virtual
@@ -8,19 +10,17 @@
  *    Inheritance is used to derive various shape classes (Point, Line, Ellipse,
  *    Rectangle, Square) from a base Shape class.
  *
- *    This file contains the Ellipse class interface.
+ *    This file contains the FilledEllipse class interface.
+ *
+ *    This file has been modified for use in a paint program by M.S.
  *
  * @author John M. Weiss, Ph.D., Matthew Schallenkamp
  *
  * @par Class:
  *    CSC300 Data Structures
  *
- * @date Fall 2015
+ * @date Fall 2016
  *
- * Modifications:
- *  * Added doxygen style comments                              PJH : 9/5/2016
- *  * Added doxygen style function blocks and parameter desc    PJH : 9/5/2016
- *  * Changed from Ellipse to FilledEllipse                     MJS : 9/27/16
  *****************************************************************************/
 // guard against multiple inclusions
 #ifndef _FILLEDELLIPSE_H_
@@ -34,6 +34,9 @@
 class FilledEllipse : public Ellipse
 {
 protected:
+	/**
+	 * @brief a variable ts fill o hold the Ellipses fill color
+	 */
 	ColorType fill_color;
 public:
 	/// Constructor

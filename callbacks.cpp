@@ -1,8 +1,6 @@
 /**************************************************************************//**
  * @file callbacks.cpp
  *
- * @brief Definition of callback functions for Paint program
- *
  * @author: Paul Hinker (initial), Cameron Javaheri, Matthew Schallenkamp
  *
  * @par Class:
@@ -38,6 +36,7 @@ const string ButtonName[] =
  * @author Cameron Javaheri, Matthew Schallenkamp
  *
  * @brief A function that is used to display the color palette.
+ *
  ******************************************************************************/
 void Color_Palette()
 {
@@ -84,6 +83,7 @@ void Color_Palette()
  * @param[in] shape - The type of shape the object is before entering the function.
  *
  * @returns The new type of shape the object is.
+ *
  ******************************************************************************/
 ShapeType Choose_Shape ( int x, int y, ShapeType shape )
 {
@@ -125,6 +125,7 @@ ShapeType Choose_Shape ( int x, int y, ShapeType shape )
  * was called.
  *
  * @returns The type of color the object is.
+ *
  ******************************************************************************/
 ColorType Choose_Color ( int x, int y, ColorType color )
 {
@@ -282,6 +283,7 @@ void Insert_Shape(ShapeType shape, vector<Shape *> &items, ColorType boundary, C
  * @param[in] y - The y-coordinate of the right mouse click.
  *
  * @returns An index for the shape vector for the newly selected shape.
+ *
  ******************************************************************************/
 int selection(const vector<Shape *> &items, int prev_selection, int x, int y)
 {
@@ -416,6 +418,7 @@ void Event ( char key, int button, int state, int x, int y )
  * @author Paul Hinker
  *
  * @brief A callback function for refreshing the display
+ *
  ******************************************************************************/
 void display()
 {
@@ -435,6 +438,7 @@ void display()
  * @param[in] key - the key that was pressed
  * @param[in] x - the x-coordinate when the key was pressed
  * @param[in] y - the y-coordinate when the key was pressed
+ *
  ******************************************************************************/
 void keyboard ( unsigned char key, int x, int y )
 {
@@ -458,6 +462,7 @@ void keyboard ( unsigned char key, int x, int y )
  * @param[in] state - the state of the button (i.e. GLUT_UP, GLUT_DOWN)
  * @param[in] x - the x-coordinate when the button is pressed
  * @param[in] y - the y-coordinate when the button is pressed
+ *
  ******************************************************************************/
 void mouseClick ( int button, int state, int x, int y )
 {
@@ -473,6 +478,7 @@ void mouseClick ( int button, int state, int x, int y )
  *
  * @param[in] w - the width of the newly reshaped window
  * @param[in] h - the height of the newly reshaped window
+ *
  ******************************************************************************/
 void reshape ( int w, int h )
 {

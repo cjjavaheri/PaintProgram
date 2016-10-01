@@ -1,5 +1,7 @@
 /**************************************************************************//**
- * @file Ellipse.h
+ * @file ellipse.h
+ *
+ * @brief A class for drawing ellipses
  *
  * @par Description
  *    OOP example illustrating inheritance and late binding via virtual
@@ -10,17 +12,15 @@
  *
  *    This file contains the Ellipse class interface.
  *
+ *    This file has been modified for use in a paint program by M.S.
+ *
  * @author John M. Weiss, Ph.D., Matthew Schallenkamp
  *
  * @par Class:
  *    CSC300 Data Structures
  *
- * @date Fall 2015
+ * @date Fall 2016
  *
- * Modifications:
- *  * Added doxygen style comments                              PJH : 9/5/2016
- *  * Added doxygen style function blocks and parameter desc    PJH : 9/5/2016
- *  * Changed from Ellipse to Ellipse                           MJS : 9/27/16
  *****************************************************************************/
 // guard against multiple inclusions
 #ifndef _ELLIPSE_H_
@@ -34,8 +34,13 @@
 class Ellipse : public Shape
 {
 protected:
-	/// Radius of the Ellipse
+	/**
+	 * @brief The x radius of the ellipse
+	 */
 	float radius_x;
+	/**
+	 * @brief The y radius of the ellipse
+	 */
 	float radius_y;
 
 public:

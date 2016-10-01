@@ -1,25 +1,13 @@
 /***************************************************************************//**
- * @file Ellipse.cpp
+ * @file ellipse.cpp
  *
- * @par Description
- *    OOP example illustrating inheritance and late binding via virtual
- *    functions in C++.
- *
- *    Inheritance is used to derive various shape classes (Point, Line, Ellipse,
- *    Rectangle, Square) from a base Shape class.
- *
- *    This file contains the Ellipse class implementation.
- *
- * @author John M. Weiss, Ph.D.
+ * @author John M. Weiss, Ph.D., Matthew Schallenkamp
  *
  * @par Class:
  *    CSC300 Data Structures
- * @date Fall 2015
  *
- * @par Modifications:
- *  * Added doxygen style comments                       PJH : 9/5/2016
- *  * Added function headers and parameter descriptions  PJH : 9/5/2016
- *  * Changed from Ellipse to Ellipse                    MJS : 9/27/16
+ * @date Fall 2016
+ *
  ******************************************************************************/
 #include <iostream>
 using namespace std;
@@ -57,7 +45,7 @@ Ellipse::~Ellipse( )
  * @brief Ellipse class draw
  *
  * @par Description
- *   must override pure virtual Shape::draw() method to instantiate class
+ *   draws the ellipse on the screen
  *
  *****************************************************************************/
 void Ellipse::draw( ) const
@@ -87,7 +75,7 @@ void Ellipse::erase( ) const
  * @brief Ellipse class print
  *
  * @par Description
- *    must override pure virtual Shape::print() method to instantiate class
+ *    prints the internal values of the shape
  *
  * @param[in] out - the stream where the print occurs
  *****************************************************************************/

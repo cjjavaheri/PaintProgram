@@ -1,25 +1,12 @@
 /***************************************************************************//**
  * @file FilledEllipse.cpp
  *
- * @par Description
- *    OOP example illustrating inheritance and late binding via virtual
- *    functions in C++.
- *
- *    Inheritance is used to derive various shape classes (Point, Line, FilledEllipse,
- *    Rectangle, Square) from a base Shape class.
- *
- *    This file contains the FilledEllipse class implementation.
- *
  * @author John M. Weiss, Ph.D., Matthew Schallenkamp
  *
  * @par Class:
  *    CSC300 Data Structures
- * @date Fall 2015
+ * @date Fall 2016
  *
- * @par Modifications:
- *  * Added doxygen style comments                       PJH : 9/5/2016
- *  * Added function headers and parameter descriptions  PJH : 9/5/2016
- *  * Changed from Ellipse to FilledEllipse              MJS : 9/27/16
  ******************************************************************************/
 #include <iostream>
 using namespace std;

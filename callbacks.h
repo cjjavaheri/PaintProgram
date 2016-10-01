@@ -1,5 +1,8 @@
 /***************************************************************************//**
- * @file
+ * @file callbacks.h
+ *
+ * @brief Definition of callback functions for Paint program
+ *
  ******************************************************************************/
 #ifndef __CALLBACKS_H
 #define __CALLBACKS_H
@@ -23,6 +26,9 @@ using namespace std;
 /// A mnemonic name for the ascii value of the escape key
 #define ESCAPE_KEY 27
 
+/**
+ * @brief A list of Shape types, for the purpose of controlling which is selected
+ */
 enum ShapeType
 {
 	EMPTY,
