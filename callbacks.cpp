@@ -1,7 +1,22 @@
+/**************************************************************************//**
+ * @file callbacks.cpp
+ *
+ * @brief Definition of callback functions for Paint program
+ *
+ * @author: Paul Hinker (initial), Cameron Javaheri, Matthew Schallenkamp
+ *
+ * @par Class:
+ * CSC300 Data Structures
+ *
+ * @date:   Fall 2016
+ *
+ ******************************************************************************/
 #include "callbacks.h"
 
 
-/// Maps button number to button name
+/**
+ * @brief A list of strings representing button type codes
+ */
 const string ButtonName[] =
 {
 	"Left",
@@ -11,8 +26,9 @@ const string ButtonName[] =
 	"Trackball Bkwd"
 };
 
-/// Maps button state# to action
-const string ButtonState[] =
+/**
+ * @brief A list of strings representing button state codes
+ */const string ButtonState[] =
 {
 	"Down",
 	"Up"
@@ -22,7 +38,6 @@ const string ButtonState[] =
  * @author Cameron Javaheri, Matthew Schallenkamp
  *
  * @brief A function that is used to display the color palette.
- *
  ******************************************************************************/
 void Color_Palette()
 {
@@ -68,9 +83,8 @@ void Color_Palette()
  * @param[in] y - The y-coordinate of the mouse click.
  * @param[in] shape - The type of shape the object is before entering the function.
  *
- * @returns The type of shape the object is.
+ * @returns The new type of shape the object is.
  ******************************************************************************/
-
 ShapeType Choose_Shape ( int x, int y, ShapeType shape )
 {
 	if ( x >= 50 && x < 100 && y >= 1 && y < 50 )
@@ -218,8 +232,6 @@ void Preview_Box(ShapeType shape, ColorType boundary, ColorType fill)
  * @param[in] fy - The final y-coordinate of the mouse click.
  *
  ******************************************************************************/
-
-
 void Insert_Shape(ShapeType shape, vector<Shape *> &items, ColorType boundary, ColorType fill,
                   float ix, float iy, float fx, float fy)
 {
@@ -271,13 +283,11 @@ void Insert_Shape(ShapeType shape, vector<Shape *> &items, ColorType boundary, C
  *
  * @returns An index for the shape vector for the newly selected shape.
  ******************************************************************************/
-
 int selection(const vector<Shape *> &items, int prev_selection, int x, int y)
 {
-int i;
-float Centerx;
-float Centery;
-	for (i = items.size() - 1; i >= 0; i--)
+	float Centerx;
+	float Centery;
+	for (int i = items.size() - 1; i >= 0; i--)
 	{
 		Centerx = items[i]->getX();
 		Centery = items[i]->getY();
@@ -287,14 +297,13 @@ float Centery;
 		}
 	}
 	return prev_selection;
-
 }
 
 /***************************************************************************//**
  * @author Cameron Javaheri, Matthew Schallenkamp
  *
  * @brief An event function that handles mouse events from the user. It dynamically
- * allocates new shapes using inheritance and draws them to the screen.
+ * allocates new shapes and draws them to the screen as needed.
  *
  * @param[in] key - the key that the user pressed. if none, \0
  * @param[in] button - The button the user pressed.
@@ -311,58 +320,59 @@ void Event ( char key, int button, int state, int x, int y )
 	static ColorType fill = BLACK;
 	static ShapeType shape = EMPTY;
 	static vector<Shape *> items;
-	static int index = -1;
 
 	if (key == '\0')
 	{
-		if ( button == GLUT_LEFT_BUTTON && state == GLUT_DOWN )
+		if( state == GLUT_DOWN )
 		{
-			boundary = Choose_Color ( x, y, boundary );
-			shape = Choose_Shape ( x, y, shape );
+			//set initials for drags
 			x_initial = x;
 			y_initial = y;
-
-			Preview_Box(shape, boundary, fill);
-			glutSwapBuffers();
-		}
-		else if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN )
-		{
-			fill = Choose_Color ( x, y, fill );
 			shape = Choose_Shape ( x, y, shape );
-			index = selection(items, index, x, y);
-			cout << index << endl;
-			x_initial = x;
-			y_initial = y;
 
-			if(index != -1 && index != items.size() - 1)
+			if ( button == GLUT_LEFT_BUTTON ) //left button selects boundaries
 			{
-				items.push_back(items[index]);
-				items.erase(items.begin() + index);
-				index = items.size() - 1;
-				items[index]->draw();
+				boundary = Choose_Color ( x, y, boundary );
 			}
-
-			Preview_Box(shape, boundary, fill);
-			glutSwapBuffers();
-		}
-		else if ( button == GLUT_LEFT_BUTTON && state == GLUT_UP )
-		{
-			Insert_Shape(shape, items, boundary, fill, x_initial, y_initial, x, y);
-			Color_Palette();
-			Preview_Box(shape, boundary, fill);
-			index = items.size() - 1;
-			cout << index << endl;
-			glutSwapBuffers();
-		}
-		else if (button == GLUT_RIGHT_BUTTON && state == GLUT_UP)
-		{
-			if (index != -1 && abs(x_initial - items[index]->getX()) <= 20 && abs(y_initial - items[index]->getY()) <= 20)
+			else if ( button == GLUT_RIGHT_BUTTON)
 			{
-				//we aren't under the pallete
-				if(Choose_Shape(x, y, EMPTY) == EMPTY && Choose_Color(x, y, BLACK) == BLACK)
+				fill = Choose_Color ( x, y, fill ); //right button selects fill colors
+				int index = selection(items, -1, x, y); //and items
+				//move selected item to the front
+				if(index != -1)
 				{
-					items[index]->moveTo(x, y);
-					Event('r', 0, 0, 0, 0);
+					items.push_back(items[index]);
+					items.erase(items.begin() + index);
+					index = items.size() - 1;
+					items[index]->draw();
+				}
+			}
+			Preview_Box(shape, boundary, fill);
+			glutSwapBuffers();
+		}
+		else if ( state == GLUT_UP )
+		{
+			if( button == GLUT_LEFT_BUTTON ) //left button up draws a shape
+			{
+				Insert_Shape(shape, items, boundary, fill, x_initial, y_initial, x, y);
+				//need to keep palette on top
+				Color_Palette();
+				Preview_Box(shape, boundary, fill);
+				glutSwapBuffers();
+			}
+			else if (button == GLUT_RIGHT_BUTTON)
+			{
+				//if the right click down was on a shape
+				if (!items.empty() && abs(x_initial - items.back()->getX()) <= 20
+				    && abs(y_initial - items.back()->getY()) <= 20)
+				{
+					//and we aren't under the pallete
+					if(Choose_Shape(x, y, EMPTY) == EMPTY && Choose_Color(x, y, BLACK) == BLACK)
+					{
+						//move the shape and redraw
+						items.back()->moveTo(x, y);
+						Event('r', 0, 0, 0, 0);
+					}
 				}
 			}
 		}
@@ -372,27 +382,24 @@ void Event ( char key, int button, int state, int x, int y )
 		//do key stuff
 		switch (key)
 		{
-		case 'c':
-			cout << "clear" << endl;
-			//clear screen
+		case 'c': //clear out all of the items, freeing memory
 			for(auto &s : items)
 			{
 				delete s;
 			}
 			items.clear();
-			index = -1;
-		case 'd':
-			if (index != -1)
+		case 'd': //delete the currently selected item, from the back of the vector
+			if (!items.empty())
 			{
-				items.erase(items.begin() + index);
-				index = items.size() - 1;
+				delete items.back();
+				items.pop_back();
 			}
-		case 'r':
+		case 'r': //redraw the screen
 		default:
-			cout << "redraw" << endl;
-			//redraw the screen TODO
+			//clear the screen
 			glClearColor(0.0f, 0.0f, 0.0f, 1.0f );
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			//draw the screen
 			for(auto &s : items)
 			{
 				s->draw();
@@ -412,27 +419,13 @@ void Event ( char key, int button, int state, int x, int y )
  ******************************************************************************/
 void display()
 {
-	cout << "displaying" << endl;
+	cout << "display" << endl;
 	// Clear the window
 	glClear ( GL_COLOR_BUFFER_BIT );
-
 	glutInitWindowSize ( 1024, 999 );
 	glutInitWindowPosition ( 100, 100 );
-
+	//redraw using Events as with r keycode
 	Event('r', 0, 0, 0, 0);
-
-	// DrawLine( 10, 20, glutGet(GLUT_WINDOW_WIDTH) - 10,
-	// glutGet(GLUT_WINDOW_HEIGHT) - 20, Yellow );
-	// DrawRectangle( 500, 400, 700, 500, Cyan );
-	// DrawFilledRectangle( 200, 100, 300, 300, Red );
-	// DrawEllipse( 100, 50, 600, 200, Green );
-	// DrawFilledEllipse( 100, 50, 250, 450, Magenta );
-
-	// label display with text
-	//DrawTextString ( "OpenGL Demo", 32, 800 - 32, White );
-
-	// Make sure all the draw functions a complete to the buffer
-	glutSwapBuffers();
 }
 
 
@@ -446,11 +439,8 @@ void display()
 void keyboard ( unsigned char key, int x, int y )
 {
 	// Pressing the ESCAPE Key will exit from the main glut loop
-
 	int ScreenHeight = glutGet ( GLUT_WINDOW_HEIGHT );
-
 	y = ScreenHeight - y;
-
 	if ( key == ESCAPE_KEY || key == 'q' || key == 'Q')
 	{
 		glutLeaveMainLoop();
@@ -471,13 +461,9 @@ void keyboard ( unsigned char key, int x, int y )
  ******************************************************************************/
 void mouseClick ( int button, int state, int x, int y )
 {
-
 	y = glutGet ( GLUT_WINDOW_HEIGHT ) - y;
-
 	// \0 because there is no key pressed
 	Event('\0', button, state, x, y);
-
-
 	//cout << "MouseClick: Button = " << ButtonName[button] << " : State = "
 	//     << ButtonState[state] << " : Location [" << x << ", " << y << "]\n";
 }
@@ -491,6 +477,7 @@ void mouseClick ( int button, int state, int x, int y )
 void reshape ( int w, int h )
 {
 	cout << "reshape" << endl;
+
 	glMatrixMode ( GL_PROJECTION ); // use an orthographic projection
 	glLoadIdentity();  // initialize transformation matrix
 	gluOrtho2D ( 0.0, w, 0.0, h ); // make OpenGL coordinates
