@@ -1,5 +1,5 @@
 /***************************************************************************//**
- * @file ellipse.cpp
+ * @file Ellipse.cpp
  *
  * @author John M. Weiss, Ph.D., Matthew Schallenkamp
  *
@@ -12,7 +12,7 @@
 #include <iostream>
 using namespace std;
 
-#include "ellipse.h"
+#include "Ellipse.h"
 
 /**************************************************************************//**
  * @brief Ellipse class implementation constructor

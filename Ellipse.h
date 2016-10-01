@@ -1,5 +1,5 @@
 /**************************************************************************//**
- * @file ellipse.h
+ * @file Ellipse.h
  *
  * @brief A class for drawing ellipses
  *

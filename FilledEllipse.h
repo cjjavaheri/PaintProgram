@@ -26,7 +26,7 @@
 #ifndef _FILLEDELLIPSE_H_
 #define _FILLEDELLIPSE_H_
 
-#include "ellipse.h"
+#include "Ellipse.h"
 
 /***************************************************************************//**
  * @class FilledEllipse

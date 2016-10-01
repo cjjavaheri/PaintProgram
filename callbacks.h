@@ -13,7 +13,7 @@
 #include "shape.h"
 #include "rectangle.h"
 #include "FilledRectangle.h"
-#include "ellipse.h"
+#include "Ellipse.h"
 #include "FilledEllipse.h"
 #include "line.h"
 #include <vector>
