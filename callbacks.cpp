@@ -311,7 +311,7 @@ void Event ( char key, int button, int state, int x, int y )
 	static ColorType fill = BLACK;
 	static ShapeType shape = EMPTY;
 	static vector<Shape *> items;
-	static int index = 0;
+	static int index = -1;
 
 	if (key == '\0')
 	{
@@ -323,6 +323,7 @@ void Event ( char key, int button, int state, int x, int y )
 			y_initial = y;
 
 			Preview_Box(shape, boundary, fill);
+			glutSwapBuffers();
 		}
 		else if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN )
 		{
@@ -330,20 +331,40 @@ void Event ( char key, int button, int state, int x, int y )
 			shape = Choose_Shape ( x, y, shape );
 			index = selection(items, index, x, y);
 			cout << index << endl;
+			x_initial = x;
+			y_initial = y;
+
+			if(index != -1 && index != items.size() - 1)
+			{
+				items.push_back(items[index]);
+				items.erase(items.begin() + index);
+				index = items.size() - 1;
+				items[index]->draw();
+			}
 
 			Preview_Box(shape, boundary, fill);
+			glutSwapBuffers();
 		}
 		else if ( button == GLUT_LEFT_BUTTON && state == GLUT_UP )
 		{
 			Insert_Shape(shape, items, boundary, fill, x_initial, y_initial, x, y);
+			Color_Palette();
+			Preview_Box(shape, boundary, fill);
 			index = items.size() - 1;
 			cout << index << endl;
 			glutSwapBuffers();
 		}
 		else if (button == GLUT_RIGHT_BUTTON && state == GLUT_UP)
 		{
-			items[index]->moveTo(x, y);
-			Event('r', 0, 0, 0, 0);
+			if (index != -1 && abs(x_initial - items[index]->getX()) <= 20 && abs(y_initial - items[index]->getY()) <= 20)
+			{
+				//we aren't under the pallete
+				if(Choose_Shape(x, y, EMPTY) == EMPTY && Choose_Color(x, y, BLACK) == BLACK)
+				{
+					items[index]->moveTo(x, y);
+					Event('r', 0, 0, 0, 0);
+				}
+			}
 		}
 	}
 	else
@@ -359,14 +380,12 @@ void Event ( char key, int button, int state, int x, int y )
 				delete s;
 			}
 			items.clear();
-			index = 0;
+			index = -1;
 		case 'd':
-			if (index < items.size())
+			if (index != -1)
 			{
 				items.erase(items.begin() + index);
 				index = items.size() - 1;
-				if (index == -1)
-					index = 0;
 			}
 		case 'r':
 		default:
@@ -374,12 +393,12 @@ void Event ( char key, int button, int state, int x, int y )
 			//redraw the screen TODO
 			glClearColor(0.0f, 0.0f, 0.0f, 1.0f );
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			Color_Palette();
-			Preview_Box(shape, boundary, fill);
 			for(auto &s : items)
 			{
 				s->draw();
 			}
+			Color_Palette();
+			Preview_Box(shape, boundary, fill);
 			glutSwapBuffers();
 			break;
 		}
