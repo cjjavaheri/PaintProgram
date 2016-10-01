@@ -30,7 +30,7 @@ void oneTimeInit(int num, char **arrOfStr);
  *
  * @param[in] argc - number of command line arguments
  * @param[in] argv - array of C strings representing the command line
- *  arguments
+ *  arguments - only one used is the first as the window title
  *
  * @return main does not return due to the glutMainLoop function not
  * returning

@@ -1,15 +1,16 @@
 /***************************************************************************//**
  * @file graphics.h
  *
- * OpenGL graphics program, illustrating use of GLUT and callback functions.
+ * @brief OpenGL graphics program, illustrating use of GLUT and callback
+ * functions.
  *
  * @author John M. Weiss, Ph.D.
+ *
  * @par Class
  *    CSC300 Data Structures
- * @date Fall 2015
  *
- * Modifications:
- *    * Added doxygen style comments: PJH 9/5/2016
+ * @date Fall 2016
+ *
  ******************************************************************************/
 #ifndef _GRAPHICS_H_
 #define _GRAPHICS_H_

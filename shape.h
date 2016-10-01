@@ -102,7 +102,6 @@ public:
 	/// change color of object
 	void changeColor( ColorType c );
 
-	// print, draw and erase methods:
 	// pure virtual methods that must be overridden in non-abstract derived classes
 	/// pure virtual print
 	virtual void print( ostream& ) const = 0;
