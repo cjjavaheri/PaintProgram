@@ -19,7 +19,7 @@ main: $(SRCFILES)
 	@echo "ASCII frog for to eat all the bugs"
 	@echo made main
 
-doxygen: doxy_config
+doxygen: doxy_config $(SRCFILES)
 	@echo making doxygen
 	@doxygen doxy_config >/dev/null 2>&1
 	@echo made doxygen successfully
