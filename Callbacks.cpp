@@ -1,6 +1,6 @@
 /**************************************************************************//**
  * @file Callbacks.cpp
- * 
+ *
  * @brief This file contains all of the callback functions.
  *
  * @author: Paul Hinker (initial), Cameron Javaheri, Matthew Schallenkamp
@@ -451,6 +451,7 @@ void keyboard ( unsigned char key, int x, int y )
 	y = ScreenHeight - y;
 	if ( key == ESCAPE_KEY || key == 'q' || key == 'Q')
 	{
+		Event('c', 0, 0, 0, 0);
 		glutLeaveMainLoop();
 		return;
 	}
