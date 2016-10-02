@@ -27,6 +27,8 @@
 #include "Shape.h"
 
 /***************************************************************************//**
+ * @author John Weiss
+ *
  * @class Rectangle
  *
  * @brief a class to represent and draw rectangles.

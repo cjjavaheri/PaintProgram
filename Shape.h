@@ -10,7 +10,7 @@
  *
  *    This file contains the Point class interface.
  *
- * @author John M. Weiss, Ph.D. , Cameron Javaheri
+ * @author John M. Weiss, Ph.D. , Cameron Javaheri, Matthew Schallenkamp
  *
  * @par Class:
  *    CSC300 Data Structures

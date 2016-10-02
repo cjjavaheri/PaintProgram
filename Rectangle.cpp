@@ -43,8 +43,7 @@ using namespace std;
 Rectangle::Rectangle( float x, float y, ColorType c, float w, float h ) :
 	Shape( x, y, c ), width( w ), height( h )
 {
-	//cout << "Rectangle constructor: (" <<
-	//     x << "," << y << ") = " << c << ", width " << w << " x height " << h << endl;
+
 }
 
 /**************************************************************************//**
@@ -53,8 +52,7 @@ Rectangle::Rectangle( float x, float y, ColorType c, float w, float h ) :
  *****************************************************************************/
 Rectangle::~Rectangle( )
 {
-	//cout << "Rectangle destructor: (" <<
-	//     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+
 }
 
 /**************************************************************************//**
@@ -70,7 +68,7 @@ Rectangle::~Rectangle( )
  *****************************************************************************/
 void Rectangle::changeDimensions( float w, float h )
 {
-	cout << "Change Rectangle dimensions from " << width << " x " << height << " to " << w << " x " << h << endl;
+
 	width = w;
 	height = h;
 }
@@ -88,8 +86,6 @@ void Rectangle::draw( ) const
 {
 	DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
 	              locY + height / 2, glutColor.at(color).data());
-	//cout << "Draw  Rectangle: (" <<
-	//     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
 
 /**************************************************************************//**
@@ -103,11 +99,8 @@ void Rectangle::draw( ) const
  *****************************************************************************/
 void Rectangle::erase( ) const
 {
-	//DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
-	//locY + height / 2,  Black);
-	//glutSwapBuffers();
-	//cout << "Erase Rectangle: (" <<
-	//locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+	cout << "Erase Rectangle: (" <<
+	locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
 
 /**************************************************************************//**

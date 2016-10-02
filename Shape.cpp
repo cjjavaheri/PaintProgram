@@ -10,7 +10,7 @@
  *
  *    This file contains the Rectangle class implementation.
  *
- * @author John M. Weiss, Ph.D.
+ * @author John M. Weiss, Ph.D. , Cameron Javaheri, Matthew Schallenkamp
  *
  * @par Class:
  *    CSC300 Data Structures
@@ -27,6 +27,8 @@ using namespace std;
 #include "Shape.h"
 
 /**************************************************************************//**
+ * @author John Weiss
+ *
  * @brief Shape class implementation constructor
  *
  * @param[in] x - x-coordinate of the center of the shape
@@ -35,18 +37,21 @@ using namespace std;
  *****************************************************************************/
 Shape::Shape( float x, float y, ColorType c ) : locX( x ), locY( y ), color( c )
 {
-	//cout << "Shape constructor: (" << locX << "," << locY << ") = " << color << endl;
+
 }
 
 /**************************************************************************//**
+ * @author John Weiss
  * @brief Shape class implementation destructor
  *****************************************************************************/
 Shape::~Shape( )
 {
-	//cout << "Shape destructor: (" << locX << "," << locY << ") = " << color << endl;
+	
 }
 
 /**************************************************************************//**
+ * @author Cameron Javaheri
+
  * @brief Shape class change radius
  *
  * @par Description
@@ -57,7 +62,7 @@ Shape::~Shape( )
  *****************************************************************************/
 void Shape::moveTo( float x, float y )
 {
-	cout << "Move Shape from (" << locX << "," << locY << ") to (" << x << "," << y << ")" << endl;
+
 	locX = x;
 	locY = y;
 }
@@ -65,6 +70,8 @@ void Shape::moveTo( float x, float y )
 // change color of object
 
 /**************************************************************************//**
+ * @author Matthew Schallenkamp
+
  * @brief Shape class change radius
  *
  * @par Description
@@ -75,12 +82,13 @@ void Shape::moveTo( float x, float y )
 
 void Shape::changeColor( ColorType c )
 {
-	//cout << "Change Shape color from " << color << " to " << c << endl;
 	color = c;
 }
 
 
 /**************************************************************************//**
+ * @author Cameron Javaheri
+ *
  * @brief Shape class accessor for the center x-coordinate of the shape.
  *
  * @par Description
@@ -95,6 +103,8 @@ float Shape::getX()
 }
 
 /**************************************************************************//**
+ * @author Cameron Javaheri
+ *
  * @brief Shape class accessor for the center y-coordinate of the shape.
  *
  * @par Description

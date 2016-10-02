@@ -10,7 +10,7 @@
  *
  *    This file contains the Rectangle class implementation.
  *
- * @author John M. Weiss, Ph.D.
+ * @author John M. Weiss, Ph.D. , Cameron Javaheri
  *
  * @par Class:
  *    CSC300 Data Structures

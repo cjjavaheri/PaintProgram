@@ -43,8 +43,7 @@ using namespace std;
 Line::Line( float x, float y, ColorType c, float l, float h ) :
 	Shape( x, y, c ), length(l), height(h)
 {
-	//cout << "Line constructor: (" <<
-	//     x << "," << y << ") = " << c << endl;
+
 }
 
 /**************************************************************************//**
@@ -55,8 +54,6 @@ Line::~Line( )
 {
 
 }
-
-
 
 /**************************************************************************//**
  * @author Cameron Javaheri

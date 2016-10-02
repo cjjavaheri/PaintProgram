@@ -15,6 +15,8 @@ using namespace std;
 #include "Ellipse.h"
 
 /**************************************************************************//**
+ * @author Matthew Schallenkamp
+ *
  * @brief Ellipse class implementation constructor
  *
  * @param[in] x - x-coordinate of the center of the Ellipse
@@ -27,22 +29,22 @@ using namespace std;
 Ellipse::Ellipse( float x, float y, ColorType c, float r_x, float r_y)
 	: Shape( x, y, c ), radius_x( r_x ), radius_y( r_y )
 {
-	//cout << "Ellipse constructor: ("
-	//     <<	x << "," << y << ") = " << c
-	//     << ", radius = " << radius_x << endl;
+
 }
 
 /**************************************************************************//**
+ * @author Matthew Schallenkamp
+ *
  * @brief Ellipse class implementation destructor
  *****************************************************************************/
 Ellipse::~Ellipse( )
 {
-	//cout << "Ellipse destructor: ("
-	//     << locX << "," << locY << ") = " << color
-	//     << ", r_x = " << radius_x << ", r_y = " << radius_y << endl;
+
 }
 
 /**************************************************************************//**
+ * @author Matthew Schallenkamp
+ *
  * @brief Ellipse class draw
  *
  * @par Description
@@ -52,12 +54,12 @@ Ellipse::~Ellipse( )
 void Ellipse::draw( ) const
 {
 	DrawEllipse( radius_x, radius_y, locX, locY, glutColor.at(color).data() );
-	//cout << "Draw  Ellipse: ("
-	//     << locX << "," << locY << ") = " << color
-	//     << ", r_x = " << radius_x << ", r_y = " << radius_y << endl;
+
 }
 
 /**************************************************************************//**
+ * @author Matthew Schallenkamp
+ *
  * @brief Ellipse class print
  *
  * @par Description
