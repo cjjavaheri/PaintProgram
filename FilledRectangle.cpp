@@ -69,18 +69,6 @@ void FilledRectangle::draw( ) const
 	              locY + height / 2, glutColor.at(color).data());
 }
 
-/**************************************************************************//**
- * @brief Rectangle class erase
- *
- * @par Description
- *    must override pure virtual Shape::erase() method to instantiate class
- *
- *****************************************************************************/
-void FilledRectangle::erase( ) const
-{
-	cout << "Erase Rectangle: (" <<
-	     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
-}
 
 /**************************************************************************//**
  * @brief Rectangle class print

@@ -1,12 +1,22 @@
 /*************************************************************************//**
- * @file
+ * @file main.cpp
  *
  * @mainpage SDSMT Paint
  *
+ * @section course_section Course Information
+ *
  * @author John M. Weiss, Ph.D., Dr. Paul Hinker, Matthew Schallenkamp, Cameron Javaheri
  *
+ * @date due 10/02/2016
+ *
+ * @par Professor:
+ *		Paul Hinker
+ *
  * @par Course:
- *      CSC 300 - Fall 2016
+ *      CSC 300 - Fall 2016 - M002 - 2pm
+ *
+ * @par Location:
+		McLaury - 310
  *
  * @brief A paint program
  *
@@ -16,8 +26,33 @@
  * as a class assignment for CSC 300 with Dr. Paul Hinker. This paint
  * program allows the user to create, move, delete, and reorder several
  * different types of shapes and lines, in various colors.
+ * 
+ *  @section compile_section Compiling and Usage
+ *
+ * @par Compiling Instructions:
+ *      None
+ *
+ * @par Usage:
+   @verbatim
+   % make
+   % main
+   @endverbatim
+ *
+ * @section todo_bugs_modification_section Todo, Bugs, and Modifications
+ *
+ * @bug none
+ *
+ * @todo none
+ *
+ * @par Modifications and Development Timeline:
+   @verbatim
+   Gitlab Repository: https://gitlab.mcs.sdsmt.edu/7300226/csc300_fall2016_project1.git
+   @endverbatim
+ *
  *
  ****************************************************************************/
+
+
 #include <iostream>
 #include <GL/freeglut.h>
 #include "Callbacks.h"

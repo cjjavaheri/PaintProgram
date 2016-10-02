@@ -70,20 +70,6 @@ void Line::draw( ) const
 	         glutColor.at(color).data());
 }
 
-/**************************************************************************//**
- * @author Cameron Javaheri
- *
- * @brief Line class erase
- *
- * @par Description
- *    must override pure virtual Shape::erase() method to instantiate class
- *
- *****************************************************************************/
-void Line::erase( ) const
-{
-	cout << "Erase Rectangle: (" <<
-	locX << "," << locY << ") = " << color << endl;
-}
 
 /**************************************************************************//**
  * @author Cameron Javaheri

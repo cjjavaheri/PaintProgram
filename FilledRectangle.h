@@ -49,8 +49,6 @@ public:
 
 	/// Implementation of the base class pure virtual function draw
 	void draw( ) const;
-	/// Implementation of the base class pure virtual function erase
-	void erase( ) const;
 	/// Implementation of the base class pure virtual function print
 	void print( ostream& out ) const;
 };
