@@ -35,15 +35,14 @@ using namespace std;
  * @param[in] x - x-coordinate of the center of the rectangle
  * @param[in] y - y-coordinate of the center of the rectangle
  * @param[in] c - the color of the rectangle boundary
+ * @param[in] f - The fill color of the rectangle.
  * @param[in] w - width of the rectangle
  * @param[in] h - height of the rectangle
  *****************************************************************************/
 FilledRectangle::FilledRectangle( float x, float y, ColorType c, ColorType f, float w, float h ) :
 	Rectangle( x, y, c, w, h ), fill_color(f)
 {
-	//cout << "FilledRectangle constructor: (" <<
-	//     x << "," << y << ") = " << c << ", width " << w << " x height " << h
-	//     << "filled color" << f << endl;
+
 }
 
 /**************************************************************************//**
@@ -51,8 +50,7 @@ FilledRectangle::FilledRectangle( float x, float y, ColorType c, ColorType f, fl
  *****************************************************************************/
 FilledRectangle::~FilledRectangle( )
 {
-	//cout << "FilledRectangle destructor: (" <<
-	//     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+
 }
 
 
@@ -69,8 +67,6 @@ void FilledRectangle::draw( ) const
 	                    locY + height / 2, glutColor.at(fill_color).data());
 	DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
 	              locY + height / 2, glutColor.at(color).data());
-	//cout << "Draw  Rectangle: (" <<
-	//     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
 
 /**************************************************************************//**
@@ -82,12 +78,8 @@ void FilledRectangle::draw( ) const
  *****************************************************************************/
 void FilledRectangle::erase( ) const
 {
-	DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
-	              locY + height / 2,  Black);
-	DrawFilledRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
-	                    locY + height / 2, Black);
-	//cout << "Erase Rectangle: (" <<
-	//     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+	cout << "Erase Rectangle: (" <<
+	     locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
 }
 
 /**************************************************************************//**

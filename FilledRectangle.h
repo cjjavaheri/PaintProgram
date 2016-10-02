@@ -27,12 +27,18 @@
 #include "Rectangle.h"
 
 /***************************************************************************//**
- * @class Rectangle
+ * @class FilledRectangle
+ *
+ * @brief a class to represent and draw filled rectangles.
+ *
  ******************************************************************************/
 class FilledRectangle : public Rectangle
 {
 
 protected:
+	/**
+	 * @brief a variable to hold the filledrectangle's fill color.
+	*/
 	ColorType fill_color;
 
 public:

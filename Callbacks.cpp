@@ -434,6 +434,8 @@ void display()
 
 
 /***************************************************************************//**
+ * @author Cameron Javaheri, Matthew Schallenkamp
+ *
  * @brief A callback function for handling keyboard input
  *
  * @param[in] key - the key that was pressed
@@ -451,12 +453,12 @@ void keyboard ( unsigned char key, int x, int y )
 		glutLeaveMainLoop();
 		return;
 	}
-	//cout << "Key " << ( char ) key << " press detected at ["
-	//     << x << ", " << y << "]\n";
 	Event(key, 0, 0, x, y);
 }
 
 /***************************************************************************//**
+ * @author Cameron Javaheri, Matthew Schallenkamp
+ *
  * @brief A callback function for handling mouse click events
  *
  * @param[in] button - the mouse button pushed
@@ -470,11 +472,11 @@ void mouseClick ( int button, int state, int x, int y )
 	y = glutGet ( GLUT_WINDOW_HEIGHT ) - y;
 	// \0 because there is no key pressed
 	Event('\0', button, state, x, y);
-	//cout << "MouseClick: Button = " << ButtonName[button] << " : State = "
-	//     << ButtonState[state] << " : Location [" << x << ", " << y << "]\n";
 }
 
 /***************************************************************************//**
+ * @author Matthew Schallenkamp
+ *
  * @brief A callback function for handling reshape events
  *
  * @param[in] w - the width of the newly reshaped window

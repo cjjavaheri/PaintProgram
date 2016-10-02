@@ -53,32 +53,8 @@ Line::Line( float x, float y, ColorType c, float l, float h ) :
  *****************************************************************************/
 Line::~Line( )
 {
-	//cout << "Line destructor: (" <<
-	//     locX << "," << locY << ") = " << color << endl;
+
 }
-
-/**************************************************************************//**
- * *@author Cameron Javaheri
- *
- * @brief Line class change location function
- *
- * @par Description
- *    mutator method for Line class
- *
- * @param[in] x - the new center x-location for the line
- * @param[in] y - the new center y-location for the line
- *****************************************************************************/
-
-
-
-//void Line::changeDimensions( float x, float y )
-//{
-//cout << "Change line dimensions from [" << locX << "," << locY << "]"
-//<< "to [" << x << "," << "y]" << endl;
-//locX = x;
-//locY = y;
-//}
-
 
 
 
@@ -95,8 +71,6 @@ void Line::draw( ) const
 {
 	DrawLine(locX - length / 2, locY - height / 2, locX + length / 2, locY + height / 2,
 	         glutColor.at(color).data());
-	//cout << "Draw  Line: (" <<
-	//     locX << "," << locY << ") = " << color << ", length " << length << " height " << height << endl;
 }
 
 /**************************************************************************//**
@@ -110,11 +84,8 @@ void Line::draw( ) const
  *****************************************************************************/
 void Line::erase( ) const
 {
-	//DrawRectangle(locX - width / 2, locY - height / 2, locX + width / 2,
-	//         locY + height / 2,  Black);
-	//glutSwapBuffers();
-	//cout << "Erase Rectangle: (" <<
-	//locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+	cout << "Erase Rectangle: (" <<
+	locX << "," << locY << ") = " << color << endl;
 }
 
 /**************************************************************************//**

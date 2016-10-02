@@ -63,6 +63,7 @@ void Shape::moveTo( float x, float y )
 }
 
 // change color of object
+
 /**************************************************************************//**
  * @brief Shape class change radius
  *
@@ -71,16 +72,36 @@ void Shape::moveTo( float x, float y )
  *
  * @param[in] c - the new color of the shape
  *****************************************************************************/
+
 void Shape::changeColor( ColorType c )
 {
 	//cout << "Change Shape color from " << color << " to " << c << endl;
 	color = c;
 }
 
+
+/**************************************************************************//**
+ * @brief Shape class accessor for the center x-coordinate of the shape.
+ *
+ * @par Description
+ *    accessor method for Shape class
+ *
+ * @returns the center x-coordinate of the shape.
+ *****************************************************************************/
+
 float Shape::getX()
 {
 	return locX;
 }
+
+/**************************************************************************//**
+ * @brief Shape class accessor for the center y-coordinate of the shape.
+ *
+ * @par Description
+ *    accessor method for Shape class.
+ *
+ * @returns the center y-coordinate of the shape.
+ *****************************************************************************/
 
 float Shape::getY()
 {
