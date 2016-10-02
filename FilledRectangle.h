@@ -24,7 +24,7 @@
 #ifndef _FilledRectangle_H_
 #define _FilledRectangle_H_
 
-#include "rectangle.h"
+#include "Rectangle.h"
 
 /***************************************************************************//**
  * @class Rectangle

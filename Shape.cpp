@@ -24,7 +24,7 @@
 #include <iostream>
 using namespace std;
 
-#include "shape.h"
+#include "Shape.h"
 
 /**************************************************************************//**
  * @brief Shape class implementation constructor

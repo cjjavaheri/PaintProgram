@@ -25,7 +25,7 @@
 #include <iostream>
 using namespace std;
 
-#include "line.h"
+#include "Line.h"
 
 // Rectangle class implementation
 

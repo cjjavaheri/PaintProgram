@@ -26,7 +26,7 @@
 
 // include files
 #include <iostream>
-#include "graphics.h"
+#include "Graphics.h"
 #include <map>
 #include <vector>
 using namespace std;

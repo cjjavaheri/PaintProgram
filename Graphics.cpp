@@ -9,7 +9,7 @@
  * @date:   Fall 2016
  *
  ******************************************************************************/
-#include "graphics.h"
+#include "Graphics.h"
 
 using namespace std;
 

@@ -20,9 +20,9 @@
  ****************************************************************************/
 #include <iostream>
 #include <GL/freeglut.h>
-#include "callbacks.h"
-#include "graphics.h"
-#include "shape.h"
+#include "Callbacks.h"
+#include "Graphics.h"
+#include "Shape.h"
 
 using namespace std;
 

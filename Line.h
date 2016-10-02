@@ -1,16 +1,16 @@
 /**************************************************************************//**
- * @file rectangle.h
+ * @file line.h
  *
  * @par Description
  *    OOP example illustrating inheritance and late binding via virtual
  *    functions in C++.
  *
- *    Inheritance is used to derive various shape classes (Point, Line, Circle,
+ *    Inheritance is used to derive various shape classes (Point, Line, Ellipse,
  *    Rectangle, Square) from a base Shape class.
  *
- *    This file contains the Point class interface.
+ *    This file contains the line class interface.
  *
- * @author John M. Weiss, Ph.D. , Cameron Javaheri
+ * @author Cameron Javaheri
  *
  * @par Class:
  *    CSC300 Data Structures
@@ -21,29 +21,29 @@
  *  * Added doxygen style comments                              PJH : 9/5/2016
  *  * Added doxygen style function blocks and parameter desc    PJH : 9/5/2016
  *****************************************************************************/
-#ifndef _Rectangle_H_
-#define _Rectangle_H_
+// guard against multiple inclusions
+#ifndef _LINE_H_
+#define _LINE_H_
 
-#include "shape.h"
+#include "Shape.h"
 
 /***************************************************************************//**
- * @class Rectangle
+ * @class Line
  ******************************************************************************/
-class Rectangle : public Shape
+class Line : public Shape
 {
-protected:       /// Rectangle width
-	float width;
-	/// Rectangle height;
+protected:
+	/// Difference in x-coordinates from start to end.
+	float length;
+	/// Difference in y-coordinates from start to end.
 	float height;
 
 public:
 	/// Constructor
-	Rectangle( float x = 0.0, float y = 0.0, ColorType c = ColorType( 0 ), float w = 1.0, float h = 1.0 );
+	Line( float x = 0.0, float y = 0.0, ColorType c = ColorType(0), float l = 0.0, float h = 0.0 );
 	/// Destructor
-	~Rectangle( );
+	~Line( );
 
-	/// Mutator to change the dimensions of the rectangle
-	void changeDimensions( float w, float h );
 	/// Implementation of the base class pure virtual function draw
 	void draw( ) const;
 	/// Implementation of the base class pure virtual function erase
@@ -53,4 +53,3 @@ public:
 };
 
 #endif
-

@@ -26,7 +26,7 @@
 #ifndef _ELLIPSE_H_
 #define _ELLIPSE_H_
 
-#include "shape.h"
+#include "Shape.h"
 
 /***************************************************************************//**
  * @class Ellipse

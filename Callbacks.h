@@ -9,13 +9,13 @@
 #include <iostream>
 #include <GL/freeglut.h>
 #include <string>
-#include "graphics.h"
-#include "shape.h"
-#include "rectangle.h"
+#include "Graphics.h"
+#include "Shape.h"
+#include "Rectangle.h"
 #include "FilledRectangle.h"
 #include "Ellipse.h"
 #include "FilledEllipse.h"
-#include "line.h"
+#include "Line.h"
 #include <vector>
 #include <cmath>
 
