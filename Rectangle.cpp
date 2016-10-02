@@ -1,5 +1,5 @@
 /***************************************************************************//**
- * @file rectangle.cpp
+ * @file Rectangle.cpp
  *
  * @par Description
  *    OOP example illustrating inheritance and late binding via virtual

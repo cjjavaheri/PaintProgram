@@ -1,5 +1,5 @@
 /**************************************************************************//**
- * @file line.h
+ * @file Line.h
  *
  * @par Description
  *    OOP example illustrating inheritance and late binding via virtual

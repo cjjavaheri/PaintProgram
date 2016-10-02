@@ -1,5 +1,5 @@
 /***************************************************************************//**
- * @file graphics.h
+ * @file Graphics.h
  *
  * @brief OpenGL graphics program, illustrating use of GLUT and callback
  * functions.

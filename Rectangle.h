@@ -1,5 +1,5 @@
 /**************************************************************************//**
- * @file rectangle.h
+ * @file Rectangle.h
  *
  * @par Description
  *    OOP example illustrating inheritance and late binding via virtual

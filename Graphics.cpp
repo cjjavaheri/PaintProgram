@@ -1,5 +1,5 @@
 /**************************************************************************//**
- * @file graphics.cpp
+ * @file Graphics.cpp
  *
  * @author: John M. Weiss, Ph.D.
  *

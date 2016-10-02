@@ -1,5 +1,5 @@
 /***************************************************************************//**
- * @file shape.cpp
+ * @file Shape.cpp
  *
  * @par Description
  *    OOP example illustrating inheritance and late binding via virtual

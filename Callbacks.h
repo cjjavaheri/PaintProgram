@@ -1,5 +1,5 @@
 /***************************************************************************//**
- * @file callbacks.h
+ * @file Callbacks.h
  *
  * @brief Definition of callback functions for Paint program
  *

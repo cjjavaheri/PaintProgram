@@ -1,5 +1,5 @@
 /***************************************************************************//**
- * @file line.cpp
+ * @file Line.cpp
  *
  * @par Description
  *    OOP example illustrating inheritance and late binding via virtual
