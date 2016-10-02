@@ -423,7 +423,6 @@ void Event ( char key, int button, int state, int x, int y )
  ******************************************************************************/
 void display()
 {
-	cout << "display" << endl;
 	// Clear the window
 	glClear ( GL_COLOR_BUFFER_BIT );
 	glutInitWindowSize ( 1024, 999 );
@@ -485,7 +484,6 @@ void mouseClick ( int button, int state, int x, int y )
  ******************************************************************************/
 void reshape ( int w, int h )
 {
-	cout << "reshape" << endl;
 
 	glMatrixMode ( GL_PROJECTION ); // use an orthographic projection
 	glLoadIdentity();  // initialize transformation matrix
