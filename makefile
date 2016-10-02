@@ -24,6 +24,9 @@ doxygen: doxy_config $(SRCFILES)
 	@doxygen doxy_config >/dev/null 2>&1
 	@echo made doxygen successfully
 
+doxygen_warnings: doxy_config $(SRCFILES)
+	doxygen doxy_config
+
 clean:
 	rm main
 	rm -rf doxygen

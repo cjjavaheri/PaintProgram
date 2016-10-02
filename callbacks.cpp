@@ -26,7 +26,8 @@ const string ButtonName[] =
 
 /**
  * @brief A list of strings representing button state codes
- */const string ButtonState[] =
+ */
+const string ButtonState[] =
 {
 	"Down",
 	"Up"

@@ -134,20 +134,3 @@ void DrawFilledEllipse( float xRadius, float yRadius, int x, int y, const float 
 	glLoadIdentity();
 	glFlush();
 }
-
-/**************************************************************************//**
- * @brief Draw text in the window
- *
- * @param[in] string - The text to draw
- * @param[in] x - x-coordinate of the start of the string
- * @param[in] y - y-coordinate of the start of the string
- * @param[in] color - float array containing the filled color of the ellipse
- *
- ******************************************************************************/
-void DrawTextString(string str, int x, int y, const float color[] )
-{
-	glColor3fv( color );
-	glRasterPos2i( x, y );
-	for (auto x : str)
-		glutBitmapCharacter( GLUT_BITMAP_8_BY_13, x );
-}

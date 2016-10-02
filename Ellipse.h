@@ -30,6 +30,9 @@
 
 /***************************************************************************//**
  * @class Ellipse
+ *
+ * @brief a class to represent and draw Ellipses
+ *
  ******************************************************************************/
 class Ellipse : public Shape
 {
@@ -44,14 +47,10 @@ protected:
 	float radius_y;
 
 public:
-	/// Constructor
 	Ellipse( float x = 0.0, float y = 0.0, ColorType c = ColorType( 0 ), float r_x = 1.0, float r_y = 1.0 );
-	/// Destructor
 	~Ellipse( );
 
-	/// Implementation of the base class pure virtual function draw
 	void draw( ) const;
-	/// Implementation of the base class pure virtual function print
 	void print( ostream& out ) const;
 };
 

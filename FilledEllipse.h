@@ -30,6 +30,9 @@
 
 /***************************************************************************//**
  * @class FilledEllipse
+ *
+ * @brief a class to represent and draw Filled in Ellipses
+ *
  ******************************************************************************/
 class FilledEllipse : public Ellipse
 {
@@ -39,14 +42,10 @@ protected:
 	 */
 	ColorType fill_color;
 public:
-	/// Constructor
 	FilledEllipse( float x = 0.0, float y = 0.0, ColorType c = ColorType( 0 ), ColorType f = ColorType( 0 ), float r_x = 1.0, float r_y = 1.0 );
-	/// Destructor
 	~FilledEllipse( );
 
-	/// Implementation of the base class pure virtual function draw
 	void draw( ) const;
-	/// Implementation of the base class pure virtual function print
 	void print( ostream& out ) const;
 };
 

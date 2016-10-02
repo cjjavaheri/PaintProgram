@@ -20,7 +20,8 @@ using namespace std;
  * @param[in] x - x-coordinate of the center of the Ellipse
  * @param[in] y - y-coordinate of the center of the Ellipse
  * @param[in] c - the color of the Ellipse boundary
- * @param[in] r - radius of the Ellipse
+ * @param[in] r_x - x radius of the Ellipse
+ * @param[in] r_y - y radius of the Ellipse
  *
  *****************************************************************************/
 Ellipse::Ellipse( float x, float y, ColorType c, float r_x, float r_y)

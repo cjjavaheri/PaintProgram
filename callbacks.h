@@ -21,8 +21,6 @@
 
 using namespace std;
 
-#define DEBUGPRINT(x)	cout << x << endl;
-
 /// A mnemonic name for the ascii value of the escape key
 #define ESCAPE_KEY 27
 

@@ -77,7 +77,8 @@ enum ColorType
 class Shape
 {
 
-protected:// note use of protected instead of private
+protected:
+	/// a map used to recover the color values from the colortype enum
 	static const map<ColorType, vector<float> > glutColor;
 	/// x-location of the shape
 	float locX;

@@ -50,7 +50,5 @@ void DrawFilledRectangle( float x1, float y1, float x2, float y2, const float co
 void DrawEllipse( float xRadius, float yRadius, int x, int y, const float color[] );
 /// DrawFilledEllipse function
 void DrawFilledEllipse( float xRadius, float yRadius, int x, int y, const float color[] );
-/// DrawTextString function
-void DrawTextString( string str, int x, int y, const float color[] );
 
 #endif

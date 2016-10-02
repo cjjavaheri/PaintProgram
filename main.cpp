@@ -1,19 +1,22 @@
 /*************************************************************************//**
  * @file
  *
- * @mainpage OpenGL Demo
+ * @mainpage SDSMT Paint
  *
- * @section course_section Course Information
- *
- * @author Dr. Paul Hinker
- *
- * @date Sep. 4, 2016
+ * @author John M. Weiss, Ph.D., Dr. Paul Hinker, Matthew Schallenkamp, Cameron Javaheri
  *
  * @par Course:
  *      CSC 300 - Fall 2016
  *
- * @details A basic OpenGL demo
- *    Creates a window, tracks mouse and keyboard events
+ * @brief A paint program
+ *
+ * @details This paint program was created based on files originally
+ * written by Dr. Paul Hinker and John M. Weiss, Ph.D.. We have now
+ * combined those files and some of our own code to make a paint program
+ * as a class assignment for CSC 300 with Dr. Paul Hinker. This paint
+ * program allows the user to create, move, delete, and reorder several
+ * different types of shapes and lines, in various colors.
+ *
  ****************************************************************************/
 #include <iostream>
 #include <GL/freeglut.h>

@@ -19,7 +19,9 @@ using namespace std;
  * @param[in] x - x-coordinate of the center of the FilledEllipse
  * @param[in] y - y-coordinate of the center of the FilledEllipse
  * @param[in] c - the color of the FilledEllipse boundary
- * @param[in] r - radius of the FilledEllipse
+ * @param[in] f - the color of the FilledEllipse filler
+ * @param[in] r_x - x radius of the FilledEllipse
+ * @param[in] r_y - y radius of the FilledEllipse
  *
  *****************************************************************************/
 FilledEllipse::FilledEllipse( float x, float y, ColorType c, ColorType f, float r_x, float r_y)
