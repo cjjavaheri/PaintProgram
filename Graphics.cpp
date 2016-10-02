@@ -1,5 +1,7 @@
 /**************************************************************************//**
  * @file Graphics.cpp
+ * 
+ * @brief The file which contains all of the functions to draw shapes.
  *
  * @author: John M. Weiss, Ph.D.
  *

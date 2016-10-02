@@ -1,5 +1,7 @@
 /**************************************************************************//**
  * @file Shape.h
+ * 
+ * @brief The header file for the shape class.
  *
  * @par Description
  *    OOP example illustrating inheritance and late binding via virtual

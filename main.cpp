@@ -1,5 +1,7 @@
 /*************************************************************************//**
  * @file main.cpp
+ * 
+ * @brief A paint program.
  *
  * @mainpage SDSMT Paint
  *
@@ -18,7 +20,6 @@
  * @par Location:
 		McLaury - 310
  *
- * @brief A paint program
  *
  * @details This paint program was created based on files originally
  * written by Dr. Paul Hinker and John M. Weiss, Ph.D.. We have now

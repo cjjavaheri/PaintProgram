@@ -1,6 +1,8 @@
 /***************************************************************************//**
  * @file Line.cpp
  *
+ * @brief The file used for implementing the line class.
+ *
  * @par Description
  *    OOP example illustrating inheritance and late binding via virtual
  *    functions in C++.

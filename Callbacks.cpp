@@ -1,5 +1,7 @@
 /**************************************************************************//**
  * @file Callbacks.cpp
+ * 
+ * @brief This file contains all of the callback functions.
  *
  * @author: Paul Hinker (initial), Cameron Javaheri, Matthew Schallenkamp
  *

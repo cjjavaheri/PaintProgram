@@ -1,5 +1,7 @@
 /**************************************************************************//**
  * @file Line.h
+ * 
+ * @brief The header file for the line class.
  *
  * @par Description
  *    OOP example illustrating inheritance and late binding via virtual

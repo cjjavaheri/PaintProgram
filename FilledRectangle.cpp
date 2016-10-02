@@ -1,5 +1,7 @@
 /***************************************************************************//**
  * @file FilledRectangle.cpp
+ * 
+ * @brief The file used for implementing the filled rectangle class.
  *
  * @par Description
  *    OOP example illustrating inheritance and late binding via virtual

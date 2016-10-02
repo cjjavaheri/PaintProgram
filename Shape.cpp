@@ -1,5 +1,7 @@
 /***************************************************************************//**
  * @file Shape.cpp
+ * 
+ * @brief The file used for implementing the shape class.
  *
  * @par Description
  *    OOP example illustrating inheritance and late binding via virtual

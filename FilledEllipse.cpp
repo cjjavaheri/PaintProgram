@@ -1,5 +1,7 @@
 /***************************************************************************//**
  * @file FilledEllipse.cpp
+ * 
+ * @brief The file used for implementing the filled ellipse class.
  *
  * @author John M. Weiss, Ph.D., Matthew Schallenkamp
  *

@@ -1,5 +1,7 @@
 /***************************************************************************//**
  * @file Ellipse.cpp
+ * 
+ * @brief The file used for implementing the ellipse class.
  *
  * @author John M. Weiss, Ph.D., Matthew Schallenkamp
  *

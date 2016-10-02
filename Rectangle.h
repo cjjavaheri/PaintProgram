@@ -1,6 +1,8 @@
 /**************************************************************************//**
  * @file Rectangle.h
  *
+ * @brief The header file for the rectangle class.
+ *
  * @par Description
  *    OOP example illustrating inheritance and late binding via virtual
  *    functions in C++.
